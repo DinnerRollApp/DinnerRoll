@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C4958D61EA3F61F00B0C776 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4958D51EA3F61F00B0C776 /* APIKeys.plist */; };
 		4C9AE7A91EA17BC500514983 /* MHAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */; };
 		4C9AE7AB1EA17BC500514983 /* MHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7AA1EA17BC500514983 /* MHViewController.swift */; };
 		4C9AE7AE1EA17BC500514983 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7AC1EA17BC500514983 /* Main.storyboard */; };
@@ -14,8 +15,7 @@
 		4C9AE7B31EA17BC500514983 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7B11EA17BC500514983 /* LaunchScreen.storyboard */; };
 		4C9AE7BE1EA17BC500514983 /* DinnerRollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7BD1EA17BC500514983 /* DinnerRollTests.swift */; };
 		4C9AE7C91EA17BC500514983 /* DinnerRollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */; };
-		4C9AE7D71EA1955900514983 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7D61EA1955900514983 /* Podfile */; };
-		4C9AE7DA1EA3274E00514983 /* YelpAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9AE7D91EA3274E00514983 /* YelpAPI.framework */; };
+		4CE115DE1EA887C00094377B /* QuadratTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE115DD1EA887C00094377B /* QuadratTouch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C4958CF1EA3F58100B0C776 /* YelpAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YelpAPI.framework; path = Rome/YelpAPI.framework; sourceTree = "<group>"; };
+		4C4958D51EA3F61F00B0C776 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
+		4C766ADB1EA6836100533C28 /* Cartfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; name = Cartfile; path = ../Cartfile; sourceTree = "<group>"; };
 		4C9AE7A51EA17BC500514983 /* DinnerRoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DinnerRoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHAppDelegate.swift; sourceTree = "<group>"; };
 		4C9AE7AA1EA17BC500514983 /* MHViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHViewController.swift; sourceTree = "<group>"; };
@@ -49,8 +52,7 @@
 		4C9AE7C41EA17BC500514983 /* DinnerRollUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DinnerRollUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinnerRollUITests.swift; sourceTree = "<group>"; };
 		4C9AE7CA1EA17BC500514983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C9AE7D61EA1955900514983 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; };
-		4C9AE7D91EA3274E00514983 /* YelpAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YelpAPI.framework; path = Rome/YelpAPI.framework; sourceTree = "<group>"; };
+		4CE115DD1EA887C00094377B /* QuadratTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuadratTouch.framework; path = Carthage/Build/iOS/QuadratTouch.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C9AE7DA1EA3274E00514983 /* YelpAPI.framework in Frameworks */,
+				4CE115DE1EA887C00094377B /* QuadratTouch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +81,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C4958D31EA3F58E00B0C776 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4C4958CF1EA3F58100B0C776 /* YelpAPI.framework */,
+			);
+			name = Pods;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		4C4958D41EA3F60000B0C776 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4C4958D51EA3F61F00B0C776 /* APIKeys.plist */,
+				4C766ADB1EA6836100533C28 /* Cartfile */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		4C9AE79C1EA17BC500514983 = {
 			isa = PBXGroup;
 			children = (
-				4C9AE7D61EA1955900514983 /* Podfile */,
 				4C9AE7A71EA17BC500514983 /* DinnerRoll */,
 				4C9AE7BC1EA17BC500514983 /* DinnerRollTests */,
 				4C9AE7C71EA17BC500514983 /* DinnerRollUITests */,
@@ -104,6 +123,8 @@
 		4C9AE7A71EA17BC500514983 /* DinnerRoll */ = {
 			isa = PBXGroup;
 			children = (
+				4C4958D41EA3F60000B0C776 /* Supporting Files */,
+				4C4958D31EA3F58E00B0C776 /* Pods */,
 				4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */,
 				4C9AE7AA1EA17BC500514983 /* MHViewController.swift */,
 				4C9AE7AC1EA17BC500514983 /* Main.storyboard */,
@@ -135,7 +156,7 @@
 		4C9AE7D81EA3274E00514983 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4C9AE7D91EA3274E00514983 /* YelpAPI.framework */,
+				4CE115DD1EA887C00094377B /* QuadratTouch.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -150,6 +171,7 @@
 				4C9AE7A11EA17BC500514983 /* Sources */,
 				4C9AE7A21EA17BC500514983 /* Frameworks */,
 				4C9AE7A31EA17BC500514983 /* Resources */,
+				4C438C8C1EA8844C00B2D29F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -251,8 +273,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C9AE7B31EA17BC500514983 /* LaunchScreen.storyboard in Resources */,
+				4C4958D61EA3F61F00B0C776 /* APIKeys.plist in Resources */,
 				4C9AE7B01EA17BC500514983 /* Assets.xcassets in Resources */,
-				4C9AE7D71EA1955900514983 /* Podfile in Resources */,
 				4C9AE7AE1EA17BC500514983 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +294,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4C438C8C1EA8844C00B2D29F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/QuadratTouch.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4C9AE7A11EA17BC500514983 /* Sources */ = {
@@ -375,7 +414,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -420,7 +459,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -436,7 +475,8 @@
 				DEVELOPMENT_TEAM = K3ZLWH83BT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Rome",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = DinnerRoll/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -454,7 +494,8 @@
 				DEVELOPMENT_TEAM = K3ZLWH83BT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Rome",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = DinnerRoll/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

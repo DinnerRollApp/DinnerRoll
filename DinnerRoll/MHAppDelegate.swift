@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuadratTouch
 
 @UIApplicationMain
 class MHAppDelegate: UIResponder, UIApplicationDelegate{

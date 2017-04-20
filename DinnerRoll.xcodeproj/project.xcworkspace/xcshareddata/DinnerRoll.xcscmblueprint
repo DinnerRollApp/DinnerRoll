@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "29BFC4B702A6D49492957817591157194019D2AA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "29BFC4B702A6D49492957817591157194019D2AA" : 9223372036854775807,
+    "C333CCA42B76DAB308C436958D3D72C5B6ACE147" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "723F35E7-4E0A-4FDA-9F4B-17F5FA37F8EA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "29BFC4B702A6D49492957817591157194019D2AA" : "DinnerRoll\/",
+    "C333CCA42B76DAB308C436958D3D72C5B6ACE147" : "..\/Frameworks\/das-quadrat"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "DinnerRoll",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DinnerRoll.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:raysarebest\/DinnerRoll.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "29BFC4B702A6D49492957817591157194019D2AA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:raysarebest\/das-quadrat.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C333CCA42B76DAB308C436958D3D72C5B6ACE147"
+    }
+  ]
+}
