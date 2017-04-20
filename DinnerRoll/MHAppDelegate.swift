@@ -16,6 +16,12 @@ class MHAppDelegate: UIResponder, UIApplicationDelegate{
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool{
         // Override point for customization after application launch.
+        let APIKeys = NSDictionary(contentsOf: Bundle.main.url(forResource: "APIKeys", withExtension: "plist")!)!
+        let foursquareClient = QuadratTouch.Client(clientID: APIKeys["clientID"] as! String, clientSecret: APIKeys["clientSecret"] as! String, redirectURL: "")
+        var config = QuadratTouch.Configuration(client: foursquareClient)
+        config.mode = "foursquare"
+        config.shouldControlNetworkActivityIndicator = true
+        Session.setupSharedSessionWithConfiguration(config)
         return true
     }
     func applicationWillResignActive(_ application: UIApplication) -> Void{
