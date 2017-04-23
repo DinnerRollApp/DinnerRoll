@@ -17,7 +17,7 @@ class MHAppDelegate: UIResponder, UIApplicationDelegate{
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool{
         // Override point for customization after application launch.
         let APIKeys = NSDictionary(contentsOf: Bundle.main.url(forResource: "APIKeys", withExtension: "plist")!)!
-        let foursquareClient = QuadratTouch.Client(clientID: APIKeys["clientID"] as! String, clientSecret: APIKeys["clientSecret"] as! String, redirectURL: "")
+        let foursquareClient = QuadratTouch.Client(clientID: APIKeys["clientID"] as! String, clientSecret: APIKeys["clientSecret"] as! String, redirectURL: "dinnerroll://foursquare")
         var config = QuadratTouch.Configuration(client: foursquareClient)
         config.mode = "foursquare"
         config.shouldControlNetworkActivityIndicator = true
@@ -40,5 +40,8 @@ class MHAppDelegate: UIResponder, UIApplicationDelegate{
     }
     func applicationWillTerminate(_ application: UIApplication) -> Void{
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool{
+        return Session.sharedSession().handleURL(URL: url as NSURL)
     }
 }

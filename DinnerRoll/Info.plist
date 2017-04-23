@@ -41,5 +41,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>DinnerRoll uses your location when the app is open so it can provide you reccomendations nearby where you currently are</string>
 </dict>
 </plist>

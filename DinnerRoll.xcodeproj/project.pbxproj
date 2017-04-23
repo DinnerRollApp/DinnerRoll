@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4C2C953E1EA89CE2005EC762 /* QuadratTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE115DD1EA887C00094377B /* QuadratTouch.framework */; };
+		4C2C95401EA9383D005EC762 /* INTULocationManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2C953F1EA9383D005EC762 /* INTULocationManager.framework */; };
+		4C2C95441EA95391005EC762 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C95431EA95391005EC762 /* Array.swift */; };
 		4C4958D61EA3F61F00B0C776 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4958D51EA3F61F00B0C776 /* APIKeys.plist */; };
 		4C9AE7A91EA17BC500514983 /* MHAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */; };
 		4C9AE7AB1EA17BC500514983 /* MHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7AA1EA17BC500514983 /* MHViewController.swift */; };
@@ -16,6 +18,7 @@
 		4C9AE7B31EA17BC500514983 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7B11EA17BC500514983 /* LaunchScreen.storyboard */; };
 		4C9AE7BE1EA17BC500514983 /* DinnerRollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7BD1EA17BC500514983 /* DinnerRollTests.swift */; };
 		4C9AE7C91EA17BC500514983 /* DinnerRollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */; };
+		4CAC0BA01EAC34F000796663 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAC0B9F1EAC34F000796663 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C2C953F1EA9383D005EC762 /* INTULocationManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = INTULocationManager.framework; path = Carthage/Build/iOS/INTULocationManager.framework; sourceTree = "<group>"; };
+		4C2C95431EA95391005EC762 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		4C4958CF1EA3F58100B0C776 /* YelpAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YelpAPI.framework; path = Rome/YelpAPI.framework; sourceTree = "<group>"; };
 		4C4958D51EA3F61F00B0C776 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		4C766ADB1EA6836100533C28 /* Cartfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; name = Cartfile; path = ../Cartfile; sourceTree = "<group>"; };
@@ -52,6 +57,7 @@
 		4C9AE7C41EA17BC500514983 /* DinnerRollUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DinnerRollUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinnerRollUITests.swift; sourceTree = "<group>"; };
 		4C9AE7CA1EA17BC500514983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CAC0B9F1EAC34F000796663 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4CE115DD1EA887C00094377B /* QuadratTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuadratTouch.framework; path = Carthage/Build/iOS/QuadratTouch.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,7 +66,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CAC0BA01EAC34F000796663 /* MapKit.framework in Frameworks */,
 				4C2C953E1EA89CE2005EC762 /* QuadratTouch.framework in Frameworks */,
+				4C2C95401EA9383D005EC762 /* INTULocationManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +101,7 @@
 		4C4958D41EA3F60000B0C776 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4C2C95431EA95391005EC762 /* Array.swift */,
 				4C4958D51EA3F61F00B0C776 /* APIKeys.plist */,
 				4C766ADB1EA6836100533C28 /* Cartfile */,
 			);
@@ -156,6 +165,8 @@
 		4C9AE7D81EA3274E00514983 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4CAC0B9F1EAC34F000796663 /* MapKit.framework */,
+				4C2C953F1EA9383D005EC762 /* INTULocationManager.framework */,
 				4CE115DD1EA887C00094377B /* QuadratTouch.framework */,
 			);
 			name = Frameworks;
@@ -303,6 +314,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/QuadratTouch.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/INTULocationManager.framework",
 			);
 			outputPaths = (
 			);
@@ -317,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C2C95441EA95391005EC762 /* Array.swift in Sources */,
 				4C9AE7AB1EA17BC500514983 /* MHViewController.swift in Sources */,
 				4C9AE7A91EA17BC500514983 /* MHAppDelegate.swift in Sources */,
 			);
