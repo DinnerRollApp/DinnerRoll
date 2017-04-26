@@ -11,7 +11,7 @@ import MapKit
 import QuadratTouch
 import INTULocationManager
 
-class MHViewController: UIViewController{
+class MHViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var restaurantLabel: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var refreshButton: UIButton!
@@ -19,6 +19,7 @@ class MHViewController: UIViewController{
     override func viewDidLoad() -> Void{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        map.delegate = self
         refresh()
     }
     @IBAction func refresh() -> Void{
@@ -38,18 +39,29 @@ class MHViewController: UIViewController{
                 let mapSize = radius * 2 + 500
                 self.map.setRegion(MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, mapSize, mapSize), animated: true)
                 self.map.removeAnnotations(self.map.annotations)
+                self.map.removeOverlays(self.map.overlays)
                 let restaurant = (response["venues"]! as! [[String: Any]]).randomElement
                 print(restaurant)
                 let annotation = MKPointAnnotation()
-                //print(type(of: (restaurant["location"] as! [String: Any])["lat"]!))
-                //annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees((restaurant["location"] as! [String: Any])["lat"] as! NSNumber)!, longitude: CLLocationDegrees((restaurant["location"] as! [String: Any])["lng"] as! String)!)
                 annotation.coordinate = CLLocationCoordinate2D(latitude: ((restaurant["location"] as! [String: Any])["lat"] as! NSNumber).doubleValue, longitude: ((restaurant["location"] as! [String: Any])["lng"] as! NSNumber).doubleValue)
                 self.map.addAnnotation(annotation)
+                let circle = MKCircle(center: currentLocation.coordinate, radius: radius)
+                self.map.add(circle, level: .aboveRoads)
                 self.restaurantLabel.text = restaurant["name"]! as? String
                 self.spinner.stopAnimating()
                 self.refreshButton.isHidden = false
             })
             search.start()
         }
+    }
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer{
+        guard let circle = overlay as? MKCircle else{
+            return MKOverlayRenderer(overlay: overlay)
+        }
+        let renderer = MKCircleRenderer(circle: circle)
+        renderer.fillColor = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 0.1950009586)
+        renderer.strokeColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        renderer.lineWidth = 1
+        return renderer
     }
 }

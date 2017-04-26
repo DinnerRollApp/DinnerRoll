@@ -11,6 +11,11 @@
 		4C2C95401EA9383D005EC762 /* INTULocationManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2C953F1EA9383D005EC762 /* INTULocationManager.framework */; };
 		4C2C95441EA95391005EC762 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C95431EA95391005EC762 /* Array.swift */; };
 		4C4958D61EA3F61F00B0C776 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4958D51EA3F61F00B0C776 /* APIKeys.plist */; };
+		4C97962A1EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9796271EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m */; };
+		4C97962B1EB1137700D66D93 /* DBMapSelectorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9796291EB1137700D66D93 /* DBMapSelectorManager.m */; };
+		4C97962E1EB1138200D66D93 /* DBMapSelectorAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C97962D1EB1138200D66D93 /* DBMapSelectorAnnotation.m */; };
+		4C9796331EB1138E00D66D93 /* DBMapSelectorOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9796301EB1138E00D66D93 /* DBMapSelectorOverlay.m */; };
+		4C9796341EB1138E00D66D93 /* DBMapSelectorOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9796321EB1138E00D66D93 /* DBMapSelectorOverlayRenderer.m */; };
 		4C9AE7A91EA17BC500514983 /* MHAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */; };
 		4C9AE7AB1EA17BC500514983 /* MHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7AA1EA17BC500514983 /* MHViewController.swift */; };
 		4C9AE7AE1EA17BC500514983 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7AC1EA17BC500514983 /* Main.storyboard */; };
@@ -18,7 +23,6 @@
 		4C9AE7B31EA17BC500514983 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7B11EA17BC500514983 /* LaunchScreen.storyboard */; };
 		4C9AE7BE1EA17BC500514983 /* DinnerRollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7BD1EA17BC500514983 /* DinnerRollTests.swift */; };
 		4C9AE7C91EA17BC500514983 /* DinnerRollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */; };
-		4CAC0BA01EAC34F000796663 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAC0B9F1EAC34F000796663 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,17 @@
 		4C4958CF1EA3F58100B0C776 /* YelpAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YelpAPI.framework; path = Rome/YelpAPI.framework; sourceTree = "<group>"; };
 		4C4958D51EA3F61F00B0C776 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		4C766ADB1EA6836100533C28 /* Cartfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; name = Cartfile; path = ../Cartfile; sourceTree = "<group>"; };
+		4C9796251EB1137700D66D93 /* DinnerRoll-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DinnerRoll-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		4C9796261EB1137700D66D93 /* DBMapSelectorGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBMapSelectorGestureRecognizer.h; path = DBMapSelectorViewController/Source/DBMapSelectorGestureRecognizer.h; sourceTree = "<group>"; };
+		4C9796271EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBMapSelectorGestureRecognizer.m; path = DBMapSelectorViewController/Source/DBMapSelectorGestureRecognizer.m; sourceTree = "<group>"; };
+		4C9796281EB1137700D66D93 /* DBMapSelectorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBMapSelectorManager.h; path = DBMapSelectorViewController/Source/DBMapSelectorManager.h; sourceTree = "<group>"; };
+		4C9796291EB1137700D66D93 /* DBMapSelectorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBMapSelectorManager.m; path = DBMapSelectorViewController/Source/DBMapSelectorManager.m; sourceTree = "<group>"; };
+		4C97962C1EB1138200D66D93 /* DBMapSelectorAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBMapSelectorAnnotation.h; path = DBMapSelectorViewController/Source/MapSelectorAnnotation/DBMapSelectorAnnotation.h; sourceTree = "<group>"; };
+		4C97962D1EB1138200D66D93 /* DBMapSelectorAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBMapSelectorAnnotation.m; path = DBMapSelectorViewController/Source/MapSelectorAnnotation/DBMapSelectorAnnotation.m; sourceTree = "<group>"; };
+		4C97962F1EB1138E00D66D93 /* DBMapSelectorOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBMapSelectorOverlay.h; path = DBMapSelectorViewController/Source/MapSelectorOverlay/DBMapSelectorOverlay.h; sourceTree = "<group>"; };
+		4C9796301EB1138E00D66D93 /* DBMapSelectorOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBMapSelectorOverlay.m; path = DBMapSelectorViewController/Source/MapSelectorOverlay/DBMapSelectorOverlay.m; sourceTree = "<group>"; };
+		4C9796311EB1138E00D66D93 /* DBMapSelectorOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBMapSelectorOverlayRenderer.h; path = DBMapSelectorViewController/Source/MapSelectorOverlay/DBMapSelectorOverlayRenderer.h; sourceTree = "<group>"; };
+		4C9796321EB1138E00D66D93 /* DBMapSelectorOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBMapSelectorOverlayRenderer.m; path = DBMapSelectorViewController/Source/MapSelectorOverlay/DBMapSelectorOverlayRenderer.m; sourceTree = "<group>"; };
 		4C9AE7A51EA17BC500514983 /* DinnerRoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DinnerRoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHAppDelegate.swift; sourceTree = "<group>"; };
 		4C9AE7AA1EA17BC500514983 /* MHViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHViewController.swift; sourceTree = "<group>"; };
@@ -57,7 +72,6 @@
 		4C9AE7C41EA17BC500514983 /* DinnerRollUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DinnerRollUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinnerRollUITests.swift; sourceTree = "<group>"; };
 		4C9AE7CA1EA17BC500514983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4CAC0B9F1EAC34F000796663 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4CE115DD1EA887C00094377B /* QuadratTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuadratTouch.framework; path = Carthage/Build/iOS/QuadratTouch.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CAC0BA01EAC34F000796663 /* MapKit.framework in Frameworks */,
 				4C2C953E1EA89CE2005EC762 /* QuadratTouch.framework in Frameworks */,
 				4C2C95401EA9383D005EC762 /* INTULocationManager.framework in Frameworks */,
 			);
@@ -104,8 +117,26 @@
 				4C2C95431EA95391005EC762 /* Array.swift */,
 				4C4958D51EA3F61F00B0C776 /* APIKeys.plist */,
 				4C766ADB1EA6836100533C28 /* Cartfile */,
+				4C9796251EB1137700D66D93 /* DinnerRoll-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4C9796241EB1135100D66D93 /* DBMapSelector */ = {
+			isa = PBXGroup;
+			children = (
+				4C9796261EB1137700D66D93 /* DBMapSelectorGestureRecognizer.h */,
+				4C9796271EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m */,
+				4C9796281EB1137700D66D93 /* DBMapSelectorManager.h */,
+				4C9796291EB1137700D66D93 /* DBMapSelectorManager.m */,
+				4C97962C1EB1138200D66D93 /* DBMapSelectorAnnotation.h */,
+				4C97962D1EB1138200D66D93 /* DBMapSelectorAnnotation.m */,
+				4C97962F1EB1138E00D66D93 /* DBMapSelectorOverlay.h */,
+				4C9796301EB1138E00D66D93 /* DBMapSelectorOverlay.m */,
+				4C9796311EB1138E00D66D93 /* DBMapSelectorOverlayRenderer.h */,
+				4C9796321EB1138E00D66D93 /* DBMapSelectorOverlayRenderer.m */,
+			);
+			name = DBMapSelector;
 			sourceTree = "<group>";
 		};
 		4C9AE79C1EA17BC500514983 = {
@@ -165,7 +196,7 @@
 		4C9AE7D81EA3274E00514983 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4CAC0B9F1EAC34F000796663 /* MapKit.framework */,
+				4C9796241EB1135100D66D93 /* DBMapSelector */,
 				4C2C953F1EA9383D005EC762 /* INTULocationManager.framework */,
 				4CE115DD1EA887C00094377B /* QuadratTouch.framework */,
 			);
@@ -242,7 +273,13 @@
 					4C9AE7A41EA17BC500514983 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = K3ZLWH83BT;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					4C9AE7B81EA17BC500514983 = {
 						CreatedOnToolsVersion = 8.3.1;
@@ -329,9 +366,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C97962E1EB1138200D66D93 /* DBMapSelectorAnnotation.m in Sources */,
+				4C9796331EB1138E00D66D93 /* DBMapSelectorOverlay.m in Sources */,
 				4C2C95441EA95391005EC762 /* Array.swift in Sources */,
 				4C9AE7AB1EA17BC500514983 /* MHViewController.swift in Sources */,
+				4C97962A1EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m in Sources */,
+				4C97962B1EB1137700D66D93 /* DBMapSelectorManager.m in Sources */,
 				4C9AE7A91EA17BC500514983 /* MHAppDelegate.swift in Sources */,
+				4C9796341EB1138E00D66D93 /* DBMapSelectorOverlayRenderer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +527,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = K3ZLWH83BT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -496,6 +539,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRoll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DinnerRoll-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -504,6 +549,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = K3ZLWH83BT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -515,6 +561,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRoll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DinnerRoll-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
