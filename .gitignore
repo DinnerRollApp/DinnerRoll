@@ -66,3 +66,6 @@ fastlane/test_output
 
 APIKeys.plist
 DinnerRoll/APIKeys.plist
+
+.DS_Store
+/**/.DS_Store
