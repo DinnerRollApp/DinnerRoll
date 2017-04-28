@@ -1,2 +1,3 @@
 github "raysarebest/das-quadrat" # Change this back to Constantine-Fry once they accept my PR
 github "intuit/LocationManager"
+github "SwiftyJSON/SwiftyJSON"

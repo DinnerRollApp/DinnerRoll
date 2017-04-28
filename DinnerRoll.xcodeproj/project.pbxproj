@@ -23,6 +23,7 @@
 		4C9AE7B31EA17BC500514983 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7B11EA17BC500514983 /* LaunchScreen.storyboard */; };
 		4C9AE7BE1EA17BC500514983 /* DinnerRollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7BD1EA17BC500514983 /* DinnerRollTests.swift */; };
 		4C9AE7C91EA17BC500514983 /* DinnerRollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */; };
+		4CFF97671EB296B900B862E7 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFF97661EB296B900B862E7 /* SwiftyJSON.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinnerRollUITests.swift; sourceTree = "<group>"; };
 		4C9AE7CA1EA17BC500514983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CE115DD1EA887C00094377B /* QuadratTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuadratTouch.framework; path = Carthage/Build/iOS/QuadratTouch.framework; sourceTree = "<group>"; };
+		4CFF97661EB296B900B862E7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			files = (
 				4C2C953E1EA89CE2005EC762 /* QuadratTouch.framework in Frameworks */,
 				4C2C95401EA9383D005EC762 /* INTULocationManager.framework in Frameworks */,
+				4CFF97671EB296B900B862E7 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				4C9796241EB1135100D66D93 /* DBMapSelector */,
+				4CFF97661EB296B900B862E7 /* SwiftyJSON.framework */,
 				4C2C953F1EA9383D005EC762 /* INTULocationManager.framework */,
 				4CE115DD1EA887C00094377B /* QuadratTouch.framework */,
 			);
@@ -352,6 +356,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/QuadratTouch.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/INTULocationManager.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 			);
 			outputPaths = (
 			);
