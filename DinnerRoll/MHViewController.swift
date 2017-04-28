@@ -61,6 +61,13 @@ class MHViewController: UIViewController, MKMapViewDelegate, DBMapSelectorManage
         }
     }
 
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) -> Void{
+        guard motion == .motionShake else{
+            return
+        }
+        refresh()
+    }
+
     //MARK: - MKMapViewDelegate Conformance
 
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer{
