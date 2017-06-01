@@ -12,12 +12,17 @@ import SwiftyJSON
 import QuadratTouch
 import INTULocationManager
 
-class MHViewController: UIViewController, MKMapViewDelegate, DBMapSelectorManagerDelegate{
+class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorManagerDelegate{
+    @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var restaurantLabel: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var map: MKMapView!
     var selectionCircle: DBMapSelectorManager? = nil
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        get{
+            return .lightContent
+        }
+    }
     override func viewDidLoad() -> Void{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -26,10 +31,25 @@ class MHViewController: UIViewController, MKMapViewDelegate, DBMapSelectorManage
         selectionCircle?.delegate = self
         selectionCircle?.editingType = .full
         selectionCircle?.circleRadius = 1000
+        selectionCircle?.fillColor = #colorLiteral(red: 1, green: 0.8506348729, blue: 0.4412845969, alpha: 1)
+        cardView.layer.cornerRadius = 10
+        cardView.layer.shadowColor = UIColor.black.cgColor
+        cardView.layer.shadowRadius = 3
+        cardView.layer.shadowOpacity = 1
+        cardView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        cardView.frame.size = CGSize(width: view.frame.size.width - 32, height: 334)
+        cardView.center = CGPoint(x: view.center.x, y: -74)
         refresh()
     }
-    @IBAction func refresh() -> Void{
-        refreshButton.isHidden = true
+    override func viewWillAppear(_ animated: Bool) -> Void{
+        super.viewWillAppear(animated)
+        map.frame = view.frame
+        cardView.frame = CGRect(x: 0, y: cardView.frame.origin.y, width: view.frame.width, height: cardView.frame.size.height)
+        restaurantLabel.frame = CGRect(x: 8, y: restaurantLabel.frame.origin.y, width: cardView.frame.size.width - 16, height: restaurantLabel.frame.size.height)
+        spinner.center = restaurantLabel.center
+    }
+    func refresh() -> Void{
+        restaurantLabel.text = ""
         spinner.startAnimating()
         spinner.isHidden = false
         INTULocationManager.sharedInstance().requestLocation(withDesiredAccuracy: .block, timeout: 10){(location: CLLocation?, accuracy: INTULocationAccuracy, status: INTULocationStatus) in
@@ -47,7 +67,6 @@ class MHViewController: UIViewController, MKMapViewDelegate, DBMapSelectorManage
                     return
                 }
                 let data = JSON(response)
-                //To display a full circle, you have to display the diameter, plus a little padding to show the whole pin
                 let restaurant = data["venues"].array!.randomElement
                 //print(restaurant)
                 let annotation = MKPointAnnotation()
@@ -55,7 +74,6 @@ class MHViewController: UIViewController, MKMapViewDelegate, DBMapSelectorManage
                 self.map.addAnnotation(annotation)
                 self.restaurantLabel.text = restaurant["name"].string!
                 self.spinner.stopAnimating()
-                self.refreshButton.isHidden = false
             })
             search.start()
         }
@@ -86,7 +104,6 @@ class MHViewController: UIViewController, MKMapViewDelegate, DBMapSelectorManage
         selectionCircle?.mapView(mapView, regionDidChangeAnimated: animated)
     }
 
-    
 }
 
 extension CLLocationCoordinate2D{

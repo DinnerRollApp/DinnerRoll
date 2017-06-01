@@ -7,3 +7,6 @@
 #import "DBMapSelectorManager.h"
 #import "DBMapSelectorAnnotation.h"
 #import "DBMapSelectorGestureRecognizer.h"
+#import "MHPaneBehavior.h"
+#import "MHMainViewController.h"
+#import "MHDraggableView.h"

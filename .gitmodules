@@ -1,3 +1,6 @@
 [submodule "DBMapSelectorViewController"]
 	path = DBMapSelectorViewController
 	url = https://github.com/d0ping/DBMapSelectorViewController
+[submodule "issue-12-interactive-animations-uidynamics"]
+	path = issue-12-interactive-animations-uidynamics
+	url = https://github.com/ehrenmurdick/issue-12-interactive-animations-uidynamics

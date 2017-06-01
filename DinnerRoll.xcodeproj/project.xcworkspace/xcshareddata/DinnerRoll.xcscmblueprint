@@ -4,15 +4,13 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "A776337F01409422F6E48C6C8169FD920FE5BA36" : 9223372036854775807,
     "29BFC4B702A6D49492957817591157194019D2AA" : 9223372036854775807,
-    "C333CCA42B76DAB308C436958D3D72C5B6ACE147" : 9223372036854775807
+    "CC0A41DDEC77EB99AC67DD6A96103668BBDD2898" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "723F35E7-4E0A-4FDA-9F4B-17F5FA37F8EA",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "A776337F01409422F6E48C6C8169FD920FE5BA36" : "DinnerRoll\/DBMapSelectorViewController\/",
     "29BFC4B702A6D49492957817591157194019D2AA" : "DinnerRoll\/",
-    "C333CCA42B76DAB308C436958D3D72C5B6ACE147" : "..\/Frameworks\/das-quadrat"
+    "CC0A41DDEC77EB99AC67DD6A96103668BBDD2898" : "DinnerRoll\/issue-12-interactive-animations-uidynamics\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "DinnerRoll",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -24,14 +22,9 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "29BFC4B702A6D49492957817591157194019D2AA"
     },
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/d0ping\/DBMapSelectorViewController",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ehrenmurdick\/issue-12-interactive-animations-uidynamics",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A776337F01409422F6E48C6C8169FD920FE5BA36"
-    },
-    {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:raysarebest\/das-quadrat.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C333CCA42B76DAB308C436958D3D72C5B6ACE147"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CC0A41DDEC77EB99AC67DD6A96103668BBDD2898"
     }
   ]
 }
