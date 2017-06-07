@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,30 +32,47 @@
                                         <rect key="frame" x="161" y="274" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGH-LX-ZMV">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGH-LX-ZMV">
                                         <rect key="frame" x="8" y="268" width="327" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                        <color key="textColor" red="0.062745098039215685" green="0.68627450980392157" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" red="0.98039215686274506" green="0.89411764705882346" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SbR-LJ-aKO">
+                                        <rect key="frame" x="145" y="318" width="54" height="8"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.56078431370000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ol-ck-vYn">
+                                        <rect key="frame" x="27" y="234" width="288" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0078431372549019607" green="0.0078431372549019607" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.87450980392156863" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.035294117647058823" green="0.035294117647058823" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="cardView" destination="nhK-AN-vfY" id="jlr-Ux-aJ6"/>
+                        <outlet property="grabberView" destination="SbR-LJ-aKO" id="wKG-gd-K6m"/>
                         <outlet property="map" destination="3c4-Sr-40H" id="SQA-56-QyA"/>
                         <outlet property="pane" destination="nhK-AN-vfY" id="wdv-qb-G8b"/>
                         <outlet property="restaurantLabel" destination="uGH-LX-ZMV" id="ypo-qM-5LR"/>
+                        <outlet property="separatorView" destination="1ol-ck-vYn" id="UUG-Zn-Kkh"/>
                         <outlet property="spinner" destination="MZH-8G-X5k" id="8yB-Xi-e8M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="94.902548725637189"/>
+            <point key="canvasLocation" x="-154.40000000000001" y="-13.043478260869566"/>
         </scene>
     </scenes>
 </document>

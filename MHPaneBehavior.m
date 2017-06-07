@@ -6,6 +6,7 @@
 
 
 #import "MHPaneBehavior.h"
+#import "MHDraggableView.h"
 
 
 @interface PaneBehavior ()
@@ -58,4 +59,15 @@
     [self.itemBehavior addLinearVelocity:velocityDelta forItem:self.item];
 }
 
+-(void)setAction:(void (^)(void))action{
+    [super setAction:action];
+    self.attachmentBehavior.action = action;
+    self.itemBehavior.action = action;
+}
+
+-(void)willMoveToAnimator:(UIDynamicAnimator *)dynamicAnimator{
+    [super willMoveToAnimator:dynamicAnimator];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MHCardDidDragNotificationName object:self.item];
+    NSLog(@"Moved to animator: %@", dynamicAnimator);
+}
 @end

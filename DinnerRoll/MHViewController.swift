@@ -17,36 +17,51 @@ class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorMana
     @IBOutlet weak var restaurantLabel: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var grabberView: UIView!
+    @IBOutlet weak var separatorView: UIView!
     var selectionCircle: DBMapSelectorManager? = nil
     override var preferredStatusBarStyle: UIStatusBarStyle{
         get{
             return .lightContent
         }
     }
+    //TODO: Override this to move the compass
+    override var topLayoutGuide: UILayoutSupport{
+        get{
+            let new = MHLayoutSupporter(top: super.topLayoutGuide.topAnchor, bottom: super.topLayoutGuide.bottomAnchor, height: super.topLayoutGuide.heightAnchor)
+            new.length = 100
+            return new
+        }
+    }
     override func viewDidLoad() -> Void{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         map.delegate = self
+        map.frame = view.frame
         selectionCircle = DBMapSelectorManager(mapView: map)
         selectionCircle?.delegate = self
         selectionCircle?.editingType = .full
         selectionCircle?.circleRadius = 1000
-        selectionCircle?.fillColor = #colorLiteral(red: 1, green: 0.8506348729, blue: 0.4412845969, alpha: 1)
+        selectionCircle?.fillColor = #colorLiteral(red: 0.9856365323, green: 0.9032172561, blue: 0, alpha: 1)
+        selectionCircle?.strokeColor = #colorLiteral(red: 0.03921568627, green: 0.1450980392, blue: 0.7411764706, alpha: 1)
+        selectionCircle?.pointColor = #colorLiteral(red: 0.9843137255, green: 0.9019607843, blue: 0, alpha: 1)
+        selectionCircle?.textColor = #colorLiteral(red: 0.03991333395, green: 0.1469032466, blue: 0.7415332794, alpha: 1)
+        selectionCircle?.lineColor = #colorLiteral(red: 0.9803921569, green: 0.5607843137, blue: 0, alpha: 1)
+        selectionCircle?.centerPinColor = #colorLiteral(red: 0.03991333395, green: 0.1469032466, blue: 0.7415332794, alpha: 1)
+        cardView.frame = CGRect(x: 0, y: cardView.frame.origin.y, width: view.frame.width, height: cardView.frame.size.height)
         cardView.layer.cornerRadius = 10
         cardView.layer.shadowColor = UIColor.black.cgColor
         cardView.layer.shadowRadius = 3
         cardView.layer.shadowOpacity = 1
         cardView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        cardView.frame.size = CGSize(width: view.frame.size.width - 32, height: 334)
         cardView.center = CGPoint(x: view.center.x, y: -74)
-        refresh()
-    }
-    override func viewWillAppear(_ animated: Bool) -> Void{
-        super.viewWillAppear(animated)
-        map.frame = view.frame
-        cardView.frame = CGRect(x: 0, y: cardView.frame.origin.y, width: view.frame.width, height: cardView.frame.size.height)
         restaurantLabel.frame = CGRect(x: 8, y: restaurantLabel.frame.origin.y, width: cardView.frame.size.width - 16, height: restaurantLabel.frame.size.height)
         spinner.center = restaurantLabel.center
+        grabberView.center = CGPoint(x: cardView.center.x, y: grabberView.center.y)
+        separatorView.frame = CGRect(x: 8, y: -(cardView.frame.origin.y) - 1, width: cardView.frame.size.width - 16, height: 1)
+        separatorView.layer.cornerRadius = 1
+        NotificationCenter.default.addObserver(self, selector: #selector(reactToCardViewUpdate), name: Notification.Name.MHCardDidDragNotificationName, object: nil)
+        refresh()
     }
     func refresh() -> Void{
         restaurantLabel.text = ""
@@ -86,6 +101,10 @@ class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorMana
         refresh()
     }
 
+    @objc func reactToCardViewUpdate() -> Void{
+        print(cardView.frame)
+    }
+
     //MARK: - MKMapViewDelegate Conformance
 
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer{
@@ -109,5 +128,18 @@ class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorMana
 extension CLLocationCoordinate2D{
     static func ==(right: CLLocationCoordinate2D, left: CLLocationCoordinate2D) -> Bool{
         return right.latitude == left.latitude && right.longitude == left.longitude
+    }
+}
+
+class MHLayoutSupporter: NSObject, UILayoutSupport{
+    var length: CGFloat = 0
+    var topAnchor: NSLayoutYAxisAnchor
+    var heightAnchor: NSLayoutDimension
+    var bottomAnchor: NSLayoutYAxisAnchor
+
+    init(top: NSLayoutYAxisAnchor, bottom: NSLayoutYAxisAnchor, height: NSLayoutDimension){
+        topAnchor = top
+        bottomAnchor = bottom
+        heightAnchor = height
     }
 }

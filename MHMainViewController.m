@@ -38,6 +38,11 @@
     self.pane.delegate = self;
 
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    __weak typeof(self) me = self;
+    self.paneBehavior.action = ^{
+        NSLog(@"Action executed");
+        [[NSNotificationCenter defaultCenter] postNotificationName:MHCardDidDragNotificationName object:me];
+    };
 }
 
 - (void)animatePaneWithInitialVelocity:(CGPoint)initialVelocity

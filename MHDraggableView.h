@@ -18,6 +18,7 @@
 
 @end
 
+static NSNotificationName const MHCardDidDragNotificationName = @"MHCardDidDragNotification";
 
 @interface DraggableView : UIView
 

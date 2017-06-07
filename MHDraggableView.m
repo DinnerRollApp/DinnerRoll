@@ -33,6 +33,7 @@
     } else if (recognizer.state == UIGestureRecognizerStateBegan) {
         [self.delegate draggableViewBeganDragging:self];
     }
+    //[[NSNotificationCenter defaultCenter] postNotificationName:MHCardDidDragNotificationName object:self];
 }
 
 @end
