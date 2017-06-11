@@ -68,6 +68,6 @@
 -(void)willMoveToAnimator:(UIDynamicAnimator *)dynamicAnimator{
     [super willMoveToAnimator:dynamicAnimator];
     [[NSNotificationCenter defaultCenter] postNotificationName:MHCardDidDragNotificationName object:self.item];
-    NSLog(@"Moved to animator: %@", dynamicAnimator);
+    //NSLog(@"Moved to animator: %@", dynamicAnimator);
 }
 @end

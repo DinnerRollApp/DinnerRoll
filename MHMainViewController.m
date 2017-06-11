@@ -40,7 +40,7 @@
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     __weak typeof(self) me = self;
     self.paneBehavior.action = ^{
-        NSLog(@"Action executed");
+        //NSLog(@"Action executed");
         [[NSNotificationCenter defaultCenter] postNotificationName:MHCardDidDragNotificationName object:me];
     };
 }
@@ -58,7 +58,7 @@
 
 - (CGPoint)targetPoint
 {
-    return self.paneState == PaneStateClosed ? self.startingPoint : CGPointMake(self.view.center.x, self.view.center.y - 50);
+    return self.paneState == PaneStateClosed ? self.startingPoint : CGPointMake(self.view.center.x, self.view.center.y + 50);
 }
 
 
@@ -67,14 +67,14 @@
 - (void)draggableView:(DraggableView *)view draggingEndedWithVelocity:(CGPoint)velocity lastTouchLocationInSuperview:(CGPoint)touch
 {
     PaneState targetState;
-    if(velocity.y < 0){
+    if(velocity.y > 0){
         targetState = PaneStateClosed;
     }
-    else if(velocity.y > 0){
+    else if(velocity.y < 0){
         targetState = PaneStateOpen;
     }
     else{
-        targetState = touch.y <= self.view.frame.size.height / 8 ? PaneStateClosed : PaneStateOpen;
+        targetState = touch.y >= self.view.frame.size.height / 8 ? PaneStateClosed : PaneStateOpen;
     }
     self.paneState = targetState;
     [self animatePaneWithInitialVelocity:velocity];

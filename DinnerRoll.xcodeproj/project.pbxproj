@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C2C953E1EA89CE2005EC762 /* QuadratTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE115DD1EA887C00094377B /* QuadratTouch.framework */; };
-		4C2C95401EA9383D005EC762 /* INTULocationManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2C953F1EA9383D005EC762 /* INTULocationManager.framework */; };
+		4C2C93F51EE86CF30037FB55 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2C93F41EE86CE80037FB55 /* SwiftyJSON.framework */; };
+		4C2C93F61EE86CF30037FB55 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2C93F41EE86CE80037FB55 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4C2C93F71EE86CF30037FB55 /* INTULocationManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2C93F21EE86C7F0037FB55 /* INTULocationManager.framework */; };
+		4C2C93F81EE86CF30037FB55 /* INTULocationManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2C93F21EE86C7F0037FB55 /* INTULocationManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4C2C93F91EE86CF30037FB55 /* QuadratTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2C93F01EE86C1F0037FB55 /* QuadratTouch.framework */; };
+		4C2C93FA1EE86CF30037FB55 /* QuadratTouch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C2C93F01EE86C1F0037FB55 /* QuadratTouch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C2C95441EA95391005EC762 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C95431EA95391005EC762 /* Array.swift */; };
 		4C3E4B351EDF9025006DF23F /* MHPaneBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E4B341EDF9025006DF23F /* MHPaneBehavior.m */; };
 		4C3E4B381EDF9044006DF23F /* MHMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E4B371EDF9044006DF23F /* MHMainViewController.m */; };
@@ -26,7 +30,6 @@
 		4C9AE7B31EA17BC500514983 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7B11EA17BC500514983 /* LaunchScreen.storyboard */; };
 		4C9AE7BE1EA17BC500514983 /* DinnerRollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7BD1EA17BC500514983 /* DinnerRollTests.swift */; };
 		4C9AE7C91EA17BC500514983 /* DinnerRollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */; };
-		4CFF97671EB296B900B862E7 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFF97661EB296B900B862E7 /* SwiftyJSON.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +49,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4C2C93FB1EE86CF30037FB55 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4C2C93F61EE86CF30037FB55 /* SwiftyJSON.framework in Embed Frameworks */,
+				4C2C93FA1EE86CF30037FB55 /* QuadratTouch.framework in Embed Frameworks */,
+				4C2C93F81EE86CF30037FB55 /* INTULocationManager.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		4C2C953F1EA9383D005EC762 /* INTULocationManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = INTULocationManager.framework; path = Carthage/Build/iOS/INTULocationManager.framework; sourceTree = "<group>"; };
+		4C2C93F01EE86C1F0037FB55 /* QuadratTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuadratTouch.framework; path = Carthage/Build/iOS/QuadratTouch.framework; sourceTree = "<group>"; };
+		4C2C93F21EE86C7F0037FB55 /* INTULocationManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = INTULocationManager.framework; path = Carthage/Build/iOS/INTULocationManager.framework; sourceTree = "<group>"; };
+		4C2C93F41EE86CE80037FB55 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		4C2C95431EA95391005EC762 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		4C3E4B331EDF9025006DF23F /* MHPaneBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPaneBehavior.h; sourceTree = "<group>"; };
 		4C3E4B341EDF9025006DF23F /* MHPaneBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPaneBehavior.m; sourceTree = "<group>"; };
@@ -81,8 +102,6 @@
 		4C9AE7C41EA17BC500514983 /* DinnerRollUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DinnerRollUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinnerRollUITests.swift; sourceTree = "<group>"; };
 		4C9AE7CA1EA17BC500514983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4CE115DD1EA887C00094377B /* QuadratTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuadratTouch.framework; path = Carthage/Build/iOS/QuadratTouch.framework; sourceTree = "<group>"; };
-		4CFF97661EB296B900B862E7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,9 +109,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C2C953E1EA89CE2005EC762 /* QuadratTouch.framework in Frameworks */,
-				4C2C95401EA9383D005EC762 /* INTULocationManager.framework in Frameworks */,
-				4CFF97671EB296B900B862E7 /* SwiftyJSON.framework in Frameworks */,
+				4C2C93F51EE86CF30037FB55 /* SwiftyJSON.framework in Frameworks */,
+				4C2C93F91EE86CF30037FB55 /* QuadratTouch.framework in Frameworks */,
+				4C2C93F71EE86CF30037FB55 /* INTULocationManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,11 +216,11 @@
 		4C9AE7D81EA3274E00514983 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4C2C93F41EE86CE80037FB55 /* SwiftyJSON.framework */,
+				4C2C93F21EE86C7F0037FB55 /* INTULocationManager.framework */,
+				4C2C93F01EE86C1F0037FB55 /* QuadratTouch.framework */,
 				4CD6AA891EC2A5870017F439 /* Interactive Dynamics */,
 				4C9796241EB1135100D66D93 /* DBMapSelector */,
-				4CFF97661EB296B900B862E7 /* SwiftyJSON.framework */,
-				4C2C953F1EA9383D005EC762 /* INTULocationManager.framework */,
-				4CE115DD1EA887C00094377B /* QuadratTouch.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -230,6 +249,7 @@
 				4C9AE7A21EA17BC500514983 /* Frameworks */,
 				4C9AE7A31EA17BC500514983 /* Resources */,
 				4C438C8C1EA8844C00B2D29F /* ShellScript */,
+				4C2C93FB1EE86CF30037FB55 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
