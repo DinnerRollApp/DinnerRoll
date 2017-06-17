@@ -21,19 +21,24 @@ class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorMana
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var statusBarBackground: UIVisualEffectView!
     var selectionCircle: DBMapSelectorManager? = nil
-    //TODO: Override this to move the compass
-    override var topLayoutGuide: UILayoutSupport{
-        get{
-            let new = MHLayoutSupporter(top: super.topLayoutGuide.topAnchor, bottom: super.topLayoutGuide.bottomAnchor, height: super.topLayoutGuide.heightAnchor)
-            new.length = 100
-            return new
+
+    func layoutFrames() -> Void{
+        map.frame = view.frame
+        cardView.frame = CGRect(x: 0, y: cardView.frame.origin.y, width: view.frame.width, height: cardView.frame.size.height)
+        cardView.center = CGPoint(x: view.center.x, y: view.frame.size.height + (cardView.frame.size.height / 2) - 100)
+        restaurantLabel.frame = CGRect(x: 8, y: restaurantLabel.frame.origin.y, width: cardView.frame.size.width - 16, height: restaurantLabel.frame.size.height)
+        spinner.center = restaurantLabel.center
+        grabberView.center = CGPoint(x: cardView.center.x, y: grabberView.center.y)
+        separatorView.frame = CGRect(x: 8, y: view.frame.size.height - cardView.frame.origin.y, width: cardView.frame.size.width - 16, height: 1)
+        if UIScreen.main.bounds == view.bounds{
+            statusBarBackground.frame = UIApplication.shared.statusBarFrame
         }
     }
+
     override func viewDidLoad() -> Void{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         map.delegate = self
-        map.frame = view.frame
         selectionCircle = DBMapSelectorManager(mapView: map)
         selectionCircle?.delegate = self
         selectionCircle?.editingType = .full
@@ -44,22 +49,14 @@ class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorMana
         selectionCircle?.textColor = #colorLiteral(red: 0.03991333395, green: 0.1469032466, blue: 0.7415332794, alpha: 1)
         selectionCircle?.lineColor = #colorLiteral(red: 0.9803921569, green: 0.5607843137, blue: 0, alpha: 1)
         selectionCircle?.centerPinColor = #colorLiteral(red: 0.03991333395, green: 0.1469032466, blue: 0.7415332794, alpha: 1)
-        cardView.frame = CGRect(x: 0, y: cardView.frame.origin.y, width: view.frame.width, height: cardView.frame.size.height)
-        cardView.center = CGPoint(x: view.center.x, y: view.frame.size.height + (cardView.frame.size.height / 2) - 100)
         cardView.layer.cornerRadius = 10
         cardView.layer.shadowColor = UIColor.black.cgColor
         cardView.layer.shadowRadius = 3
         cardView.layer.shadowOpacity = 1
         cardView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        restaurantLabel.frame = CGRect(x: 8, y: restaurantLabel.frame.origin.y, width: cardView.frame.size.width - 16, height: restaurantLabel.frame.size.height)
-        spinner.center = restaurantLabel.center
-        grabberView.center = CGPoint(x: cardView.center.x, y: grabberView.center.y)
-        print(separatorView.frame)
-        separatorView.frame = CGRect(x: 8, y: view.frame.size.height - cardView.frame.origin.y, width: cardView.frame.size.width - 16, height: 1)
-        print(separatorView.frame)
         separatorView.layer.cornerRadius = 1
-        statusBarBackground.frame = UIApplication.shared.statusBarFrame
         NotificationCenter.default.addObserver(self, selector: #selector(reactToCardViewUpdate), name: Notification.Name.MHCardDidDragNotificationName, object: nil)
+        layoutFrames()
         refresh()
     }
     func refresh() -> Void{
@@ -120,6 +117,10 @@ class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorMana
 
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) -> Void{
         selectionCircle?.mapView(mapView, regionDidChangeAnimated: animated)
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        layoutFrames()
     }
 
 }

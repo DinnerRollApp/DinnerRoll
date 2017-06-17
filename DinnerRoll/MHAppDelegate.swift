@@ -42,6 +42,9 @@ class MHAppDelegate: UIResponder, UIApplicationDelegate{
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool{
-        return Session.sharedSession().handleURL(URL: url as NSURL)
+        return QuadratTouch.Session.sharedSession().handleURL(URL: url as NSURL)
+    }
+    func application(_ application: UIApplication, didChangeStatusBarFrame oldStatusBarFrame: CGRect) -> Void{
+        (window?.rootViewController as? MHViewController)?.layoutFrames()
     }
 }
