@@ -1,0 +1,11 @@
+framework module RangeSliderFramework {
+  umbrella header "RangeSliderFramework.h"
+
+  export *
+  module * { export * }
+}
+
+module RangeSliderFramework.Swift {
+    header "RangeSliderFramework-Swift.h"
+    requires objc
+}

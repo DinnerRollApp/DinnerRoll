@@ -6,10 +6,10 @@
 
 
 #import "MHPaneBehavior.h"
-#import "MHDraggableView.h"
+#import "MHDrawerView.h"
 
 
-@interface PaneBehavior ()
+@interface MHPaneBehavior ()
 
 @property (nonatomic, strong) UIAttachmentBehavior *attachmentBehavior;
 @property (nonatomic, strong) UIDynamicItemBehavior *itemBehavior;
@@ -17,7 +17,7 @@
 @end
 
 
-@implementation PaneBehavior
+@implementation MHPaneBehavior
 
 - (instancetype)initWithItem:(id <UIDynamicItem>)item
 {

@@ -10,10 +10,10 @@ import UIKit
 import MapKit
 import SwiftyJSON
 import QuadratTouch
-import INTULocationManager
+import CoreLocation
 
-class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorManagerDelegate{
-    @IBOutlet weak var cardView: UIView!
+class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorManagerDelegate, CLLocationManagerDelegate{
+    @IBOutlet weak var cardView: MHCardView!
     @IBOutlet weak var restaurantLabel: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var map: MKMapView!
@@ -21,6 +21,13 @@ class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorMana
     @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var statusBarBackground: UIVisualEffectView!
     var selectionCircle: DBMapSelectorManager? = nil
+    let locationManager = CLLocationManager()
+
+//    override var canBecomeFirstResponder: Bool{
+//        get{
+//            return true
+//        }
+//    }
 
     func layoutFrames() -> Void{
         map.frame = view.frame
@@ -37,18 +44,17 @@ class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorMana
 
     override func viewDidLoad() -> Void{
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         map.delegate = self
         selectionCircle = DBMapSelectorManager(mapView: map)
         selectionCircle?.delegate = self
         selectionCircle?.editingType = .full
         selectionCircle?.circleRadius = 1000
-        selectionCircle?.fillColor = #colorLiteral(red: 0.9856365323, green: 0.9032172561, blue: 0, alpha: 1)
+        selectionCircle?.fillColor = #colorLiteral(red: 0.9843137255, green: 0.9019607843, blue: 0, alpha: 1)
         selectionCircle?.strokeColor = #colorLiteral(red: 0.03921568627, green: 0.1450980392, blue: 0.7411764706, alpha: 1)
         selectionCircle?.pointColor = #colorLiteral(red: 0.9843137255, green: 0.9019607843, blue: 0, alpha: 1)
         selectionCircle?.textColor = #colorLiteral(red: 0.03991333395, green: 0.1469032466, blue: 0.7415332794, alpha: 1)
         selectionCircle?.lineColor = #colorLiteral(red: 0.9803921569, green: 0.5607843137, blue: 0, alpha: 1)
-        selectionCircle?.centerPinColor = #colorLiteral(red: 0.03991333395, green: 0.1469032466, blue: 0.7415332794, alpha: 1)
+        selectionCircle?.centerPinColor = #colorLiteral(red: 0.03921568627, green: 0.1450980392, blue: 0.7411764706, alpha: 1)
         cardView.layer.cornerRadius = 10
         cardView.layer.shadowColor = UIColor.black.cgColor
         cardView.layer.shadowRadius = 3
@@ -56,41 +62,58 @@ class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorMana
         cardView.layer.shadowOffset = CGSize(width: 0, height: 0)
         separatorView.layer.cornerRadius = 1
         NotificationCenter.default.addObserver(self, selector: #selector(reactToCardViewUpdate), name: Notification.Name.MHCardDidDragNotificationName, object: nil)
+        updateCategories()
         layoutFrames()
         refresh()
+    }
+//    override func resignFirstResponder() -> Bool{
+//        let _ = super.resignFirstResponder()
+//        return false
+//    }
+//    override func viewWillAppear(_ animated: Bool) -> Void{
+//        super.viewWillAppear(animated)
+//        becomeFirstResponder()
+//        print(next)
+//    }
+    override func viewDidAppear(_ animated: Bool) -> Void{
+        super.viewDidAppear(animated)
+        //becomeFirstResponder()
+        //TODO: Handle if the user declines location authorization
+        if CLLocationManager.authorizationStatus() == .notDetermined{
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
     func refresh() -> Void{
         restaurantLabel.text = ""
         spinner.startAnimating()
         spinner.isHidden = false
-        INTULocationManager.sharedInstance().requestLocation(withDesiredAccuracy: .block, timeout: 10){(location: CLLocation?, accuracy: INTULocationAccuracy, status: INTULocationStatus) in
-            guard let currentLocation = location, accuracy.rawValue >= INTULocationAccuracy.block.rawValue else{
+        guard let currentLocation = map.userLocation.location else{
+            return
+        }
+        map.removeAnnotations(map.annotations)
+        if selectionCircle!.circleCoordinate == CLLocationCoordinate2D(){
+            selectionCircle?.circleCoordinate = currentLocation.coordinate
+        }
+        selectionCircle?.applySelectorSettings()
+        let query = [QuadratTouch.Parameter.ll: "\(selectionCircle!.circleCoordinate.latitude),\(selectionCircle!.circleCoordinate.longitude)", QuadratTouch.Parameter.llAcc: "\(currentLocation.horizontalAccuracy)", QuadratTouch.Parameter.alt: "\(currentLocation.altitude)", QuadratTouch.Parameter.altAcc: "\(currentLocation.verticalAccuracy)", QuadratTouch.Parameter.categoryId: "4d4b7105d754a06374d81259" , QuadratTouch.Parameter.radius: String(selectionCircle!.circleRadius), QuadratTouch.Parameter.intent: "browse", QuadratTouch.Parameter.limit: "50"]
+        var data = [JSON]()
+        let search = QuadratTouch.Session.sharedSession().venues.search(query, completionHandler:{(result: QuadratTouch.Result) in
+            guard let response = result.response else{
                 return
             }
-            self.map.removeAnnotations(self.map.annotations)
-            //self.map.removeOverlays(self.map.overlays)
-            if self.selectionCircle!.circleCoordinate == CLLocationCoordinate2D(){
-                self.selectionCircle?.circleCoordinate = currentLocation.coordinate
-            }
-            self.selectionCircle?.applySelectorSettings()
-            let search = Session.sharedSession().venues.search([QuadratTouch.Parameter.ll: "\(self.selectionCircle!.circleCoordinate.latitude),\(self.selectionCircle!.circleCoordinate.longitude)", QuadratTouch.Parameter.llAcc: "\(currentLocation.horizontalAccuracy)", QuadratTouch.Parameter.alt: "\(currentLocation.altitude)", QuadratTouch.Parameter.altAcc: "\(currentLocation.verticalAccuracy)", QuadratTouch.Parameter.categoryId: "4d4b7105d754a06374d81259" , QuadratTouch.Parameter.radius: String(self.selectionCircle!.circleRadius), QuadratTouch.Parameter.limit: "50"], completionHandler:{(result: QuadratTouch.Result) in
-                guard let response = result.response else{
-                    return
-                }
-                let data = JSON(response)
-                let restaurant = data["venues"].array!.randomElement
-                //print(restaurant)
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = CLLocationCoordinate2D(latitude: restaurant["location"]["lat"].double!, longitude: restaurant["location"]["lng"].double!)
-                self.map.addAnnotation(annotation)
-                self.restaurantLabel.text = restaurant["name"].string!
-                self.spinner.stopAnimating()
-            })
-            search.start()
-        }
+            data += JSON(response)["venues"].array!
+            let restaurant = data.randomElement
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: restaurant["location"]["lat"].double!, longitude: restaurant["location"]["lng"].double!)
+            self.map.addAnnotation(annotation)
+            self.restaurantLabel.text = restaurant["name"].string!
+            self.spinner.stopAnimating()
+        })
+        search.start()
     }
 
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) -> Void{
+        super.motionEnded(motion, with: event)
         guard motion == .motionShake else{
             return
         }
@@ -119,15 +142,26 @@ class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorMana
         selectionCircle?.mapView(mapView, regionDidChangeAnimated: animated)
     }
 
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) -> Void{
+        userLocation.title = ""
+        guard selectionCircle?.circleCoordinate == CLLocationCoordinate2D() else{
+            return
+        }
+        refresh()
+    }
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         layoutFrames()
     }
 
 }
 
-extension CLLocationCoordinate2D{
-    static func ==(right: CLLocationCoordinate2D, left: CLLocationCoordinate2D) -> Bool{
+extension CLLocationCoordinate2D: Equatable{
+    public static func ==(right: CLLocationCoordinate2D, left: CLLocationCoordinate2D) -> Bool{
         return right.latitude == left.latitude && right.longitude == left.longitude
+    }
+    public static func !=(right: CLLocationCoordinate2D, left: CLLocationCoordinate2D) -> Bool{
+        return right.latitude != left.latitude || right.longitude != left.longitude
     }
 }
 

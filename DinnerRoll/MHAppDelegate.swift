@@ -22,6 +22,7 @@ class MHAppDelegate: UIResponder, UIApplicationDelegate{
         config.mode = "foursquare"
         config.shouldControlNetworkActivityIndicator = true
         Session.setupSharedSessionWithConfiguration(config)
+        updateCategories()
         return true
     }
     func applicationWillResignActive(_ application: UIApplication) -> Void{
@@ -48,3 +49,21 @@ class MHAppDelegate: UIResponder, UIApplicationDelegate{
         (window?.rootViewController as? MHViewController)?.layoutFrames()
     }
 }
+
+//extension UIView{
+//    var firstResponder: UIView?{
+//        get{
+//            guard !isFirstResponder else{
+//                return self
+//            }
+//            for view in subviews{
+//                guard let responder = view.firstResponder else{
+//                    continue
+//                }
+//                return responder
+//            }
+//            return nil
+//        }
+//    }
+//}
+

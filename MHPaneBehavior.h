@@ -8,7 +8,7 @@
 @import UIKit;
 
 
-@interface PaneBehavior : UIDynamicBehavior
+@interface MHPaneBehavior : UIDynamicBehavior
 
 @property (nonatomic) CGPoint targetPoint;
 @property (nonatomic) CGPoint velocity;

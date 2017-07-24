@@ -7,14 +7,14 @@
 
 #import "MHMainViewController.h"
 #import "MHPaneBehavior.h"
-#import "MHDraggableView.h"
+#import "MHDrawerView.h"
 
 
-@interface MainViewController () <DraggableViewDelegate>
+@interface MainViewController () <MHDrawerViewDelegate>
 
 @property (nonatomic) PaneState paneState;
 @property (nonatomic) UIDynamicAnimator *animator;
-@property (nonatomic, strong) PaneBehavior *paneBehavior;
+@property (nonatomic, strong) MHPaneBehavior *MHPaneBehavior;
 @property (nonatomic) CGPoint startingPoint;
 
 @end
@@ -34,12 +34,12 @@
 
 - (void)setup
 {
-    self.paneState = PaneStateClosed;
+    self.paneState = MHPaneStateClosed;
     self.pane.delegate = self;
 
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     __weak typeof(self) me = self;
-    self.paneBehavior.action = ^{
+    self.MHPaneBehavior.action = ^{
         //NSLog(@"Action executed");
         [[NSNotificationCenter defaultCenter] postNotificationName:MHCardDidDragNotificationName object:me];
     };
@@ -47,40 +47,40 @@
 
 - (void)animatePaneWithInitialVelocity:(CGPoint)initialVelocity
 {
-    if (!self.paneBehavior) {
-        PaneBehavior *behavior = [[PaneBehavior alloc] initWithItem:self.pane];
-        self.paneBehavior = behavior;
+    if (!self.MHPaneBehavior) {
+        MHPaneBehavior *behavior = [[MHPaneBehavior alloc] initWithItem:self.pane];
+        self.MHPaneBehavior = behavior;
     }
-    self.paneBehavior.targetPoint = self.targetPoint;
-    self.paneBehavior.velocity = initialVelocity;
-    [self.animator addBehavior:self.paneBehavior];
+    self.MHPaneBehavior.targetPoint = self.targetPoint;
+    self.MHPaneBehavior.velocity = initialVelocity;
+    [self.animator addBehavior:self.MHPaneBehavior];
 }
 
 - (CGPoint)targetPoint
 {
-    return self.paneState == PaneStateClosed ? self.startingPoint : CGPointMake(self.view.center.x, self.view.center.y + 50);
+    return self.paneState == MHPaneStateClosed ? self.startingPoint : CGPointMake(self.view.center.x, self.view.center.y + 50);
 }
 
 
-#pragma mark DraggableViewDelegate
+#pragma mark MHDrawerViewDelegate
 
-- (void)draggableView:(DraggableView *)view draggingEndedWithVelocity:(CGPoint)velocity lastTouchLocationInSuperview:(CGPoint)touch
+- (void)drawerView:(MHDrawerView *)view draggingEndedWithVelocity:(CGPoint)velocity lastTouchLocationInSuperview:(CGPoint)touch
 {
     PaneState targetState;
     if(velocity.y > 0){
-        targetState = PaneStateClosed;
+        targetState = MHPaneStateClosed;
     }
     else if(velocity.y < 0){
-        targetState = PaneStateOpen;
+        targetState = MHPaneStateOpen;
     }
     else{
-        targetState = touch.y >= self.view.frame.size.height / 8 ? PaneStateClosed : PaneStateOpen;
+        targetState = touch.y >= self.view.frame.size.height / 8 ? MHPaneStateClosed : MHPaneStateOpen;
     }
     self.paneState = targetState;
     [self animatePaneWithInitialVelocity:velocity];
 }
 
-- (void)draggableViewBeganDragging:(DraggableView *)view
+- (void)MHDrawerViewBeganDragging:(MHDrawerView *)view
 {
     [self.animator removeAllBehaviors];
 }
@@ -90,8 +90,8 @@
 
 - (void)didTap:(UITapGestureRecognizer *)tapRecognizer
 {
-    self.paneState = self.paneState == PaneStateOpen ? PaneStateClosed : PaneStateOpen;
-    [self animatePaneWithInitialVelocity:self.paneBehavior.velocity];
+    self.paneState = self.paneState == MHPaneStateOpen ? MHPaneStateClosed : MHPaneStateOpen;
+    [self animatePaneWithInitialVelocity:self.MHPaneBehavior.velocity];
 }
 
 @end

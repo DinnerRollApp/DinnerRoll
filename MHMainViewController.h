@@ -8,19 +8,19 @@
 @import UIKit;
 
 
-@class DraggableView;
-@class PaneBehavior;
+@class MHDrawerView;
+@class MHPaneBehavior;
 
 
 typedef NS_ENUM(NSInteger, PaneState) {
-    PaneStateOpen,
-    PaneStateClosed,
+    MHPaneStateOpen,
+    MHPaneStateClosed,
 };
 
 
 @interface MainViewController : UIViewController
 
 @property (nonatomic, readonly) PaneState paneState;
-@property (weak, nonatomic) IBOutlet DraggableView *pane;
+@property (weak, nonatomic) IBOutlet MHDrawerView *pane;
 
 @end
