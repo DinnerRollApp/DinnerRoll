@@ -21,7 +21,7 @@ class MHAppDelegate: UIResponder, UIApplicationDelegate{
         var config = QuadratTouch.Configuration(client: foursquareClient)
         config.mode = "foursquare"
         config.shouldControlNetworkActivityIndicator = true
-        Session.setupSharedSessionWithConfiguration(config)
+        QuadratTouch.Session.setupSharedSessionWithConfiguration(config)
         updateCategories()
         return true
     }

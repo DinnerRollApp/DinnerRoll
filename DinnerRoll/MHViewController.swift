@@ -12,7 +12,7 @@ import SwiftyJSON
 import QuadratTouch
 import CoreLocation
 
-class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorManagerDelegate, CLLocationManagerDelegate{
+class MHViewController: MHMainViewController, MKMapViewDelegate, DBMapSelectorManagerDelegate, CLLocationManagerDelegate{
     @IBOutlet weak var cardView: MHCardView!
     @IBOutlet weak var restaurantLabel: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
@@ -31,7 +31,7 @@ class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorMana
 
     func layoutFrames() -> Void{
         map.frame = view.frame
-        cardView.frame = CGRect(x: 0, y: cardView.frame.origin.y, width: view.frame.width, height: cardView.frame.size.height)
+        cardView.frame = CGRect(x: 0, y: view.frame.size.height - 100, width: view.frame.width, height: cardView.frame.size.height)
         cardView.center = CGPoint(x: view.center.x, y: view.frame.size.height + (cardView.frame.size.height / 2) - 100)
         restaurantLabel.frame = CGRect(x: 8, y: restaurantLabel.frame.origin.y, width: cardView.frame.size.width - 16, height: restaurantLabel.frame.size.height)
         spinner.center = restaurantLabel.center
@@ -82,6 +82,7 @@ class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorMana
         if CLLocationManager.authorizationStatus() == .notDetermined{
             locationManager.requestWhenInUseAuthorization()
         }
+        print(cardView.frame)
     }
     func refresh() -> Void{
         restaurantLabel.text = ""
@@ -102,7 +103,7 @@ class MHViewController: MainViewController, MKMapViewDelegate, DBMapSelectorMana
                 return
             }
             data += JSON(response)["venues"].array!
-            let restaurant = data.randomElement
+            let restaurant = data[0]
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: restaurant["location"]["lat"].double!, longitude: restaurant["location"]["lng"].double!)
             self.map.addAnnotation(annotation)

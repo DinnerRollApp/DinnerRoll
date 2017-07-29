@@ -7,10 +7,10 @@
 
 #import "MHMainViewController.h"
 #import "MHPaneBehavior.h"
-#import "MHDrawerView.h"
+#import "MHCardView.h"
 
 
-@interface MainViewController () <MHDrawerViewDelegate>
+@interface MHMainViewController () <MHCardViewDelegate>
 
 @property (nonatomic) PaneState paneState;
 @property (nonatomic) UIDynamicAnimator *animator;
@@ -20,7 +20,7 @@
 @end
 
 
-@implementation MainViewController
+@implementation MHMainViewController
 
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -62,9 +62,9 @@
 }
 
 
-#pragma mark MHDrawerViewDelegate
+#pragma mark MHCardViewDelegate
 
-- (void)drawerView:(MHDrawerView *)view draggingEndedWithVelocity:(CGPoint)velocity lastTouchLocationInSuperview:(CGPoint)touch
+- (void)cardView:(MHCardView *)view draggingEndedWithVelocity:(CGPoint)velocity lastTouchLocationInSuperview:(CGPoint)touch
 {
     PaneState targetState;
     if(velocity.y > 0){
@@ -80,7 +80,7 @@
     [self animatePaneWithInitialVelocity:velocity];
 }
 
-- (void)MHDrawerViewBeganDragging:(MHDrawerView *)view
+- (void)MHCardViewBeganDragging:(MHCardView *)view
 {
     [self.animator removeAllBehaviors];
 }

@@ -5,10 +5,10 @@
 //
 
 
-#import "MHDrawerView.h"
+#import "MHCardView.h"
 
 
-@implementation MHDrawerView
+@implementation MHCardView
 
 -(void)awakeFromNib{
     [super awakeFromNib];
@@ -29,9 +29,9 @@
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         CGPoint velocity = [recognizer velocityInView:self.superview];
         velocity.x = 0;
-        [self.delegate drawerView:self draggingEndedWithVelocity:velocity lastTouchLocationInSuperview:point];
+        [self.delegate cardView:self draggingEndedWithVelocity:velocity lastTouchLocationInSuperview:point];
     } else if (recognizer.state == UIGestureRecognizerStateBegan) {
-        [self.delegate MHDrawerViewBeganDragging:self];
+        [self.delegate MHCardViewBeganDragging:self];
     }
     //[[NSNotificationCenter defaultCenter] postNotificationName:MHCardDidDragNotificationName object:self];
 }

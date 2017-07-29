@@ -8,7 +8,7 @@
 @import UIKit;
 
 
-@class MHDrawerView;
+@class MHCardView;
 @class MHPaneBehavior;
 
 
@@ -18,9 +18,9 @@ typedef NS_ENUM(NSInteger, PaneState) {
 };
 
 
-@interface MainViewController : UIViewController
+@interface MHMainViewController : UIViewController
 
 @property (nonatomic, readonly) PaneState paneState;
-@property (weak, nonatomic) IBOutlet MHDrawerView *pane;
+@property (weak, nonatomic) IBOutlet MHCardView *pane;
 
 @end

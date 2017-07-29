@@ -6,7 +6,7 @@
 
 
 #import "MHPaneBehavior.h"
-#import "MHDrawerView.h"
+#import "MHCardView.h"
 
 
 @interface MHPaneBehavior ()
@@ -63,11 +63,5 @@
     [super setAction:action];
     self.attachmentBehavior.action = action;
     self.itemBehavior.action = action;
-}
-
--(void)willMoveToAnimator:(UIDynamicAnimator *)dynamicAnimator{
-    [super willMoveToAnimator:dynamicAnimator];
-    [[NSNotificationCenter defaultCenter] postNotificationName:MHCardDidDragNotificationName object:self.item];
-    //NSLog(@"Moved to animator: %@", dynamicAnimator);
 }
 @end

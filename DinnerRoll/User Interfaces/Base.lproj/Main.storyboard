@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ArL-ri-BQt">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +18,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3c4-Sr-40H">
@@ -34,7 +34,7 @@
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nhK-AN-vfY" customClass="MHDrawerView">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nhK-AN-vfY" customClass="MHCardView">
                                 <rect key="frame" x="0.0" y="325" width="375" height="334"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -74,7 +74,6 @@
                         <outlet property="cardView" destination="nhK-AN-vfY" id="jlr-Ux-aJ6"/>
                         <outlet property="grabberView" destination="SbR-LJ-aKO" id="wKG-gd-K6m"/>
                         <outlet property="map" destination="3c4-Sr-40H" id="SQA-56-QyA"/>
-                        <outlet property="pane" destination="nhK-AN-vfY" id="wdv-qb-G8b"/>
                         <outlet property="restaurantLabel" destination="uGH-LX-ZMV" id="ypo-qM-5LR"/>
                         <outlet property="separatorView" destination="1ol-ck-vYn" id="UUG-Zn-Kkh"/>
                         <outlet property="spinner" destination="MZH-8G-X5k" id="8yB-Xi-e8M"/>
@@ -84,6 +83,171 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-154.40000000000001" y="-13.043478260869566"/>
+        </scene>
+        <!--Coordinating View Controller-->
+        <scene sceneID="r5U-cY-c6P">
+            <objects>
+                <viewController id="ArL-ri-BQt" userLabel="Coordinating View Controller" customClass="MHCoordinatingViewController" customModule="DinnerRoll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="43A-hM-z14"/>
+                        <viewControllerLayoutGuide type="bottom" id="pRv-HX-hEP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QNv-1o-SuX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w2T-P5-45I" userLabel="Map Container">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <connections>
+                                    <segue destination="uzd-FS-3jf" kind="embed" identifier="map" id="OTl-lW-FmA"/>
+                                </connections>
+                            </containerView>
+                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WaB-mQ-8F0" userLabel="Card Container" customClass="MHCardView">
+                                <rect key="frame" x="0.0" y="626" width="414" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="oDD-sd-4QC" kind="embed" identifier="card" id="qle-CX-BTT"/>
+                                </connections>
+                            </containerView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lhi-ig-gMH">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="jMh-1t-L1V">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="w2T-P5-45I" firstAttribute="top" secondItem="QNv-1o-SuX" secondAttribute="top" id="1Gq-5R-4pS"/>
+                            <constraint firstItem="pRv-HX-hEP" firstAttribute="top" secondItem="w2T-P5-45I" secondAttribute="bottom" id="Fsg-fL-OPO"/>
+                            <constraint firstItem="w2T-P5-45I" firstAttribute="leading" secondItem="QNv-1o-SuX" secondAttribute="leading" id="Xk6-uE-Fr9"/>
+                            <constraint firstAttribute="trailing" secondItem="w2T-P5-45I" secondAttribute="trailing" id="wt0-Id-b8i"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cardContainerView" destination="WaB-mQ-8F0" id="bP5-AE-PbF"/>
+                        <outlet property="pane" destination="WaB-mQ-8F0" id="e8X-Og-21Y"/>
+                        <outlet property="statusBarBackground" destination="Lhi-ig-gMH" id="dcb-ye-fi1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nxh-kD-yhp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-155.07246376811597" y="705.97826086956525"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="wxr-Ob-9MS">
+            <objects>
+                <viewController id="uzd-FS-3jf" userLabel="Map View Controller" customClass="MHMapViewController" customModule="DinnerRoll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ver-Py-tmB"/>
+                        <viewControllerLayoutGuide type="bottom" id="fIc-7G-nmA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fz0-gT-8CQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wvE-sb-xky">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wvE-sb-xky" firstAttribute="leading" secondItem="fz0-gT-8CQ" secondAttribute="leading" id="2AH-Tr-dFU"/>
+                            <constraint firstItem="wvE-sb-xky" firstAttribute="top" secondItem="fz0-gT-8CQ" secondAttribute="top" id="cZz-GH-izn"/>
+                            <constraint firstAttribute="bottom" secondItem="wvE-sb-xky" secondAttribute="bottom" id="ekk-eB-YVe"/>
+                            <constraint firstAttribute="trailing" secondItem="wvE-sb-xky" secondAttribute="trailing" id="o17-mX-KIz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="map" destination="wvE-sb-xky" id="zbd-R0-jlJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uLh-Mo-R0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="730.39999999999998" y="706.59670164917543"/>
+        </scene>
+        <!--Card View Controller-->
+        <scene sceneID="9fR-7q-Bpr">
+            <objects>
+                <viewController id="oDD-sd-4QC" userLabel="Card View Controller" customClass="MHCardViewController" customModule="DinnerRoll" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Acy-M3-3gh"/>
+                        <viewControllerLayoutGuide type="bottom" id="dOI-B5-PfR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RBA-PJ-ZFN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oa7-6M-WNd" userLabel="Separator View">
+                                <rect key="frame" x="8" y="120" width="398" height="1"/>
+                                <color key="backgroundColor" red="0.0078431372550000003" green="0.0078431372550000003" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="bLh-lH-94S"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXh-bu-NsE">
+                                <rect key="frame" x="180" y="8" width="54" height="8"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.56078431370000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="54" id="Noc-fy-fV8"/>
+                                    <constraint firstAttribute="height" constant="8" id="YBu-VD-R7e"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake to choose a restaurant" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41A-cx-TFt">
+                                <rect key="frame" x="8" y="20" width="398" height="100"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.98039215690000003" green="0.89411764709999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ybp-wn-ell">
+                                <rect key="frame" x="197" y="60" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="FLq-sd-W42"/>
+                                    <constraint firstAttribute="width" constant="20" id="fu2-iV-xa8"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.035294117649999998" green="0.035294117649999998" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="aXh-bu-NsE" firstAttribute="top" secondItem="RBA-PJ-ZFN" secondAttribute="top" constant="8" id="CLj-Br-faX"/>
+                            <constraint firstItem="Ybp-wn-ell" firstAttribute="centerX" secondItem="RBA-PJ-ZFN" secondAttribute="centerX" id="D2K-vx-g1w"/>
+                            <constraint firstItem="41A-cx-TFt" firstAttribute="leading" secondItem="RBA-PJ-ZFN" secondAttribute="leading" constant="8" id="EQt-2S-GGA"/>
+                            <constraint firstItem="Oa7-6M-WNd" firstAttribute="top" secondItem="41A-cx-TFt" secondAttribute="bottom" id="Lx1-b0-83f"/>
+                            <constraint firstItem="Oa7-6M-WNd" firstAttribute="leading" secondItem="RBA-PJ-ZFN" secondAttribute="leading" constant="8" id="Mfv-iW-r1d"/>
+                            <constraint firstAttribute="trailing" secondItem="Oa7-6M-WNd" secondAttribute="trailing" constant="8" id="Z9d-c2-Pgv"/>
+                            <constraint firstAttribute="trailing" secondItem="41A-cx-TFt" secondAttribute="trailing" constant="8" id="aal-Qc-jbb"/>
+                            <constraint firstItem="Ybp-wn-ell" firstAttribute="centerY" secondItem="41A-cx-TFt" secondAttribute="centerY" id="azO-Gq-dKe"/>
+                            <constraint firstItem="Oa7-6M-WNd" firstAttribute="top" secondItem="Acy-M3-3gh" secondAttribute="bottom" constant="100" id="eaR-E5-TK1"/>
+                            <constraint firstItem="41A-cx-TFt" firstAttribute="top" secondItem="Acy-M3-3gh" secondAttribute="bottom" id="guV-9t-iKS"/>
+                            <constraint firstItem="aXh-bu-NsE" firstAttribute="centerX" secondItem="RBA-PJ-ZFN" secondAttribute="centerX" id="hPV-yp-cZ2"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <connections>
+                        <outlet property="restaurantName" destination="41A-cx-TFt" id="MtS-CV-FjQ"/>
+                        <outlet property="spinner" destination="Ybp-wn-ell" id="fJf-H6-9ai"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f13-wp-h2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-155.07246376811597" y="1400.1358695652175"/>
         </scene>
     </scenes>
 </document>
