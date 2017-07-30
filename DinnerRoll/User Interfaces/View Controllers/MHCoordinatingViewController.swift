@@ -49,11 +49,6 @@ class MHCoordinatingViewController: MHMainViewController{
     override func viewDidLoad() -> Void{
         super.viewDidLoad()
         cardContainerView.frame = CGRect(origin: CGPoint(x: 0, y: view.frame.height - 100), size: view.frame.size)
-        //Idk why you can't set a drop shadow as an Interface Builder runtime attribute
-        cardContainerView.layer.shadowColor = UIColor.black.cgColor
-        cardContainerView.layer.shadowRadius = 3
-        cardContainerView.layer.shadowOpacity = 1
-        cardContainerView.layer.shadowOffset = CGSize(width: 0, height: 0)
         updateStatusBarFrame(with: view.frame.size)
     }
 

@@ -10,13 +10,14 @@
 		4C22923C1F28260B00A5DF9F /* QuadratTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C22923B1F28260500A5DF9F /* QuadratTouch.framework */; };
 		4C22923D1F28260B00A5DF9F /* QuadratTouch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C22923B1F28260500A5DF9F /* QuadratTouch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C22923F1F282C6500A5DF9F /* MHCoordinatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C22923E1F282C6500A5DF9F /* MHCoordinatingViewController.swift */; };
-		4C2C95441EA95391005EC762 /* Cartfile in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C95431EA95391005EC762 /* Cartfile */; };
 		4C2CD11D1F189FA40078B014 /* ShakeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CD11C1F189FA40078B014 /* ShakeRecognizer.swift */; };
 		4C3E4B351EDF9025006DF23F /* MHPaneBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E4B341EDF9025006DF23F /* MHPaneBehavior.m */; };
 		4C3E4B381EDF9044006DF23F /* MHMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E4B371EDF9044006DF23F /* MHMainViewController.m */; };
 		4C3E4B3B1EDF908D006DF23F /* MHCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E4B3A1EDF908D006DF23F /* MHCardView.m */; };
 		4C4958D61EA3F61F00B0C776 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4958D51EA3F61F00B0C776 /* APIKeys.plist */; };
 		4C4BEA151F160DB800DAD111 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BEA141F160DB800DAD111 /* Categories.swift */; };
+		4C4C4A8C1F2DC3CD001BC3D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CFEF3911F2DBA3B005B00B8 /* Assets.xcassets */; };
+		4C4C4A8D1F2DC3D9001BC3D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CFEF3911F2DBA3B005B00B8 /* Assets.xcassets */; };
 		4C645DED1F16D9E700EA4E48 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C645DE51F16D9A300EA4E48 /* SwiftyJSON.framework */; };
 		4C645DEE1F16D9E700EA4E48 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C645DE51F16D9A300EA4E48 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C78E5511F2AA8CA007BCFFE /* ObjectAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C78E5501F2AA8CA007BCFFE /* ObjectAssociation.swift */; };
@@ -28,7 +29,6 @@
 		4C9AE7A91EA17BC500514983 /* MHAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */; };
 		4C9AE7AB1EA17BC500514983 /* MHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7AA1EA17BC500514983 /* MHViewController.swift */; };
 		4C9AE7AE1EA17BC500514983 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7AC1EA17BC500514983 /* Main.storyboard */; };
-		4C9AE7B01EA17BC500514983 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7AF1EA17BC500514983 /* Assets.xcassets */; };
 		4C9AE7B31EA17BC500514983 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7B11EA17BC500514983 /* LaunchScreen.storyboard */; };
 		4C9AE7BE1EA17BC500514983 /* DinnerRollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7BD1EA17BC500514983 /* DinnerRollTests.swift */; };
 		4C9AE7C91EA17BC500514983 /* DinnerRollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */; };
@@ -39,6 +39,8 @@
 		4CFCDFF51F25760A003988F9 /* RangeSliderFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C72B72A1F25756F00C0FC4E /* RangeSliderFramework.framework */; };
 		4CFCDFF61F25760A003988F9 /* RangeSliderFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C72B72A1F25756F00C0FC4E /* RangeSliderFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4CFDEB931F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDEB921F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift */; };
+		4CFEF38E1F2DB810005B00B8 /* MHLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFEF38D1F2DB810005B00B8 /* MHLocationButton.swift */; };
+		4CFEF3951F2DBB3B005B00B8 /* IBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFEF3941F2DBB3B005B00B8 /* IBExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +79,6 @@
 /* Begin PBXFileReference section */
 		4C22923B1F28260500A5DF9F /* QuadratTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuadratTouch.framework; path = Carthage/Build/iOS/QuadratTouch.framework; sourceTree = "<group>"; };
 		4C22923E1F282C6500A5DF9F /* MHCoordinatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHCoordinatingViewController.swift; sourceTree = "<group>"; };
-		4C2C95431EA95391005EC762 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cartfile; path = ../../../Cartfile; sourceTree = "<group>"; };
 		4C2CD11C1F189FA40078B014 /* ShakeRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeRecognizer.swift; sourceTree = "<group>"; };
 		4C3E4B331EDF9025006DF23F /* MHPaneBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPaneBehavior.h; sourceTree = "<group>"; };
 		4C3E4B341EDF9025006DF23F /* MHPaneBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPaneBehavior.m; sourceTree = "<group>"; };
@@ -87,6 +88,7 @@
 		4C3E4B3A1EDF908D006DF23F /* MHCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHCardView.m; sourceTree = "<group>"; };
 		4C4958D51EA3F61F00B0C776 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		4C4BEA141F160DB800DAD111 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		4C4C4A8B1F2DBF8D001BC3D9 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		4C645DE51F16D9A300EA4E48 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		4C72B72A1F25756F00C0FC4E /* RangeSliderFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RangeSliderFramework.framework; path = Carthage/Build/iOS/RangeSliderFramework.framework; sourceTree = "<group>"; };
 		4C766ADB1EA6836100533C28 /* Cartfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Cartfile; sourceTree = SOURCE_ROOT; };
@@ -107,7 +109,6 @@
 		4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHAppDelegate.swift; sourceTree = "<group>"; };
 		4C9AE7AA1EA17BC500514983 /* MHViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHViewController.swift; sourceTree = "<group>"; };
 		4C9AE7AD1EA17BC500514983 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4C9AE7AF1EA17BC500514983 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C9AE7B21EA17BC500514983 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C9AE7B41EA17BC500514983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C9AE7B91EA17BC500514983 /* DinnerRollTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DinnerRollTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,7 +121,10 @@
 		4CABB3B61F2838C000F1B3ED /* MHMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHMapViewController.swift; sourceTree = "<group>"; };
 		4CABB3B91F28395300F1B3ED /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4CFDEB921F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceTouchGestureRecognizer.swift; sourceTree = "<group>"; };
-		4CFEF37E1F2D79BD005B00B8 /* Reef.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Reef.otf; path = "../../../../../../../Users/michael/Downloads/REEF_-_Free_Rounded_Font/Reef.otf"; sourceTree = "<group>"; };
+		4CFEF38D1F2DB810005B00B8 /* MHLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHLocationButton.swift; sourceTree = "<group>"; };
+		4CFEF3911F2DBA3B005B00B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4CFEF3921F2DBA46005B00B8 /* Reef.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Reef.otf; sourceTree = "<group>"; };
+		4CFEF3941F2DBB3B005B00B8 /* IBExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,8 +254,8 @@
 		4CFCDFF71F2577C3003988F9 /* User Interfaces */ = {
 			isa = PBXGroup;
 			children = (
-				4CFEF37D1F2D79A9005B00B8 /* Gestures */,
-				4CFEF37C1F2D799A005B00B8 /* Assets */,
+				4CFEF38F1F2DBA34005B00B8 /* Supporting Files */,
+				4CFEF38C1F2DB792005B00B8 /* Controls */,
 				4CFEF37B1F2D7986005B00B8 /* Storyboards */,
 				4CFEF37A1F2D7936005B00B8 /* View Controllers */,
 			);
@@ -275,15 +279,6 @@
 				4C9AE7B11EA17BC500514983 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		4CFEF37C1F2D799A005B00B8 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				4CFEF37E1F2D79BD005B00B8 /* Reef.otf */,
-				4C9AE7AF1EA17BC500514983 /* Assets.xcassets */,
-			);
-			path = Assets;
 			sourceTree = "<group>";
 		};
 		4CFEF37D1F2D79A9005B00B8 /* Gestures */ = {
@@ -325,7 +320,7 @@
 		4CFEF3841F2DA21E005B00B8 /* Utility Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4C2C95431EA95391005EC762 /* Cartfile */,
+				4C4C4A8B1F2DBF8D001BC3D9 /* Array.swift */,
 			);
 			path = "Utility Extensions";
 			sourceTree = "<group>";
@@ -357,6 +352,42 @@
 			name = "Dependency Management";
 			sourceTree = "<group>";
 		};
+		4CFEF38C1F2DB792005B00B8 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				4CFEF38D1F2DB810005B00B8 /* MHLocationButton.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		4CFEF38F1F2DBA34005B00B8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4CFEF3931F2DBB21005B00B8 /* Interface Builder Extensions */,
+				4CFEF3901F2DBA3B005B00B8 /* Assets */,
+				4CFEF37D1F2D79A9005B00B8 /* Gestures */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4CFEF3901F2DBA3B005B00B8 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				4CFEF3921F2DBA46005B00B8 /* Reef.otf */,
+				4CFEF3911F2DBA3B005B00B8 /* Assets.xcassets */,
+			);
+			name = Assets;
+			path = "DinnerRoll/User Interfaces/Supporting Files/Assets";
+			sourceTree = SOURCE_ROOT;
+		};
+		4CFEF3931F2DBB21005B00B8 /* Interface Builder Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4CFEF3941F2DBB3B005B00B8 /* IBExtensions.swift */,
+			);
+			path = "Interface Builder Extensions";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -367,7 +398,7 @@
 				4C9AE7A11EA17BC500514983 /* Sources */,
 				4C9AE7A21EA17BC500514983 /* Frameworks */,
 				4C9AE7A31EA17BC500514983 /* Resources */,
-				4C438C8C1EA8844C00B2D29F /* ShellScript */,
+				4C438C8C1EA8844C00B2D29F /* Run Script */,
 				4C645DEA1F16D9DE00EA4E48 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -479,7 +510,7 @@
 			files = (
 				4C9AE7B31EA17BC500514983 /* LaunchScreen.storyboard in Resources */,
 				4C4958D61EA3F61F00B0C776 /* APIKeys.plist in Resources */,
-				4C9AE7B01EA17BC500514983 /* Assets.xcassets in Resources */,
+				4C4C4A8C1F2DC3CD001BC3D9 /* Assets.xcassets in Resources */,
 				4C9AE7AE1EA17BC500514983 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,13 +526,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C4C4A8D1F2DC3D9001BC3D9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4C438C8C1EA8844C00B2D29F /* ShellScript */ = {
+		4C438C8C1EA8844C00B2D29F /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -511,6 +543,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RangeSliderFramework.framework",
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,7 +561,6 @@
 				4C22923F1F282C6500A5DF9F /* MHCoordinatingViewController.swift in Sources */,
 				4C97962E1EB1138200D66D93 /* DBMapSelectorAnnotation.m in Sources */,
 				4C9796331EB1138E00D66D93 /* DBMapSelectorOverlay.m in Sources */,
-				4C2C95441EA95391005EC762 /* Cartfile in Sources */,
 				4C9AE7AB1EA17BC500514983 /* MHViewController.swift in Sources */,
 				4CABB3B71F2838C000F1B3ED /* MHMapViewController.swift in Sources */,
 				4C3E4B351EDF9025006DF23F /* MHPaneBehavior.m in Sources */,
@@ -536,9 +568,11 @@
 				4C3E4B3B1EDF908D006DF23F /* MHCardView.m in Sources */,
 				4C3E4B381EDF9044006DF23F /* MHMainViewController.m in Sources */,
 				4C97962A1EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m in Sources */,
+				4CFEF3951F2DBB3B005B00B8 /* IBExtensions.swift in Sources */,
 				4C97962B1EB1137700D66D93 /* DBMapSelectorManager.m in Sources */,
 				4CFDEB931F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift in Sources */,
 				4C9AE7A91EA17BC500514983 /* MHAppDelegate.swift in Sources */,
+				4CFEF38E1F2DB810005B00B8 /* MHLocationButton.swift in Sources */,
 				4C9796341EB1138E00D66D93 /* DBMapSelectorOverlayRenderer.m in Sources */,
 				4C2CD11D1F189FA40078B014 /* ShakeRecognizer.swift in Sources */,
 				4C78E5511F2AA8CA007BCFFE /* ObjectAssociation.swift in Sources */,
@@ -643,7 +677,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -695,7 +729,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -721,7 +755,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRoll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "DinnerRoll-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "DinnerRoll/Supporting Files/Objective-C Interoperation/DinnerRoll-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -744,7 +778,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRoll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "DinnerRoll-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "DinnerRoll/Supporting Files/Objective-C Interoperation/DinnerRoll-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
