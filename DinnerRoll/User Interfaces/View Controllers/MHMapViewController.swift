@@ -122,28 +122,6 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         }
         return true
     }
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool{
-        //print(touch)
-        return true
-    }
-
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) -> Void{
-//        guard let touch = touches.first else{
-//            return
-//        }
-//        print(touch.force)
-//    }
-//
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) -> Void{
-//        print("Moved")
-//        touchesBegan(touches, with: event)
-//    }
-//
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) -> Void{
-//        print("Ended")
-//        touchesBegan(touches, with: event)
-//    }
 }
 
 @available(iOS 10, *) fileprivate extension MHMapViewController{

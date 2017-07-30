@@ -57,7 +57,7 @@ class MHCoordinatingViewController: MHMainViewController{
         updateStatusBarFrame(with: view.frame.size)
     }
 
-    // MARK: - Layout Utilities
+    //MARK: - Layout Utilities
 
     private func updateStatusBarFrame(with size: CGSize, transitionCoordinator: UIViewControllerTransitionCoordinator? = nil) -> Void{
         func layout() -> Void{
