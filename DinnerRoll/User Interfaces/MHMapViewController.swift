@@ -106,6 +106,11 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
 
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) -> Void{
         userLocation.title = ""
+        guard selectionCircle?.circleCoordinate == CLLocationCoordinate2D() else{
+            return
+        }
+        selectionCircle?.circleCoordinate = userLocation.coordinate
+        selectionCircle?.applySelectorSettings()
     }
 
     // MARK: - UIGestureRecognizerDelegate Conformance

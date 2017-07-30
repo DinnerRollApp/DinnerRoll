@@ -54,6 +54,32 @@ class MHCoordinatingViewController: MHMainViewController{
         cardContainerView.layer.shadowRadius = 3
         cardContainerView.layer.shadowOpacity = 1
         cardContainerView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        statusBarBackground.frame = UIApplication.shared.statusBarFrame
+        updateStatusBarFrame(with: view.frame.size)
+    }
+
+    // MARK: - Layout Utilities
+
+    private func updateStatusBarFrame(with size: CGSize, transitionCoordinator: UIViewControllerTransitionCoordinator? = nil) -> Void{
+        func layout() -> Void{
+            guard UIScreen.main.bounds.size == size else{
+                statusBarBackground.isHidden = true
+                return
+            }
+            statusBarBackground.frame = UIApplication.shared.statusBarFrame
+            statusBarBackground.isHidden = false
+        }
+        if let coordinator = transitionCoordinator{
+            coordinator.animate(alongsideTransition: { (transition: UIViewControllerTransitionCoordinatorContext) in
+                layout()
+            }, completion: nil)
+        }
+        else{
+            layout()
+        }
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) -> Void{
+        super.viewWillTransition(to: size, with: coordinator)
+        updateStatusBarFrame(with: size, transitionCoordinator: coordinator)
     }
 }

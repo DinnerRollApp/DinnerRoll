@@ -154,7 +154,6 @@ class MHViewController: MHMainViewController, MKMapViewDelegate, DBMapSelectorMa
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         layoutFrames()
     }
-
 }
 
 extension CLLocationCoordinate2D: Equatable{
