@@ -25,24 +25,9 @@ class MHCoordinatingViewController: MHMainViewController{
 
     //MARK: - Child View Controllers
 
-    var searchAreaProvider: SearchAreaProviding{
-        get{
-            return childViewControllers.first(where: { (controller: UIViewController) -> Bool in
-                let test = controller as? SearchAreaProviding
-                return test != nil
-            }) as! SearchAreaProviding
-        }
-    }
-    weak var mapController: MHMapViewController!{
-        get{
-            return child(type: MHMapViewController.self)
-        }
-    }
-    private func child<Controller: UIViewController>(type: Controller.Type) -> Controller{
-        return childViewControllers.first{(controller: UIViewController) -> Bool in
-            return controller.isKind(of: type)
-        } as! Controller
-    }
+    var searchAreaProvider: SearchAreaProviding?
+    weak var mapController: MHMapViewController?
+    weak var cardController: MHCardViewController?
 
     //MARK: - View Controller Lifecycle
 
@@ -50,6 +35,8 @@ class MHCoordinatingViewController: MHMainViewController{
         super.viewDidLoad()
         cardContainerView.frame = CGRect(origin: CGPoint(x: 0, y: view.frame.height - 100), size: view.frame.size)
         updateStatusBarFrame(with: view.frame.size)
+        addObserver(self, forKeyPath: "cardContainerView.center", options: [.new], context: nil)
+        updateLocaionButtonFrame()
     }
 
     //MARK: - Layout Utilities
@@ -73,8 +60,53 @@ class MHCoordinatingViewController: MHMainViewController{
         }
     }
 
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        updateLocaionButtonFrame()
+    }
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) -> Void{
         super.viewWillTransition(to: size, with: coordinator)
         updateStatusBarFrame(with: size, transitionCoordinator: coordinator)
+    }
+
+    func updateLocaionButtonFrame() -> Void{
+        guard let mapManager = mapController else{
+            return
+        }
+        let guideForScale: CGFloat
+        if view.layoutMargins.right == 0{
+            switch UIScreen.main.scale{
+            case 3:
+                guideForScale = 20
+            case 2:
+                guideForScale = 16
+            default:
+                guideForScale = 12
+            }
+        }
+        else{
+            guideForScale = view.layoutMargins.right
+        }
+        let origin = CGPoint(x: view.frame.width - guideForScale - mapManager.locationButton.frame.size.width, y: cardContainerView.frame.origin.y - guideForScale - mapManager.locationButton.frame.size.height)
+        mapManager.locationButton.frame = CGRect(origin: origin, size: mapManager.locationButton.frame.size)
+    }
+
+    //MARK: - Initialization and Deinitialization
+
+    deinit{
+        searchAreaProvider = nil
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.identifier == "card"{
+            cardController = (segue.destination as! MHCardViewController)
+        }
+        else if segue.identifier == "map"{
+            guard let controller = segue.destination as? MHMapViewController else{
+                return
+            }
+            searchAreaProvider = controller
+            mapController = controller
+        }
     }
 }

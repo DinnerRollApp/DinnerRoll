@@ -152,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxh-kD-yhp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-155.07246376811597" y="705.97826086956525"/>
+            <point key="canvasLocation" x="282" y="706"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="wxr-Ob-9MS">
@@ -169,6 +169,31 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wvE-sb-xky">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H7M-QK-1Al" customClass="MHLocationButton" customModule="DinnerRoll" customModuleProvider="target">
+                                <rect key="frame" x="344" y="666" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.98039215690000003" green="0.89411764709999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="Location Indicators/unfilled">
+                                    <color key="titleColor" red="0.98039215690000003" green="0.89411764709999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.0" height="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="reactToLocationButtonTouch" destination="uzd-FS-3jf" eventType="touchUpInside" id="eCI-1x-ATj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -179,12 +204,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="locationButton" destination="H7M-QK-1Al" id="T8s-LB-sv4"/>
                         <outlet property="map" destination="wvE-sb-xky" id="zbd-R0-jlJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uLh-Mo-R0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="730.39999999999998" y="706.59670164917543"/>
+            <point key="canvasLocation" x="1007" y="706"/>
         </scene>
         <!--Card View Controller-->
         <scene sceneID="9fR-7q-Bpr">
@@ -206,15 +232,15 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXh-bu-NsE">
-                                <rect key="frame" x="180" y="8" width="54" height="8"/>
-                                <color key="backgroundColor" red="0.98039215690000003" green="0.56078431370000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="180" y="8" width="55" height="8"/>
+                                <color key="backgroundColor" red="0.96470588235294119" green="0.4823529411764706" blue="0.031372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="54" id="Noc-fy-fV8"/>
+                                    <constraint firstAttribute="width" constant="55" id="Noc-fy-fV8"/>
                                     <constraint firstAttribute="height" constant="8" id="YBu-VD-R7e"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="4"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -232,7 +258,7 @@
                                 </constraints>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" red="0.035294117649999998" green="0.035294117649999998" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.035294117647058823" green="0.035294117647058823" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="aXh-bu-NsE" firstAttribute="top" secondItem="RBA-PJ-ZFN" secondAttribute="top" constant="8" id="CLj-Br-faX"/>
                             <constraint firstItem="Ybp-wn-ell" firstAttribute="centerX" secondItem="RBA-PJ-ZFN" secondAttribute="centerX" id="D2K-vx-g1w"/>
@@ -259,7 +285,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f13-wp-h2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-155.07246376811597" y="1400.1358695652175"/>
+            <point key="canvasLocation" x="281" y="1418"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Location Indicators/unfilled" width="50" height="50"/>
+    </resources>
 </document>

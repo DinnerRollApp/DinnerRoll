@@ -8,14 +8,22 @@
 
 import UIKit
 
-class MHLocationButton: UIButton {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+@IBDesignable class MHLocationButton: UIButton{
+    enum Action{
+        case center
+        case follow
     }
-    */
 
+    var currentAction: Action = .center{
+        didSet{
+            let newImage: UIImage
+            switch currentAction{
+                case .center:
+                    newImage = #imageLiteral(resourceName: "Location Indicators/unfilled")
+                case .follow:
+                    newImage = #imageLiteral(resourceName: "Location Indicators/filled")
+            }
+            setImage(newImage, for: .normal)
+        }
+    }
 }

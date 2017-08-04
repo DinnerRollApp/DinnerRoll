@@ -1,0 +1,26 @@
+{
+  "images" : [
+    {
+      "size" : "150x150",
+      "idiom" : "universal",
+      "filename" : "yellow-rounded@3x.png",
+      "scale" : "3x"
+    },
+    {
+      "size" : "100x100",
+      "idiom" : "universal",
+      "filename" : "yellow-rounded@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "50x50",
+      "idiom" : "universal",
+      "filename" : "yellow-rounded@1x.png",
+      "scale" : "1x"
+    }
+  ],
+  "info" : {
+    "verson" : 1,
+    "author" : "xcresize"
+  }
+}

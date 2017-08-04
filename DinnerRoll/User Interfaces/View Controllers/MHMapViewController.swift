@@ -21,7 +21,7 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
             map.addGestureRecognizer(recognizer)
         }
     }
-    //private var areaSelectionFeedbackGenerator: UISelectionFeedbackGenerator? = nil
+    @IBOutlet weak var locationButton: MHLocationButton!
     private var selectionCircle: DBMapSelectorManager? = nil{
         didSet{
             selectionCircle?.editingType = .full
@@ -46,6 +46,12 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         }
     }
     private let locationManager = CLLocationManager()
+    private var followingUser = false{
+        didSet{
+            locationButton.currentAction = followingUser ? .follow : .center
+            //map.setUserTrackingMode(followingUser ? .follow : .none, animated: true)
+        }
+    }
 
     override func viewDidLoad() -> Void{
         super.viewDidLoad()
@@ -71,6 +77,7 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
     }
 
     @objc private func placePin(with recognizer: ForceTouchGestureRecognizer) -> Void{
+        followingUser = false
         guard recognizer.state == .began else{
             if #available(iOS 10, *), areaSelectionFeedbackGenerator != nil{
                 areaSelectionFeedbackGenerator = nil
@@ -84,6 +91,20 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         if #available(iOS 10, *), let generator = areaSelectionFeedbackGenerator{
             generator.selectionChanged()
         }
+    }
+
+    @IBAction func reactToLocationButtonTouch() -> Void{
+        guard !followingUser else{ // Selection circle and map must not be following the user
+            followingUser = false // If the circle and the map are following the user, make them stop
+            return
+        }
+        guard map.isUserCentered(accuracy: selectionCircle!.circleRadius < 50 ? selectionCircle!.circleRadius : 50) else{ // The user must be centered in the map view
+            map.setUserCentered(true, animated: true) // If they aren't make it happen
+            return
+        }
+        followingUser = true // If we've made it here, the user wants the selection area to follow them
+        selectionCircle?.circleCoordinate = map.userLocation.coordinate
+        selectionCircle?.applySelectorSettings()
     }
 
     //MARK: - MKMapViewDelegate Conformance
@@ -106,7 +127,7 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
 
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) -> Void{
         userLocation.title = ""
-        guard selectionCircle?.circleCoordinate == CLLocationCoordinate2D() else{
+        guard selectionCircle?.circleCoordinate == CLLocationCoordinate2D() || followingUser else{
             return
         }
         selectionCircle?.circleCoordinate = userLocation.coordinate
@@ -133,5 +154,32 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         set{
             MHMapViewController.hapticAssociation[self] = newValue
         }
+    }
+}
+
+extension MKMapView{
+    func setUserCentered(_ centered: Bool, animated: Bool) -> Void{
+        guard centered else{
+            return
+        }
+        let newRegion = MKCoordinateRegion(center: userLocation.coordinate, span: region.span)
+        setRegion(newRegion, animated: true)
+    }
+
+    func isUserCentered(accuracy: CLLocationDistance) -> Bool{
+        return MKCoordinateRegionMakeWithDistance(region.center, accuracy, accuracy).contains(coordinate: userLocation.coordinate)
+    }
+}
+
+extension MKCoordinateRegion{
+    func contains(coordinate: CLLocationCoordinate2D) -> Bool{
+        func normalized(angle: CLLocationDegrees) -> CLLocationDegrees{
+            let normal = angle.truncatingRemainder(dividingBy: 360)
+            return normal < -180 ? -360 - angle : angle > 180 ? 360 - angle : angle
+        }
+
+        let latitude = abs(normalized(angle: center.latitude - coordinate.latitude))
+        let longitude = abs(normalized(angle: center.longitude - coordinate.longitude))
+        return span.latitudeDelta >= latitude && span.longitudeDelta >= longitude
     }
 }
