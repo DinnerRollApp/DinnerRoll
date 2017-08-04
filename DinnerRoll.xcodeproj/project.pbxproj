@@ -80,12 +80,12 @@
 		4C22923B1F28260500A5DF9F /* QuadratTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuadratTouch.framework; path = Carthage/Build/iOS/QuadratTouch.framework; sourceTree = "<group>"; };
 		4C22923E1F282C6500A5DF9F /* MHCoordinatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHCoordinatingViewController.swift; sourceTree = "<group>"; };
 		4C2CD11C1F189FA40078B014 /* ShakeRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeRecognizer.swift; sourceTree = "<group>"; };
-		4C3E4B331EDF9025006DF23F /* MHPaneBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHPaneBehavior.h; sourceTree = "<group>"; };
-		4C3E4B341EDF9025006DF23F /* MHPaneBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHPaneBehavior.m; sourceTree = "<group>"; };
-		4C3E4B361EDF9044006DF23F /* MHMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHMainViewController.h; sourceTree = "<group>"; };
-		4C3E4B371EDF9044006DF23F /* MHMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHMainViewController.m; sourceTree = "<group>"; };
-		4C3E4B391EDF908D006DF23F /* MHCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHCardView.h; sourceTree = "<group>"; };
-		4C3E4B3A1EDF908D006DF23F /* MHCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHCardView.m; sourceTree = "<group>"; };
+		4C3E4B331EDF9025006DF23F /* MHPaneBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHPaneBehavior.h; path = "Card Behavior/MHPaneBehavior.h"; sourceTree = "<group>"; };
+		4C3E4B341EDF9025006DF23F /* MHPaneBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHPaneBehavior.m; path = "Card Behavior/MHPaneBehavior.m"; sourceTree = "<group>"; };
+		4C3E4B361EDF9044006DF23F /* MHMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHMainViewController.h; path = "Card Behavior/MHMainViewController.h"; sourceTree = "<group>"; };
+		4C3E4B371EDF9044006DF23F /* MHMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHMainViewController.m; path = "Card Behavior/MHMainViewController.m"; sourceTree = "<group>"; };
+		4C3E4B391EDF908D006DF23F /* MHCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHCardView.h; path = "Card Behavior/MHCardView.h"; sourceTree = "<group>"; };
+		4C3E4B3A1EDF908D006DF23F /* MHCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHCardView.m; path = "Card Behavior/MHCardView.m"; sourceTree = "<group>"; };
 		4C4958D51EA3F61F00B0C776 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		4C4BEA141F160DB800DAD111 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		4C4C4A8B1F2DBF8D001BC3D9 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
