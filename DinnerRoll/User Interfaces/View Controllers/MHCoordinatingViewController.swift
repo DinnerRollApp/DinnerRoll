@@ -36,13 +36,19 @@ class MHCoordinatingViewController: MHMainViewController{
         cardContainerView.frame = CGRect(origin: CGPoint(x: 0, y: view.frame.height - 100), size: view.frame.size)
         updateStatusBarFrame(with: view.frame.size)
         addObserver(self, forKeyPath: "cardContainerView.center", options: [.new], context: nil)
-        updateLocaionButtonFrame()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLocationButtonFrame(from:)), name: .UIApplicationDidChangeStatusBarFrame, object: nil)
+    }
+
+    override func viewDidLayoutSubviews() -> Void{
+        super.viewDidLayoutSubviews()
+        updateLocationButtonFrame()
     }
 
     //MARK: - Layout Utilities
 
     private func updateStatusBarFrame(with size: CGSize, transitionCoordinator: UIViewControllerTransitionCoordinator? = nil) -> Void{
         func layout() -> Void{
+            cardContainerView.frame = CGRect(origin: CGPoint(x: cardContainerView.frame.origin.x, y: size.height - 100), size: cardContainerView.frame.size)
             guard UIScreen.main.bounds.size == size else{
                 statusBarBackground.isHidden = true
                 return
@@ -53,6 +59,7 @@ class MHCoordinatingViewController: MHMainViewController{
         if let coordinator = transitionCoordinator{
             coordinator.animate(alongsideTransition: { (transition: UIViewControllerTransitionCoordinatorContext) in
                 layout()
+                self.updateLocationButtonFrame()
             }, completion: nil)
         }
         else{
@@ -61,7 +68,7 @@ class MHCoordinatingViewController: MHMainViewController{
     }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        updateLocaionButtonFrame()
+        updateLocationButtonFrame()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) -> Void{
@@ -69,19 +76,19 @@ class MHCoordinatingViewController: MHMainViewController{
         updateStatusBarFrame(with: size, transitionCoordinator: coordinator)
     }
 
-    func updateLocaionButtonFrame() -> Void{
+    @objc func updateLocationButtonFrame(from notification: Notification? = nil) -> Void{
         guard let mapManager = mapController else{
             return
         }
         let guideForScale: CGFloat
         if view.layoutMargins.right == 0{
             switch UIScreen.main.scale{
-            case 3:
-                guideForScale = 20
-            case 2:
-                guideForScale = 16
-            default:
-                guideForScale = 12
+                case 3:
+                    guideForScale = 20
+                case 2:
+                    guideForScale = 16
+                default:
+                    guideForScale = 12
             }
         }
         else{
@@ -95,6 +102,7 @@ class MHCoordinatingViewController: MHMainViewController{
 
     deinit{
         searchAreaProvider = nil
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate, DBMapSelectorManagerDelegate, SearchAreaProviding{
+class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate, DBMapSelectorManagerDelegate, SearchAreaProviding{
     @IBOutlet weak var map: MKMapView!{
         didSet{
             map.delegate = self
@@ -49,13 +49,32 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
     private var followingUser = false{
         didSet{
             locationButton.currentAction = followingUser ? .follow : .center
-            //map.setUserTrackingMode(followingUser ? .follow : .none, animated: true)
         }
     }
+    private let centeringAccuracy: CLLocationDistance = 50
+    private var selectionCircleIsCentered: Bool{
+        get{
+            guard let circle = selectionCircle else{
+                return false
+            }
+            guard let mapView = map else{
+                return false
+            }
+            return CLCircularRegion(center: mapView.centerCoordinate, radius: centeringAccuracy, identifier: "Circle Centering Region").contains(circle.circleCoordinate)
+        }
+    }
+
+    // MARK: - View Controller Lifecycle
 
     override func viewDidLoad() -> Void{
         super.viewDidLoad()
         selectionCircle = DBMapSelectorManager(mapView: map)
+        locationManager.delegate = self
+    }
+
+    override func viewWillAppear(_ animated: Bool) -> Void{
+        super.viewWillAppear(animated)
+        updateLocationButtonVisibility(to: CLLocationManager.authorized().boolean, animated: false)
     }
 
     override func viewDidAppear(_ animated: Bool) -> Void{
@@ -70,11 +89,12 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         guard let gestures = map.gestureRecognizers else{
             return
         }
-
         for recognizer in gestures where recognizer is ForceTouchGestureRecognizer{
             (recognizer as! ForceTouchGestureRecognizer).update(traitCollection: traitCollection)
         }
     }
+
+    // MARK: - Interface Helpers
 
     @objc private func placePin(with recognizer: ForceTouchGestureRecognizer) -> Void{
         followingUser = false
@@ -94,17 +114,37 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
     }
 
     @IBAction func reactToLocationButtonTouch() -> Void{
+        guard CLLocationManager.authorized().boolean else{ // We must be authorized for location updates to center the user
+            map.centerCoordinate = selectionCircle!.circleCoordinate // Otherwise, just set the map's center to the selection circe's center
+            return
+        }
         guard !followingUser else{ // Selection circle and map must not be following the user
             followingUser = false // If the circle and the map are following the user, make them stop
             return
         }
-        guard map.isUserCentered(accuracy: selectionCircle!.circleRadius < 50 ? selectionCircle!.circleRadius : 50) else{ // The user must be centered in the map view
+        guard map.isUserCentered(accuracy: selectionCircle!.circleRadius < centeringAccuracy ? selectionCircle!.circleRadius : centeringAccuracy) else{ // The user must be centered in the map view
             map.setUserCentered(true, animated: true) // If they aren't make it happen
             return
         }
         followingUser = true // If we've made it here, the user wants the selection area to follow them
         selectionCircle?.circleCoordinate = map.userLocation.coordinate
         selectionCircle?.applySelectorSettings()
+    }
+
+    func updateLocationButtonVisibility(to visibility: Bool, animated: Bool = true) -> Void{
+        let opacity: CGFloat = visibility ? 1 : 0
+        let hiddenStatus = !visibility
+        if animated{
+            UIView.animate(withDuration: 0.25, animations: {
+                self.locationButton.alpha = opacity
+            }, completion: {(finished: Bool) in
+                self.locationButton.isHidden = hiddenStatus
+            })
+        }
+        else{
+            locationButton.alpha = opacity
+            locationButton.isHidden = hiddenStatus
+        }
     }
 
     //MARK: - MKMapViewDelegate Conformance
@@ -123,6 +163,17 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
 
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) -> Void{
         selectionCircle?.mapView(mapView, regionDidChangeAnimated: animated)
+        guard !CLLocationManager.authorized().boolean else{
+            return
+        }
+        guard let circle = selectionCircle else{
+            return
+        }
+        let visible = !(selectionCircleIsCentered || circle.circleCoordinate == CLLocationCoordinate2D())
+        if locationButton.alpha == 0 && visible{
+            locationButton.isHidden = !visible
+        }
+        updateLocationButtonVisibility(to: visible)
     }
 
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) -> Void{
@@ -142,6 +193,17 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
             areaSelectionFeedbackGenerator?.prepare()
         }
         return true
+    }
+
+    // MARK: - CLLocationManagerDelegate Conformance
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) -> Void{
+        locationButton.currentAction = .center
+        guard !(status == .authorizedAlways || status == .authorizedWhenInUse) else{ // We only need to edit stuff if we're not authorized to use location services
+            updateLocationButtonVisibility(to: true) // If we can use location services, the location button should definitely be visible
+            return
+        }
+        updateLocationButtonVisibility(to: !selectionCircleIsCentered && selectionCircle!.circleCoordinate != CLLocationCoordinate2D()) // If the selection circle is centered and is onscreen, we want to hide the button. Otherwise, we want to show it
     }
 }
 
@@ -167,19 +229,13 @@ extension MKMapView{
     }
 
     func isUserCentered(accuracy: CLLocationDistance) -> Bool{
-        return MKCoordinateRegionMakeWithDistance(region.center, accuracy, accuracy).contains(coordinate: userLocation.coordinate)
+        return CLCircularRegion(center: centerCoordinate, radius: accuracy, identifier: "User Centering Region").contains(userLocation.coordinate)
     }
 }
 
-extension MKCoordinateRegion{
-    func contains(coordinate: CLLocationCoordinate2D) -> Bool{
-        func normalized(angle: CLLocationDegrees) -> CLLocationDegrees{
-            let normal = angle.truncatingRemainder(dividingBy: 360)
-            return normal < -180 ? -360 - angle : angle > 180 ? 360 - angle : angle
-        }
-
-        let latitude = abs(normalized(angle: center.latitude - coordinate.latitude))
-        let longitude = abs(normalized(angle: center.longitude - coordinate.longitude))
-        return span.latitudeDelta >= latitude && span.longitudeDelta >= longitude
+extension CLLocationManager{
+    static func authorized() -> (boolean: Bool, status: CLAuthorizationStatus){
+        let status = CLLocationManager.authorizationStatus()
+        return (boolean: status == .authorizedWhenInUse || status == .authorizedAlways, status: status)
     }
 }

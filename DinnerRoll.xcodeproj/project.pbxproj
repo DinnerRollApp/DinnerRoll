@@ -36,6 +36,7 @@
 		4CABB3B71F2838C000F1B3ED /* MHMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CABB3B61F2838C000F1B3ED /* MHMapViewController.swift */; };
 		4CABB3B81F28394B00F1B3ED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C963D9D1F228A8500408242 /* CoreLocation.framework */; };
 		4CABB3BA1F28395300F1B3ED /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CABB3B91F28395300F1B3ED /* MapKit.framework */; };
+		4CB028E71F354F170063FA02 /* RestaurantCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB028E61F354F170063FA02 /* RestaurantCategory.swift */; };
 		4CFCDFF51F25760A003988F9 /* RangeSliderFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C72B72A1F25756F00C0FC4E /* RangeSliderFramework.framework */; };
 		4CFCDFF61F25760A003988F9 /* RangeSliderFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C72B72A1F25756F00C0FC4E /* RangeSliderFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4CFDEB931F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDEB921F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift */; };
@@ -120,6 +121,7 @@
 		4CABB3B41F2838A100F1B3ED /* MHCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHCardViewController.swift; sourceTree = "<group>"; };
 		4CABB3B61F2838C000F1B3ED /* MHMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHMapViewController.swift; sourceTree = "<group>"; };
 		4CABB3B91F28395300F1B3ED /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4CB028E61F354F170063FA02 /* RestaurantCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCategory.swift; sourceTree = "<group>"; };
 		4CFDEB921F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceTouchGestureRecognizer.swift; sourceTree = "<group>"; };
 		4CFEF38D1F2DB810005B00B8 /* MHLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHLocationButton.swift; sourceTree = "<group>"; };
 		4CFEF3911F2DBA3B005B00B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		4C9AE7A71EA17BC500514983 /* DinnerRoll */ = {
 			isa = PBXGroup;
 			children = (
+				4CB028E41F354EF10063FA02 /* Data Layer */,
 				4CFCDFF71F2577C3003988F9 /* User Interfaces */,
 				4CFEF3801F2DA118005B00B8 /* Supporting Files */,
 				4CFEF3851F2DA2B1005B00B8 /* Old Implementation */,
@@ -236,6 +239,22 @@
 				4C9796241EB1135100D66D93 /* DBMapSelector */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4CB028E41F354EF10063FA02 /* Data Layer */ = {
+			isa = PBXGroup;
+			children = (
+				4CB028E51F354F0A0063FA02 /* Models */,
+			);
+			path = "Data Layer";
+			sourceTree = "<group>";
+		};
+		4CB028E51F354F0A0063FA02 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4CB028E61F354F170063FA02 /* RestaurantCategory.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		4CD6AA891EC2A5870017F439 /* Interactive Dynamics */ = {
@@ -567,6 +586,7 @@
 				4C4BEA151F160DB800DAD111 /* Categories.swift in Sources */,
 				4C3E4B3B1EDF908D006DF23F /* MHCardView.m in Sources */,
 				4C3E4B381EDF9044006DF23F /* MHMainViewController.m in Sources */,
+				4CB028E71F354F170063FA02 /* RestaurantCategory.swift in Sources */,
 				4C97962A1EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m in Sources */,
 				4CFEF3951F2DBB3B005B00B8 /* IBExtensions.swift in Sources */,
 				4C97962B1EB1137700D66D93 /* DBMapSelectorManager.m in Sources */,

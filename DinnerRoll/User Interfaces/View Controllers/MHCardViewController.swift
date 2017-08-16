@@ -12,3 +12,7 @@ class MHCardViewController: UIViewController{
     @IBOutlet weak var restaurantName: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
 }
+
+class AutocompleteController: NSObject, UITextViewDelegate{
+    
+}

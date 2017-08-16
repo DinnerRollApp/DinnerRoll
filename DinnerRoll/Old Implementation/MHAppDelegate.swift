@@ -13,6 +13,7 @@ import QuadratTouch
 class MHAppDelegate: UIResponder, UIApplicationDelegate{
 
     var window: UIWindow?
+    var cacheLocation: URL?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool{
         // Override point for customization after application launch.
@@ -22,7 +23,6 @@ class MHAppDelegate: UIResponder, UIApplicationDelegate{
         config.mode = "foursquare"
         config.shouldControlNetworkActivityIndicator = true
         QuadratTouch.Session.setupSharedSessionWithConfiguration(config)
-        updateCategories()
         return true
     }
     func applicationWillResignActive(_ application: UIApplication) -> Void{
