@@ -12,7 +12,7 @@
 
 @interface MHMainViewController () <MHCardViewDelegate>
 
-@property (nonatomic) PaneState paneState;
+@property (nonatomic) MHPaneState paneState;
 @property (nonatomic) UIDynamicAnimator *animator;
 @property (nonatomic, strong) MHPaneBehavior *MHPaneBehavior;
 @property (nonatomic) CGPoint startingPoint;
@@ -66,7 +66,7 @@
 
 - (void)cardView:(MHCardView *)view draggingEndedWithVelocity:(CGPoint)velocity lastTouchLocationInSuperview:(CGPoint)touch
 {
-    PaneState targetState;
+    MHPaneState targetState;
     if(velocity.y > 0){
         targetState = MHPaneStateClosed;
     }

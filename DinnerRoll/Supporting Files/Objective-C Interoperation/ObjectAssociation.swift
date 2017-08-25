@@ -6,7 +6,7 @@
 //  Copyright © 2017 Michael Hulet. All rights reserved.
 //
 
-import Darwin
+import ObjectiveC
 
 final class ObjectAssociation<AssociatedObject>{
     private let policy: objc_AssociationPolicy

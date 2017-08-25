@@ -69,6 +69,7 @@ class MHCoordinatingViewController: MHMainViewController{
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         updateLocationButtonFrame()
+        cardController?.resignFirstResponder()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) -> Void{

@@ -1,3 +1,4 @@
 github "raysarebest/das-quadrat" # Change this back to Constantine-Fry once they accept my PR
 github "SwiftyJSON/SwiftyJSON"
 github "warchimede/RangeSlider"
+github "ElaWorkshop/TagListView"

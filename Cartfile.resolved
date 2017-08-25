@@ -1,3 +1,4 @@
+github "ElaWorkshop/TagListView" "1.2.0"
 github "SwiftyJSON/SwiftyJSON" "3.1.4"
 github "raysarebest/das-quadrat" "1.1.7"
 github "warchimede/RangeSlider" "1.1.1"

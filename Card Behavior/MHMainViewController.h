@@ -12,7 +12,7 @@
 @class MHPaneBehavior;
 
 
-typedef NS_ENUM(NSInteger, PaneState) {
+typedef NS_ENUM(NSInteger, MHPaneState) {
     MHPaneStateOpen,
     MHPaneStateClosed,
 };
@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, PaneState) {
 
 @interface MHMainViewController : UIViewController
 
-@property (nonatomic, readonly) PaneState paneState;
+@property (nonatomic, readonly) MHPaneState paneState;
 @property (weak, nonatomic) IBOutlet MHCardView *pane;
 
 @end

@@ -11,8 +11,10 @@ import UIKit
 class MHCardViewController: UIViewController{
     @IBOutlet weak var restaurantName: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-}
+    @IBOutlet weak var filterView: MHFilterView!
 
-class AutocompleteController: NSObject, UITextViewDelegate{
-    
+    @discardableResult override func resignFirstResponder() -> Bool{
+        super.resignFirstResponder()
+        return filterView.searchBar.resignFirstResponder()
+    }
 }
