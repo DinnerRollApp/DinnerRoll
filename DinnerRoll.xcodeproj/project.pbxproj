@@ -25,6 +25,8 @@
 		4C78E5511F2AA8CA007BCFFE /* ObjectAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C78E5501F2AA8CA007BCFFE /* ObjectAssociation.swift */; };
 		4C7BA6481F4E3DEB005335B2 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7BA6471F4E3DEB005335B2 /* Color.swift */; };
 		4C7BA6491F4E589C005335B2 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE37EE41F4A46BE002C93D2 /* SearchTextField.swift */; };
+		4C7FF0BD1F5FB13E00A0BF22 /* MultiSelectSegmentedControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7FF0BC1F5FB04200A0BF22 /* MultiSelectSegmentedControl.framework */; };
+		4C7FF0BE1F5FB13E00A0BF22 /* MultiSelectSegmentedControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7FF0BC1F5FB04200A0BF22 /* MultiSelectSegmentedControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C97962A1EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9796271EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m */; };
 		4C97962B1EB1137700D66D93 /* DBMapSelectorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9796291EB1137700D66D93 /* DBMapSelectorManager.m */; };
 		4C97962E1EB1138200D66D93 /* DBMapSelectorAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C97962D1EB1138200D66D93 /* DBMapSelectorAnnotation.m */; };
@@ -42,8 +44,6 @@
 		4CABB3BA1F28395300F1B3ED /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CABB3B91F28395300F1B3ED /* MapKit.framework */; };
 		4CB028E71F354F170063FA02 /* RestaurantCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB028E61F354F170063FA02 /* RestaurantCategory.swift */; };
 		4CDA11B31F483AA90061B832 /* MHFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA11B21F483AA90061B832 /* MHFilterView.swift */; };
-		4CFCDFF51F25760A003988F9 /* RangeSliderFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C72B72A1F25756F00C0FC4E /* RangeSliderFramework.framework */; };
-		4CFCDFF61F25760A003988F9 /* RangeSliderFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C72B72A1F25756F00C0FC4E /* RangeSliderFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4CFDEB931F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDEB921F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift */; };
 		4CFEF38E1F2DB810005B00B8 /* MHLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFEF38D1F2DB810005B00B8 /* MHLocationButton.swift */; };
 		4CFEF3951F2DBB3B005B00B8 /* IBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFEF3941F2DBB3B005B00B8 /* IBExtensions.swift */; };
@@ -74,9 +74,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4C5F2BA81F4593DF00733355 /* TagListView.framework in Embed Frameworks */,
+				4C7FF0BE1F5FB13E00A0BF22 /* MultiSelectSegmentedControl.framework in Embed Frameworks */,
 				4C645DEE1F16D9E700EA4E48 /* SwiftyJSON.framework in Embed Frameworks */,
 				4C22923D1F28260B00A5DF9F /* QuadratTouch.framework in Embed Frameworks */,
-				4CFCDFF61F25760A003988F9 /* RangeSliderFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,10 +98,10 @@
 		4C4C4A8B1F2DBF8D001BC3D9 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		4C5F2BA61F4593D800733355 /* TagListView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TagListView.framework; path = Carthage/Build/iOS/TagListView.framework; sourceTree = "<group>"; };
 		4C645DE51F16D9A300EA4E48 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
-		4C72B72A1F25756F00C0FC4E /* RangeSliderFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RangeSliderFramework.framework; path = Carthage/Build/iOS/RangeSliderFramework.framework; sourceTree = "<group>"; };
 		4C766ADB1EA6836100533C28 /* Cartfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		4C78E5501F2AA8CA007BCFFE /* ObjectAssociation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectAssociation.swift; sourceTree = "<group>"; };
 		4C7BA6471F4E3DEB005335B2 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		4C7FF0BC1F5FB04200A0BF22 /* MultiSelectSegmentedControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultiSelectSegmentedControl.framework; path = Carthage/Build/iOS/MultiSelectSegmentedControl.framework; sourceTree = "<group>"; };
 		4C963D9D1F228A8500408242 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4C9796251EB1137700D66D93 /* DinnerRoll-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DinnerRoll-Bridging-Header.h"; path = "DinnerRoll/Supporting Files/Objective-C Interoperation/DinnerRoll-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		4C9796261EB1137700D66D93 /* DBMapSelectorGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBMapSelectorGestureRecognizer.h; path = DBMapSelector/DBMapSelectorGestureRecognizer.h; sourceTree = "<group>"; };
@@ -145,11 +145,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CABB3BA1F28395300F1B3ED /* MapKit.framework in Frameworks */,
+				4C7FF0BD1F5FB13E00A0BF22 /* MultiSelectSegmentedControl.framework in Frameworks */,
 				4CABB3B81F28394B00F1B3ED /* CoreLocation.framework in Frameworks */,
 				4C5F2BA71F4593DF00733355 /* TagListView.framework in Frameworks */,
 				4C645DED1F16D9E700EA4E48 /* SwiftyJSON.framework in Frameworks */,
 				4C22923C1F28260B00A5DF9F /* QuadratTouch.framework in Frameworks */,
-				4CFCDFF51F25760A003988F9 /* RangeSliderFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,12 +242,12 @@
 			isa = PBXGroup;
 			children = (
 				4CE37EE31F4A466D002C93D2 /* SearchTextField */,
+				4C7FF0BC1F5FB04200A0BF22 /* MultiSelectSegmentedControl.framework */,
 				4C5F2BA61F4593D800733355 /* TagListView.framework */,
 				4CABB3B91F28395300F1B3ED /* MapKit.framework */,
 				4C22923B1F28260500A5DF9F /* QuadratTouch.framework */,
 				4C963D9D1F228A8500408242 /* CoreLocation.framework */,
 				4C645DE51F16D9A300EA4E48 /* SwiftyJSON.framework */,
-				4C72B72A1F25756F00C0FC4E /* RangeSliderFramework.framework */,
 				4CD6AA891EC2A5870017F439 /* Interactive Dynamics */,
 				4C9796241EB1135100D66D93 /* DBMapSelector */,
 			);
@@ -591,7 +591,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/QuadratTouch.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RangeSliderFramework.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MultiSelectSegmentedControl.framework",
 			);
 			name = "Run Script";
 			outputPaths = (

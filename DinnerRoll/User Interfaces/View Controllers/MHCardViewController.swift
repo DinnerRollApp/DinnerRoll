@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MultiSelectSegmentedControl
 
 class MHCardViewController: UIViewController{
     @IBOutlet weak var restaurantName: UILabel!

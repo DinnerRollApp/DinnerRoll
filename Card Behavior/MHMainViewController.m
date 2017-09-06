@@ -14,7 +14,7 @@
 
 @property (nonatomic) MHPaneState paneState;
 @property (nonatomic) UIDynamicAnimator *animator;
-@property (nonatomic, strong) MHPaneBehavior *MHPaneBehavior;
+@property (nonatomic, strong) MHPaneBehavior *paneBehavior;
 @property (nonatomic) CGPoint startingPoint;
 
 @end
@@ -39,21 +39,20 @@
 
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     __weak typeof(self) me = self;
-    self.MHPaneBehavior.action = ^{
-        //NSLog(@"Action executed");
+    self.paneBehavior.action = ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:MHCardDidDragNotificationName object:me];
     };
 }
 
 - (void)animatePaneWithInitialVelocity:(CGPoint)initialVelocity
 {
-    if (!self.MHPaneBehavior) {
+    if (!self.paneBehavior) {
         MHPaneBehavior *behavior = [[MHPaneBehavior alloc] initWithItem:self.pane];
-        self.MHPaneBehavior = behavior;
+        self.paneBehavior = behavior;
     }
-    self.MHPaneBehavior.targetPoint = self.targetPoint;
-    self.MHPaneBehavior.velocity = initialVelocity;
-    [self.animator addBehavior:self.MHPaneBehavior];
+    self.paneBehavior.targetPoint = self.targetPoint;
+    self.paneBehavior.velocity = initialVelocity;
+    [self.animator addBehavior:self.paneBehavior];
 }
 
 - (CGPoint)targetPoint
@@ -91,7 +90,7 @@
 - (void)didTap:(UITapGestureRecognizer *)tapRecognizer
 {
     self.paneState = self.paneState == MHPaneStateOpen ? MHPaneStateClosed : MHPaneStateOpen;
-    [self animatePaneWithInitialVelocity:self.MHPaneBehavior.velocity];
+    [self animatePaneWithInitialVelocity:self.paneBehavior.velocity];
 }
 
 @end
