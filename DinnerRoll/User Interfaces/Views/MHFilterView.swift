@@ -177,7 +177,7 @@ class MHFilterEntryField: SearchTextField{
             attributedPlaceholder = nil
             return
         }
-        attributedPlaceholder = NSAttributedString(string: new, attributes: [NSForegroundColorAttributeName: tintColor.withAlphaComponent(0.5).lighten(by: 50)])
+        attributedPlaceholder = NSAttributedString(string: new, attributes: [NSAttributedStringKey.foregroundColor: tintColor.withAlphaComponent(0.5).lighten(by: 50)])
     }
 
     // MARK: Text Location Manipulation

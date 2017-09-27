@@ -22,5 +22,5 @@ typedef NS_ENUM(NSInteger, MHPaneState) {
 
 @property (nonatomic, readonly) MHPaneState paneState;
 @property (weak, nonatomic) IBOutlet MHCardView *pane;
-
+-(void)setPaneState:(MHPaneState)state withInitialVelocity:(CGPoint)velocity;
 @end

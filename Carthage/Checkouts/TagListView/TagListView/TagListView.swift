@@ -31,6 +31,14 @@ open class TagListView: UIView {
             }
         }
     }
+
+    @IBInspectable open dynamic var tagLineBreakMode: NSLineBreakMode = .byTruncatingMiddle {
+        didSet {
+            for tagView in tagViews {
+                tagView.titleLineBreakMode = tagLineBreakMode
+            }
+        }
+    }
     
     @IBInspectable open dynamic var tagBackgroundColor: UIColor = UIColor.gray {
         didSet {
@@ -264,6 +272,8 @@ open class TagListView: UIView {
                 
                 rowViews.append(currentRowView)
                 addSubview(currentRowView)
+
+                tagView.frame.size.width = min(tagView.frame.size.width, frame.width)
             }
             
             let tagBackgroundView = tagBackgroundViews[index]
@@ -299,12 +309,13 @@ open class TagListView: UIView {
     // MARK: - Manage tags
 
     @discardableResult
-    open func stylize(tag tagView: TagView) -> TagView{
+    open func stylize(_ tagView: TagView) -> TagView {
         tagView.textColor = textColor
         tagView.selectedTextColor = selectedTextColor
         tagView.tagBackgroundColor = tagBackgroundColor
         tagView.highlightedBackgroundColor = tagHighlightedBackgroundColor
         tagView.selectedBackgroundColor = tagSelectedBackgroundColor
+        tagView.titleLineBreakMode = tagLineBreakMode
         tagView.cornerRadius = cornerRadius
         tagView.borderWidth = borderWidth
         tagView.borderColor = borderColor
@@ -360,7 +371,7 @@ open class TagListView: UIView {
     @discardableResult
     open func addTagViews(_ tagViews: [TagView]) -> [TagView] {
         for tagView in tagViews {
-            addTagView(tagView)
+            addTagView(tagView, layout: false)
         }
         rearrangeViews()
         return tagViews
@@ -374,14 +385,17 @@ open class TagListView: UIView {
     /**
      Adds the specified `TagView` to the `TagListView`
      - Parameter tagView: The `TagView` to be added
+     - Parameter layout: Secifies if the `TagListView` should call `rearrangeViews()` to re-layout its `TagView`s. `true` by default
      - Returns: The `TagView` that was added
      - Important: This method applies all default styling of the `TagListView`, so if you're gonna do any special styling, do it after calling this method
      */
     @discardableResult
-    open func addTagView(_ tagView: TagView) -> TagView {
-        tagViews.append(stylize(tag: tagView))
+    open func addTagView(_ tagView: TagView, layout: Bool = true) -> TagView {
+        tagViews.append(stylize(tagView))
         tagBackgroundViews.append(UIView(frame: tagView.bounds))
-        rearrangeViews()
+        if layout {
+            rearrangeViews()
+        }
         
         return tagView
     }
@@ -395,7 +409,7 @@ open class TagListView: UIView {
      */
     @discardableResult
     open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
-        tagViews.insert(stylize(tag: tagView), at: index)
+        tagViews.insert(stylize(tagView), at: index)
         tagBackgroundViews.insert(UIView(frame: tagView.bounds), at: index)
         rearrangeViews()
         

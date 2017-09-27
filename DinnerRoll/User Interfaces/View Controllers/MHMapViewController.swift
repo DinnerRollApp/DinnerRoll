@@ -14,7 +14,7 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
     @IBOutlet weak var map: MKMapView!{
         didSet{
             map.delegate = self
-            let recognizer = ForceTouchGestureRecognizer(target: self, action: #selector(placePin(with:)))
+            let recognizer = ForceTouchGestureRecognizer(target: self, action: #selector(placeCircleCenterPin(with:)))
             if #available(iOS 10, *){
                 recognizer.delegate = self
             }
@@ -35,14 +35,14 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
             selectionCircle?.centerPinColor = #colorLiteral(red: 0.03921568627, green: 0.1450980392, blue: 0.7411764706, alpha: 1)
         }
     }
-    var searchCenter: CLLocationCoordinate2D?{
+    var searchCenter: CLLocationCoordinate2D{
         get{
-            return selectionCircle?.circleCoordinate
+            return selectionCircle!.circleCoordinate
         }
     }
-    var searchRadius: CLLocationDistance?{
+    var searchRadius: CLLocationDistance{
         get{
-            return selectionCircle?.circleRadius
+            return selectionCircle!.circleRadius
         }
     }
     private let locationManager = CLLocationManager()
@@ -96,7 +96,7 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
 
     // MARK: - Interface Helpers
 
-    @objc private func placePin(with recognizer: ForceTouchGestureRecognizer) -> Void{
+    @objc private func placeCircleCenterPin(with recognizer: ForceTouchGestureRecognizer) -> Void{
         followingUser = false
         guard recognizer.state == .began else{
             if #available(iOS 10, *), areaSelectionFeedbackGenerator != nil{
@@ -144,6 +144,16 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         else{
             locationButton.alpha = opacity
             locationButton.isHidden = hiddenStatus
+        }
+    }
+
+    func show(_ restaurant: Restaurant) -> Void{
+        map.addAnnotation(RestaurantPin(restaurant: restaurant))
+    }
+
+    func hideAllRestaurants() -> Void{
+        for pin in map.annotations where pin is RestaurantPin{
+            map.removeAnnotation(pin)
         }
     }
 

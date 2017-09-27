@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ArL-ri-BQt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ArL-ri-BQt">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -249,14 +249,18 @@
                                 <rect key="frame" x="8" y="20" width="398" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="jE1-62-V2h"/>
+                                    <constraint firstAttribute="width" priority="250" constant="304" id="u4g-JM-NgU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" red="0.98039215690000003" green="0.89411764709999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ybp-wn-ell">
-                                <rect key="frame" x="197" y="60" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ybp-wn-ell">
+                                <rect key="frame" x="197.66666666666666" y="60" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="d0S-f5-hqd"/>
+                                    <constraint firstAttribute="height" constant="20" id="pr2-8f-MO5"/>
+                                </constraints>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dx3-XL-sIM" userLabel="Vertical Sizing View">
                                 <rect key="frame" x="8" y="129" width="398" height="86"/>
@@ -307,7 +311,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="M2d-ix-628" customClass="MultiSelectSegmentedControl">
-                                                        <rect key="frame" x="0.0" y="38.666666666666657" width="199" height="29"/>
+                                                        <rect key="frame" x="0.0" y="38.333333333333343" width="199" height="29"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="28" id="Fj4-aG-Hrt"/>
                                                         </constraints>
@@ -392,12 +396,14 @@
                             <constraint firstItem="H3q-08-6k6" firstAttribute="top" secondItem="Dx3-XL-sIM" secondAttribute="bottom" constant="8" id="Thy-Rd-DyM"/>
                             <constraint firstAttribute="trailing" secondItem="H3q-08-6k6" secondAttribute="trailing" constant="8" id="afD-qX-e7A"/>
                             <constraint firstItem="aXh-bu-NsE" firstAttribute="top" secondItem="RBA-PJ-ZFN" secondAttribute="top" constant="8" id="cO6-Rc-i8V"/>
+                            <constraint firstItem="Ybp-wn-ell" firstAttribute="centerX" secondItem="41A-cx-TFt" secondAttribute="centerX" id="dZX-gA-oF0"/>
                             <constraint firstItem="Dx3-XL-sIM" firstAttribute="leading" secondItem="RBA-PJ-ZFN" secondAttribute="leading" constant="8" id="df2-xU-6wa"/>
                             <constraint firstItem="41A-cx-TFt" firstAttribute="leading" secondItem="RBA-PJ-ZFN" secondAttribute="leading" constant="8" id="efO-zU-mDn"/>
                             <constraint firstItem="Oa7-6M-WNd" firstAttribute="top" secondItem="41A-cx-TFt" secondAttribute="bottom" id="ehr-hS-U2Q"/>
                             <constraint firstItem="H3q-08-6k6" firstAttribute="leading" secondItem="RBA-PJ-ZFN" secondAttribute="leading" constant="8" id="h0c-lP-XZj"/>
                             <constraint firstAttribute="trailing" secondItem="Dx3-XL-sIM" secondAttribute="trailing" constant="8" id="hF2-GC-bAb"/>
                             <constraint firstAttribute="trailing" secondItem="Oa7-6M-WNd" secondAttribute="trailing" constant="8" id="m8h-19-NGw"/>
+                            <constraint firstItem="Ybp-wn-ell" firstAttribute="centerY" secondItem="41A-cx-TFt" secondAttribute="centerY" id="peb-NY-y7d"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -407,6 +413,8 @@
                     </view>
                     <connections>
                         <outlet property="filterView" destination="H3q-08-6k6" id="I1o-O9-Am9"/>
+                        <outlet property="openNowSwitch" destination="HEA-fe-wnj" id="gTa-sY-a6w"/>
+                        <outlet property="pricingSegments" destination="M2d-ix-628" id="IkH-XJ-XSg"/>
                         <outlet property="restaurantName" destination="41A-cx-TFt" id="MtS-CV-FjQ"/>
                         <outlet property="spinner" destination="Ybp-wn-ell" id="fJf-H6-9ai"/>
                     </connections>

@@ -1,4 +1,4 @@
 github "raysarebest/das-quadrat" # Change this back to Constantine-Fry once they accept my PR
 github "SwiftyJSON/SwiftyJSON"
-github "raysarebest/MultiSelectSegmentedControl" "framework-debug" # Change this back to yonat once they accept my PR
+github "raysarebest/MultiSelectSegmentedControl" "framework" # Change this back to yonat once they accept my PR
 github "raysarebest/TagListView" "raysarebest-develop" # Change this back to ElaWorkshop once they accept my PRs

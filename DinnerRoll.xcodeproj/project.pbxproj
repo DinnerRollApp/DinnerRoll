@@ -32,6 +32,8 @@
 		4C97962E1EB1138200D66D93 /* DBMapSelectorAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C97962D1EB1138200D66D93 /* DBMapSelectorAnnotation.m */; };
 		4C9796331EB1138E00D66D93 /* DBMapSelectorOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9796301EB1138E00D66D93 /* DBMapSelectorOverlay.m */; };
 		4C9796341EB1138E00D66D93 /* DBMapSelectorOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9796321EB1138E00D66D93 /* DBMapSelectorOverlayRenderer.m */; };
+		4C97A82F1F7B572F003867FE /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97A82E1F7B572F003867FE /* Restaurant.swift */; };
+		4C97A8301F7B749B003867FE /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C4A8B1F2DBF8D001BC3D9 /* Array.swift */; };
 		4C9AE7A91EA17BC500514983 /* MHAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */; };
 		4C9AE7AB1EA17BC500514983 /* MHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7AA1EA17BC500514983 /* MHViewController.swift */; };
 		4C9AE7AE1EA17BC500514983 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7AC1EA17BC500514983 /* Main.storyboard */; };
@@ -114,6 +116,7 @@
 		4C9796301EB1138E00D66D93 /* DBMapSelectorOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBMapSelectorOverlay.m; path = DBMapSelector/MapSelectorOverlay/DBMapSelectorOverlay.m; sourceTree = "<group>"; };
 		4C9796311EB1138E00D66D93 /* DBMapSelectorOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBMapSelectorOverlayRenderer.h; path = DBMapSelector/MapSelectorOverlay/DBMapSelectorOverlayRenderer.h; sourceTree = "<group>"; };
 		4C9796321EB1138E00D66D93 /* DBMapSelectorOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBMapSelectorOverlayRenderer.m; path = DBMapSelector/MapSelectorOverlay/DBMapSelectorOverlayRenderer.m; sourceTree = "<group>"; };
+		4C97A82E1F7B572F003867FE /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		4C9AE7A51EA17BC500514983 /* DinnerRoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DinnerRoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHAppDelegate.swift; sourceTree = "<group>"; };
 		4C9AE7AA1EA17BC500514983 /* MHViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHViewController.swift; sourceTree = "<group>"; };
@@ -265,6 +268,7 @@
 		4CB028E51F354F0A0063FA02 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4C97A82E1F7B572F003867FE /* Restaurant.swift */,
 				4CB028E61F354F170063FA02 /* RestaurantCategory.swift */,
 			);
 			path = Models;
@@ -627,6 +631,8 @@
 				4CFDEB931F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift in Sources */,
 				4C9AE7A91EA17BC500514983 /* MHAppDelegate.swift in Sources */,
 				4CFEF38E1F2DB810005B00B8 /* MHLocationButton.swift in Sources */,
+				4C97A82F1F7B572F003867FE /* Restaurant.swift in Sources */,
+				4C97A8301F7B749B003867FE /* Array.swift in Sources */,
 				4C9796341EB1138E00D66D93 /* DBMapSelectorOverlayRenderer.m in Sources */,
 				4C2CD11D1F189FA40078B014 /* ShakeRecognizer.swift in Sources */,
 				4C78E5511F2AA8CA007BCFFE /* ObjectAssociation.swift in Sources */,
@@ -811,7 +817,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DinnerRoll/Supporting Files/Objective-C Interoperation/DinnerRoll-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -833,7 +840,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRoll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DinnerRoll/Supporting Files/Objective-C Interoperation/DinnerRoll-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -848,7 +856,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRollTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DinnerRoll.app/DinnerRoll";
 			};
 			name = Debug;
@@ -863,7 +872,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRollTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DinnerRoll.app/DinnerRoll";
 			};
 			name = Release;
@@ -877,7 +887,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRollUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = DinnerRoll;
 			};
 			name = Debug;
@@ -891,7 +902,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRollUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = DinnerRoll;
 			};
 			name = Release;

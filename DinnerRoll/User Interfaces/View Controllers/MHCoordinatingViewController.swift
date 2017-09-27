@@ -9,11 +9,19 @@
 import UIKit
 import CoreLocation
 import QuadratTouch
+import SwiftyJSON
 import QuartzCore
 
 protocol SearchAreaProviding{
-    var searchCenter: CLLocationCoordinate2D? { get }
-    var searchRadius: CLLocationDistance? { get }
+    var searchCenter: CLLocationCoordinate2D { get }
+    var searchRadius: CLLocationDistance { get }
+}
+
+protocol SearchFilterProviding{
+    var openNow: Bool { get }
+    var price: IndexSet { get }
+    var categories: [Category] { get }
+    var filters: [String] { get }
 }
 
 class MHCoordinatingViewController: MHMainViewController{
@@ -26,6 +34,7 @@ class MHCoordinatingViewController: MHMainViewController{
     //MARK: - Child View Controllers
 
     var searchAreaProvider: SearchAreaProviding?
+    var searchFilterProvider: SearchFilterProviding?
     weak var mapController: MHMapViewController?
     weak var cardController: MHCardViewController?
 
@@ -36,7 +45,7 @@ class MHCoordinatingViewController: MHMainViewController{
         cardContainerView.frame = CGRect(origin: CGPoint(x: 0, y: view.frame.height - 100), size: view.frame.size)
         updateStatusBarFrame(with: view.frame.size)
         addObserver(self, forKeyPath: "cardContainerView.center", options: [.new], context: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateLocationButtonFrame(from:)), name: .UIApplicationDidChangeStatusBarFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateStatusBarFrame(with:transitionCoordinator:)), name: .UIApplicationDidChangeStatusBarFrame, object: nil)
     }
 
     override func viewDidLayoutSubviews() -> Void{
@@ -44,9 +53,56 @@ class MHCoordinatingViewController: MHMainViewController{
         updateLocationButtonFrame()
     }
 
+    //MARK: - Motion Detection
+
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) -> Void{
+        guard let areaProvider = searchAreaProvider, let filterProvider = searchFilterProvider, motion == .motionShake else{
+            return
+        }
+        cardController?.resignFirstResponder()
+        setPaneState(.closed, withInitialVelocity: .zero)
+        cardController?.restaurantName.text = String()
+        cardController?.spinner.startAnimating()
+        mapController?.hideAllRestaurants()
+        var ids = ""
+        for category in filterProvider.categories{
+            if !ids.isEmpty{
+                ids += ","
+            }
+            ids += category.id
+        }
+        let query = [QuadratTouch.Parameter.ll: "\(areaProvider.searchCenter.latitude),\(areaProvider.searchCenter.longitude)", QuadratTouch.Parameter.categoryId: ids.isEmpty ? "4d4b7105d754a06374d81259" : ids, QuadratTouch.Parameter.radius: String(areaProvider.searchRadius), QuadratTouch.Parameter.intent: "browse", QuadratTouch.Parameter.query: filterProvider.filters.joined(separator: " "), QuadratTouch.Parameter.limit: "50"]
+        let task = QuadratTouch.Session.sharedSession().venues.search(query) { (result: QuadratTouch.Result) in
+            func fail(message: String) -> Void{
+                self.cardController?.restaurantName.text = message
+            }
+            defer{
+                self.cardController?.spinner.stopAnimating()
+            }
+            guard let response = result.response, let venues = JSON(response)["venues"].array else{
+                fail(message: "There was an error. Try again?")
+                dump(result.error)
+                return
+            }
+            var choice: Restaurant? = nil
+            while choice == nil{
+                guard !venues.isEmpty else{
+                    fail(message: "No restaurants match your search 😕")
+                    return
+                }
+                choice = Restaurant(json: venues.randomElement)
+            }
+            if let selection = choice{
+                self.mapController?.show(selection)
+                self.cardController?.showInformation(for: selection)
+            }
+        }
+        task.start()
+    }
+
     //MARK: - Layout Utilities
 
-    private func updateStatusBarFrame(with size: CGSize, transitionCoordinator: UIViewControllerTransitionCoordinator? = nil) -> Void{
+    @objc private func updateStatusBarFrame(with size: CGSize, transitionCoordinator: UIViewControllerTransitionCoordinator? = nil) -> Void{
         func layout() -> Void{
             cardContainerView.frame = CGRect(origin: CGPoint(x: cardContainerView.frame.origin.x, y: size.height - 100), size: cardContainerView.frame.size)
             guard UIScreen.main.bounds.size == size else{
@@ -108,7 +164,11 @@ class MHCoordinatingViewController: MHMainViewController{
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "card"{
-            cardController = (segue.destination as! MHCardViewController)
+            guard let controller = segue.destination as? MHCardViewController else{
+                return
+            }
+            searchFilterProvider = controller
+            cardController = controller
         }
         else if segue.identifier == "map"{
             guard let controller = segue.destination as? MHMapViewController else{

@@ -1,4 +1,4 @@
 github "SwiftyJSON/SwiftyJSON" "3.1.4"
 github "raysarebest/MultiSelectSegmentedControl" "449dfbf8661a44aacbe79a87a1fc21bd1e9829da"
-github "raysarebest/TagListView" "f6392f9f6e8a31f4c799b9d99b810a47fa9d7940"
+github "raysarebest/TagListView" "12a8d9ca149aa38d71c9bc03f62b834cb53df8e1"
 github "raysarebest/das-quadrat" "1.1.7"

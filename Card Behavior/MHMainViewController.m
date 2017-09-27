@@ -12,7 +12,7 @@
 
 @interface MHMainViewController () <MHCardViewDelegate>
 
-@property (nonatomic) MHPaneState paneState;
+@property (nonatomic, readwrite) MHPaneState paneState;
 @property (nonatomic) UIDynamicAnimator *animator;
 @property (nonatomic, strong) MHPaneBehavior *paneBehavior;
 @property (nonatomic) CGPoint startingPoint;
@@ -60,7 +60,10 @@
     return self.paneState == MHPaneStateClosed ? self.startingPoint : CGPointMake(self.view.center.x, self.view.center.y + 50);
 }
 
-
+-(void)setPaneState:(MHPaneState)state withInitialVelocity:(CGPoint)velocity{
+    self.paneState = state;
+    [self animatePaneWithInitialVelocity:velocity];
+}
 #pragma mark MHCardViewDelegate
 
 - (void)cardView:(MHCardView *)view draggingEndedWithVelocity:(CGPoint)velocity lastTouchLocationInSuperview:(CGPoint)touch
@@ -75,8 +78,7 @@
     else{
         targetState = touch.y >= self.view.frame.size.height / 8 ? MHPaneStateClosed : MHPaneStateOpen;
     }
-    self.paneState = targetState;
-    [self animatePaneWithInitialVelocity:velocity];
+    [self setPaneState:targetState withInitialVelocity:velocity];
 }
 
 - (void)MHCardViewBeganDragging:(MHCardView *)view
@@ -89,8 +91,7 @@
 
 - (void)didTap:(UITapGestureRecognizer *)tapRecognizer
 {
-    self.paneState = self.paneState == MHPaneStateOpen ? MHPaneStateClosed : MHPaneStateOpen;
-    [self animatePaneWithInitialVelocity:self.paneBehavior.velocity];
+    [self setPaneState:self.paneState == MHPaneStateOpen ? MHPaneStateClosed : MHPaneStateOpen withInitialVelocity:self.paneBehavior.velocity];
 }
 
 @end
