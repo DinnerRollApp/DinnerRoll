@@ -8,6 +8,7 @@
 
 import UIKit
 import QuadratTouch
+import RealmSwift
 
 @UIApplicationMain
 class MHAppDelegate: UIResponder, UIApplicationDelegate{
@@ -23,6 +24,10 @@ class MHAppDelegate: UIResponder, UIApplicationDelegate{
         config.mode = "foursquare"
         config.shouldControlNetworkActivityIndicator = true
         QuadratTouch.Session.setupSharedSessionWithConfiguration(config)
+        guard let cacheDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else{
+            return true
+        }
+        Realm.Configuration.defaultConfiguration.fileURL = cacheDirectory.appendingPathComponent("fsqcache.realm", isDirectory: false)
         return true
     }
     func applicationWillResignActive(_ application: UIApplication) -> Void{

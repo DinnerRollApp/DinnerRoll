@@ -20,3 +20,13 @@ extension Array{
         }
     }
 }
+
+//extension Array where Element: Equatable{
+//    func remove(_ element: Element) -> Void{
+//        guard let index = index(of: element) else{
+//            return
+//        }
+//        remove(at: index)
+//    }
+//}
+

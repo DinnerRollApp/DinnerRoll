@@ -64,8 +64,23 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 
+# Private API Keys
+
 APIKeys.plist
 DinnerRoll/APIKeys.plist
 
+# macOS-Specific Meta Files
+
 .DS_Store
 /**/.DS_Store
+
+# Sensitive Testing/Experimentation Files
+
+foursquare.py
+categories.json
+
+# Tooling Artifacts
+
+.vscode
+__pycache__
+__pycache__/*

@@ -15,7 +15,7 @@ class MHCardViewController: UIViewController, SearchFilterProviding{
             return openNowSwitch.isOn
         }
     }
-    var price: IndexSet{
+    var prices: IndexSet{
         get{
             return pricingSegments.selectedSegmentIndexes
         }

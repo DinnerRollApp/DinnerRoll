@@ -28,8 +28,8 @@ open class Endpoint {
         self.baseURL = URL(string:session.configuration.server.apiBaseURL) as URL!
     }
     
-    func getWithPath(_ path: String, parameters: Parameters?, completionHandler: ResponseClosure?, cacheName: String? = nil, maxCacheAge: TimeInterval? = nil) -> Task {
-        return self.taskWithPath(path, parameters: parameters, httpMethod: "GET", completionHandler: completionHandler, cacheName: cacheName, maxCacheAge: maxCacheAge)
+    func getWithPath(_ path: String, parameters: Parameters?, completionHandler: ResponseClosure?) -> Task {
+        return self.taskWithPath(path, parameters: parameters, httpMethod: "GET", completionHandler: completionHandler)
     }
     
     func postWithPath(_ path: String, parameters: Parameters?, completionHandler: ResponseClosure?) -> Task {
@@ -45,14 +45,9 @@ open class Endpoint {
     }
     
     fileprivate func taskWithPath(_ path: String, parameters: Parameters?,
-        httpMethod: String, completionHandler: ResponseClosure?, cacheName: String? = nil, maxCacheAge: TimeInterval? = nil) -> Task {
+        httpMethod: String, completionHandler: ResponseClosure?) -> Task {
             let request = self.requestWithPath(path, parameters: parameters, httpMethod: httpMethod)
-            if let name = cacheName, let age = maxCacheAge{
-                return PersistentTask(session: session!, request: request, completionHandler: completionHandler, cacheName: name, cacheAge: age)
-            }
-            else{
-                return DataTask(session: self.session!, request: request, completionHandler: completionHandler)
-            }
+            return DataTask(session: self.session!, request: request, completionHandler: completionHandler)
     }
     
     fileprivate func requestWithPath(_ path: String, parameters: Parameters?, httpMethod: String) -> Request {

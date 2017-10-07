@@ -19,7 +19,7 @@ protocol SearchAreaProviding{
 
 protocol SearchFilterProviding{
     var openNow: Bool { get }
-    var price: IndexSet { get }
+    var prices: IndexSet { get }
     var categories: [Category] { get }
     var filters: [String] { get }
 }
@@ -79,10 +79,13 @@ class MHCoordinatingViewController: MHMainViewController{
             defer{
                 self.cardController?.spinner.stopAnimating()
             }
-            guard let response = result.response, let venues = JSON(response)["venues"].array else{
+            guard let response = result.response, var venues = JSON(response)["venues"].array else{
                 fail(message: "There was an error. Try again?")
-                dump(result.error)
                 return
+            }
+            dump(result.URL)
+            func deny(venue: JSON) -> Void{
+                venues.remove(at: venues.index(of: venue)!)
             }
             var choice: Restaurant? = nil
             while choice == nil{
@@ -90,7 +93,24 @@ class MHCoordinatingViewController: MHMainViewController{
                     fail(message: "No restaurants match your search 😕")
                     return
                 }
-                choice = Restaurant(json: venues.randomElement)
+                let venue = venues.randomElement
+                guard let potential = Restaurant(json: venue) else{
+                    venues.remove(at: venues.index(of: venue)!)
+                    continue
+                }
+//                if filterProvider.openNow{
+//                    guard let open = potential.isOpen, open else{
+//                        deny(venue: venue)
+//                        continue
+//                    }
+//                }
+//                if !filterProvider.prices.isEmpty{
+//                    guard let price = potential.price, filterProvider.prices.contains(price - 1) else{
+//                        deny(venue: venue)
+//                        continue
+//                    }
+//                }
+                choice = potential
             }
             if let selection = choice{
                 self.mapController?.show(selection)

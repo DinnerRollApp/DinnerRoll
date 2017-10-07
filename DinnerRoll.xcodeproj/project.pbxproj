@@ -40,6 +40,7 @@
 		4C9AE7B31EA17BC500514983 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7B11EA17BC500514983 /* LaunchScreen.storyboard */; };
 		4C9AE7BE1EA17BC500514983 /* DinnerRollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7BD1EA17BC500514983 /* DinnerRollTests.swift */; };
 		4C9AE7C91EA17BC500514983 /* DinnerRollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */; };
+		4CA9D4391F87458600CA246E /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA9D4381F87458600CA246E /* Realm.swift */; };
 		4CABB3B51F2838A100F1B3ED /* MHCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CABB3B41F2838A100F1B3ED /* MHCardViewController.swift */; };
 		4CABB3B71F2838C000F1B3ED /* MHMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CABB3B61F2838C000F1B3ED /* MHMapViewController.swift */; };
 		4CABB3B81F28394B00F1B3ED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C963D9D1F228A8500408242 /* CoreLocation.framework */; };
@@ -129,6 +130,9 @@
 		4C9AE7C41EA17BC500514983 /* DinnerRollUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DinnerRollUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinnerRollUITests.swift; sourceTree = "<group>"; };
 		4C9AE7CA1EA17BC500514983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CA9D41A1F857D7100CA246E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		4CA9D41B1F857D7900CA246E /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		4CA9D4381F87458600CA246E /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		4CABB3B41F2838A100F1B3ED /* MHCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHCardViewController.swift; sourceTree = "<group>"; };
 		4CABB3B61F2838C000F1B3ED /* MHMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHMapViewController.swift; sourceTree = "<group>"; };
 		4CABB3B91F28395300F1B3ED /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -245,6 +249,8 @@
 			isa = PBXGroup;
 			children = (
 				4CE37EE31F4A466D002C93D2 /* SearchTextField */,
+				4CA9D41A1F857D7100CA246E /* Realm.framework */,
+				4CA9D41B1F857D7900CA246E /* RealmSwift.framework */,
 				4C7FF0BC1F5FB04200A0BF22 /* MultiSelectSegmentedControl.framework */,
 				4C5F2BA61F4593D800733355 /* TagListView.framework */,
 				4CABB3B91F28395300F1B3ED /* MapKit.framework */,
@@ -438,6 +444,7 @@
 			children = (
 				4CFEF3941F2DBB3B005B00B8 /* IBExtensions.swift */,
 				4C7BA6471F4E3DEB005335B2 /* Color.swift */,
+				4CA9D4381F87458600CA246E /* Realm.swift */,
 			);
 			path = "Convenience Extensions";
 			sourceTree = "<group>";
@@ -596,6 +603,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/QuadratTouch.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/MultiSelectSegmentedControl.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
 			);
 			name = "Run Script";
 			outputPaths = (
@@ -630,6 +639,7 @@
 				4CDA11B31F483AA90061B832 /* MHFilterView.swift in Sources */,
 				4CFDEB931F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift in Sources */,
 				4C9AE7A91EA17BC500514983 /* MHAppDelegate.swift in Sources */,
+				4CA9D4391F87458600CA246E /* Realm.swift in Sources */,
 				4CFEF38E1F2DB810005B00B8 /* MHLocationButton.swift in Sources */,
 				4C97A82F1F7B572F003867FE /* Restaurant.swift in Sources */,
 				4C97A8301F7B749B003867FE /* Array.swift in Sources */,
