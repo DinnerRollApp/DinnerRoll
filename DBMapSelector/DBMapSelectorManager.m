@@ -45,6 +45,11 @@ static const NSInteger kDefaultMaxDistance  = 10000;
 @property (assign, nonatomic) CLLocationDistance            prevRadius;
 @property (assign, nonatomic) CGRect                        radiusTouchRect;
 
+@property (strong, nonatomic) NSTimer *zoomRegionTimer;
+-(void)resetZoomRegionTimer;
+-(void)updateZoomForTouch:(UITouch *)touch;
+-(void)updateCircleForDraggingTouch:(UITouch *)touch;
+
 @end
 
 @implementation DBMapSelectorManager
@@ -112,10 +117,12 @@ static const NSInteger kDefaultMaxDistance  = 10000;
 
 - (DBMapSelectorGestureRecognizer *)selectorGestureRecognizer {
     
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     DBMapSelectorGestureRecognizer *selectorGestureRecognizer = [[DBMapSelectorGestureRecognizer alloc] init];
+
     
     selectorGestureRecognizer.touchesBeganCallback = ^(NSSet * touches, UIEvent * event) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:DBMapSelectorCircleResizeDidBeginNotificationName object:self];
         UITouch *touch = [touches anyObject];
         CGPoint touchPoint = [touch locationInView:weakSelf.mapView];
 //        NSLog(@"---- %@", CGRectContainsPoint(weakSelf.selectorRadiusRect, p) ? @"Y" : @"N");
@@ -127,6 +134,7 @@ static const NSInteger kDefaultMaxDistance  = 10000;
             if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(mapSelectorManagerWillBeginHandlingUserInteraction:)]) {
                 [weakSelf.delegate mapSelectorManagerWillBeginHandlingUserInteraction:weakSelf];
             }
+            [weakSelf updateZoomForTouch:touch];
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.mapView.scrollEnabled = NO;
                 weakSelf.mapView.userInteractionEnabled = NO;
@@ -143,17 +151,13 @@ static const NSInteger kDefaultMaxDistance  = 10000;
     selectorGestureRecognizer.touchesMovedCallback = ^(NSSet * touches, UIEvent * event) {
         if(!weakSelf.mapViewGestureEnabled && [event allTouches].count == 1){
             UITouch *touch = [touches anyObject];
-            CGPoint touchPoint = [touch locationInView:weakSelf.mapView];
-            
-            CLLocationCoordinate2D coord = [weakSelf.mapView convertPoint:touchPoint toCoordinateFromView:weakSelf.mapView];
-            MKMapPoint mapPoint = MKMapPointForCoordinate(coord);
-            
-            double meterDistance = (mapPoint.x - weakSelf.prevMapPoint.x)/MKMapPointsPerMeterAtLatitude(weakSelf.mapView.centerCoordinate.latitude) + weakSelf.prevRadius;
-            weakSelf.circleRadius = MIN( MAX( meterDistance, weakSelf.circleRadiusMin ), weakSelf.circleRadiusMax );
+            [weakSelf updateZoomForTouch:touch];
+            [weakSelf updateCircleForDraggingTouch:touch];
         }
     };
     
     selectorGestureRecognizer.touchesEndedCallback = ^(NSSet * touches, UIEvent * event) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:DBMapSelectorCircleResizeDidEndNotificationName object:self];
         weakSelf.mapView.scrollEnabled = YES;
         weakSelf.mapView.userInteractionEnabled = YES;
 
@@ -164,6 +168,7 @@ static const NSInteger kDefaultMaxDistance  = 10000;
 //            }
         }
         if(!weakSelf.mapViewGestureEnabled) {
+            [self resetZoomRegionTimer];
             if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(mapSelectorManagerDidHandleUserInteraction:)]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakSelf.delegate mapSelectorManagerDidHandleUserInteraction:weakSelf];
@@ -199,6 +204,11 @@ static const NSInteger kDefaultMaxDistance  = 10000;
 }
 
 #pragma mark - Accessors
+
+-(void)resetZoomRegionTimer{
+    [self.zoomRegionTimer invalidate];
+    self.zoomRegionTimer = nil;
+}
 
 - (void)setCircleRadius:(CLLocationDistance)circleRadius {
     if (_circleRadius!= MAX(MIN(circleRadius, _circleRadiusMax), _circleRadiusMin)) {
@@ -330,6 +340,51 @@ static const NSInteger kDefaultMaxDistance  = 10000;
 }
 
 #pragma mark - Additional
+
+-(void)updateZoomForTouch:(UITouch *)touch{
+    CGPoint touchPoint = [touch locationInView:self.mapView];
+    static const NSUInteger autoZoomThreshold = 40;
+
+#define shouldZoomOut (self.mapView.frame.size.width - touchPoint.x < autoZoomThreshold && self.circleRadius < self.circleRadiusMax)
+#define shouldZoomIn (touchPoint.x - [self.mapView convertCoordinate:self.circleCoordinate toPointToView:self.mapView].x < autoZoomThreshold * 2 && self.circleRadius > self.circleRadiusMin)
+
+    if(shouldZoomIn || shouldZoomOut){
+        if(!self.zoomRegionTimer){
+            self.zoomRegionTimer = [NSTimer scheduledTimerWithTimeInterval:.5 repeats:NO block:^(NSTimer * __nonnull timer) {
+                self.zoomRegionTimer = [NSTimer scheduledTimerWithTimeInterval:.05 repeats:YES block:^(NSTimer * __nonnull timer) {
+                    CLLocationDegrees delta = self.circleRadius / 10 / 111111;
+                    MKCoordinateRegion currentRegion = MKCoordinateRegionForMapRect(self.mapView.visibleMapRect);
+                    if(shouldZoomIn){
+                        currentRegion.span.longitudeDelta -= currentRegion.span.longitudeDelta / 20;
+                        currentRegion.span.latitudeDelta = 0;
+                    }
+                    else if(shouldZoomOut){
+                        currentRegion.span.longitudeDelta += delta;
+                    }
+                    else{
+                        [self resetZoomRegionTimer];
+                    }
+                    [self.mapView setRegion:currentRegion animated:NO];
+                    [self updateCircleForDraggingTouch:touch];
+                }];
+            }];
+        }
+    }
+    else if(self.zoomRegionTimer){
+        [self resetZoomRegionTimer];
+    }
+#undef shouldZoomOut
+#undef shouldZoomIn
+}
+
+-(void)updateCircleForDraggingTouch:(UITouch *)touch{
+    CGPoint point = [touch locationInView:self.mapView];
+    CLLocationCoordinate2D coord = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
+    MKMapPoint mapPoint = MKMapPointForCoordinate(coord);
+
+    double meterDistance = (mapPoint.x - self.prevMapPoint.x)/MKMapPointsPerMeterAtLatitude(self.mapView.centerCoordinate.latitude) + self.prevRadius;
+    self.circleRadius = MIN( MAX( meterDistance, self.circleRadiusMin ), self.circleRadiusMax );
+}
 
 - (void)recalculateRadiusTouchRect {
     MKMapRect selectorMapRect = _selectorOverlay.boundingMapRect;

@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 import SwiftyJSON
-import QuadratTouch
 import CoreLocation
 
 class MHViewController: MHMainViewController, MKMapViewDelegate, DBMapSelectorManagerDelegate, CLLocationManagerDelegate{
@@ -96,21 +95,6 @@ class MHViewController: MHMainViewController, MKMapViewDelegate, DBMapSelectorMa
             selectionCircle?.circleCoordinate = currentLocation.coordinate
         }
         selectionCircle?.applySelectorSettings()
-        let query = [QuadratTouch.Parameter.ll: "\(selectionCircle!.circleCoordinate.latitude),\(selectionCircle!.circleCoordinate.longitude)", QuadratTouch.Parameter.llAcc: "\(currentLocation.horizontalAccuracy)", QuadratTouch.Parameter.alt: "\(currentLocation.altitude)", QuadratTouch.Parameter.altAcc: "\(currentLocation.verticalAccuracy)", QuadratTouch.Parameter.categoryId: "4d4b7105d754a06374d81259" , QuadratTouch.Parameter.radius: String(selectionCircle!.circleRadius), QuadratTouch.Parameter.intent: "browse", QuadratTouch.Parameter.limit: "50"]
-        var data = [JSON]()
-        let search = QuadratTouch.Session.sharedSession().venues.search(query, completionHandler:{(result: QuadratTouch.Result) in
-            guard let response = result.response else{
-                return
-            }
-            data += JSON(response)["venues"].array!
-            let restaurant = data[0]
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: restaurant["location"]["lat"].double!, longitude: restaurant["location"]["lng"].double!)
-            self.map.addAnnotation(annotation)
-            self.restaurantLabel.text = restaurant["name"].string!
-            self.spinner.stopAnimating()
-        })
-        search.start()
     }
 
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) -> Void{

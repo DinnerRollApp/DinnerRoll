@@ -42,11 +42,11 @@ class MHCardViewController: UIViewController, SearchFilterProviding{
         }
     }
 
-    @IBOutlet weak var restaurantName: UILabel!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var filterView: MHFilterView!
-    @IBOutlet weak var openNowSwitch: UISwitch!
-    @IBOutlet weak var pricingSegments: MultiSelectSegmentedControl!
+    @IBOutlet var restaurantName: UILabel!
+    @IBOutlet var spinner: UIActivityIndicatorView!
+    @IBOutlet var filterView: MHFilterView!
+    @IBOutlet var openNowSwitch: UISwitch!
+    @IBOutlet var pricingSegments: MultiSelectSegmentedControl!
     
     @discardableResult override func resignFirstResponder() -> Bool{
         super.resignFirstResponder()

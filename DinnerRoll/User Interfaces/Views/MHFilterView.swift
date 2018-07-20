@@ -8,20 +8,20 @@
 
 import UIKit
 import TagListView
-import QuadratTouch
 import SwiftyJSON
+import Alamofire
 
 class MHFilterView: UIView, MHFilterEntryFieldDelegate, TagListViewDelegate{
-    @IBOutlet weak var searchBar: MHFilterEntryField!{
+    @IBOutlet var searchBar: MHFilterEntryField!{
         didSet{
             searchBar.inlineMode = true
             searchBar.entryDelegate = self
         }
     }
-    @IBOutlet weak var tagView: TagListView!{
+    @IBOutlet var tagView: TagListView!{
         didSet{
-            tagView.shadowOpacity = 1
-            tagView.shadowRadius = 3
+            (tagView as UIView).shadowOpacity = 1
+            (tagView as UIView).shadowRadius = 3
             tagView.marginY = 4
             tagView.textFont = searchBar.font ?? tagView.textFont.withSize(20)
             tagView.delegate = self
@@ -71,7 +71,7 @@ class MHFilterView: UIView, MHFilterEntryFieldDelegate, TagListViewDelegate{
 
     func entryFieldDidReturn(_ field: MHFilterEntryField) -> Void{
         if searchBar.layer.cornerRadius > 0{
-            tagView.cornerRadius = searchBar.layer.cornerRadius // FIXME: Find a better place to put this for initialization
+            (tagView as UIView).cornerRadius = searchBar.layer.cornerRadius // FIXME: Find a better place to put this for initialization (Can be ignored for product launch)
         }
         guard let text = field.text, text.count > 0 else{
             return
@@ -90,24 +90,19 @@ class MHFilterView: UIView, MHFilterEntryFieldDelegate, TagListViewDelegate{
             tag = TagView(title: text.trimmingCharacters(in: .whitespacesAndNewlines))
         }
         tagView.addTagView(tag)
+
         tag.paddingX = 12
         tag.paddingY = 14
         tag.enableRemoveButton = true
         tag.textColor = superview?.backgroundColor ?? .black
         tag.shadowColor = .white
         tag.shadowRadius = 3
-        tag.shadowOpacity = 1
+        (tag as UIView).shadowOpacity = 1
         tag.shadowOffset = CGSize(width: 0, height: 0)
         tag.removeIconLineColor = #colorLiteral(red: 0.9647058824, green: 0.4823529412, blue: 0.03137254902, alpha: 1)
         tag.onLongPress = nil
-        tag.cornerRadius = searchBar.cornerRadius
-        let gradient = CAGradientLayer()
-        gradient.colors = [#colorLiteral(red: 0.8980392157, green: 0.9803921569, blue: 0, alpha: 1).cgColor, #colorLiteral(red: 0.9803921569, green: 0.7333333333, blue: 0, alpha: 1).cgColor]
-        gradient.startPoint = .zero
-        gradient.endPoint = CGPoint(x: 1, y: 1)
-        gradient.frame = tag.layer.frame
-        gradient.zPosition = -1
-        tag.layer.addSublayer(gradient)
+        (tag as UIView).cornerRadius = searchBar.cornerRadius
+
         field.text = ""
         invalidateIntrinsicContentSize()
     }
@@ -130,13 +125,28 @@ class MHFilterView: UIView, MHFilterEntryFieldDelegate, TagListViewDelegate{
 class MHCategoryTag: TagView{
     let category: Category
 
+    override class var layerClass: AnyClass{
+        get{
+            return CAGradientLayer.self
+        }
+    }
+
     init(category: Category){
         self.category = category
         super.init(title: category.shortName)
+
+        guard let gradient = layer as? CAGradientLayer else{ // This should never fail, but just in case, we wanna avoid a crash
+            return
+        }
+        gradient.colors = [#colorLiteral(red: 0.8980392157, green: 0.9803921569, blue: 0, alpha: 1).cgColor, #colorLiteral(red: 0.9803921569, green: 0.7333333333, blue: 0, alpha: 1).cgColor]
+        gradient.startPoint = .zero
+        gradient.endPoint = CGPoint(x: 1, y: 1)
+        gradient.zPosition = -1
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("Initialize with a Category object")
+    required init?(coder aDecoder: NSCoder){
+        category = aDecoder.decodeObject(forKey: "category") as! Category
+        super.init(coder: aDecoder)
     }
 }
 

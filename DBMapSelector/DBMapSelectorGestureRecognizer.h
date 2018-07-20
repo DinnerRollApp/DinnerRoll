@@ -19,9 +19,12 @@
 //  IN THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 typedef void (^TouchesEventBlock)(NSSet * touches, UIEvent * event);
+
+extern NSNotificationName const DBMapSelectorCircleResizeDidBeginNotificationName;
+extern NSNotificationName const DBMapSelectorCircleResizeDidEndNotificationName;
 
 @interface DBMapSelectorGestureRecognizer : UIGestureRecognizer {
     TouchesEventBlock touchesBeganCallback;

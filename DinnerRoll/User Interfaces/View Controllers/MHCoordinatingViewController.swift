@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreLocation
-import QuadratTouch
+import Alamofire
 import SwiftyJSON
+import AlamofireSwiftyJSON
 import QuartzCore
 
 protocol SearchAreaProviding{
@@ -28,8 +29,8 @@ class MHCoordinatingViewController: MHMainViewController{
 
     //MARK: - Subviews
 
-    @IBOutlet weak var statusBarBackground: UIVisualEffectView!
-    @IBOutlet weak var cardContainerView: MHCardView!
+    @IBOutlet var statusBarBackground: UIVisualEffectView!
+    @IBOutlet var cardContainerView: MHCardView!
 
     //MARK: - Child View Controllers
 
@@ -44,8 +45,16 @@ class MHCoordinatingViewController: MHMainViewController{
         super.viewDidLoad()
         cardContainerView.frame = CGRect(origin: CGPoint(x: 0, y: view.frame.height - 100), size: view.frame.size)
         updateStatusBarFrame(with: view.frame.size)
-        addObserver(self, forKeyPath: "cardContainerView.center", options: [.new], context: nil)
+        addObserver(self, forKeyPath: #keyPath(cardContainerView.center), options: [.new], context: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateStatusBarFrame(with:transitionCoordinator:)), name: .UIApplicationDidChangeStatusBarFrame, object: nil)
+        UIView.animate(withDuration: 0.5, animations: {
+            //iconsContainerView.transform = CGAffineTransform(translationX: centeredX, y: pressedLocation.y - iconsContainerView.frame.height)
+        }, completion: { (finished: Bool) in
+            //iconsContainerView.alpha = 0
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                //self.iconsContainerView.alpha = 1
+            })
+        })
     }
 
     override func viewDidLayoutSubviews() -> Void{
@@ -56,6 +65,7 @@ class MHCoordinatingViewController: MHMainViewController{
     //MARK: - Motion Detection
 
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) -> Void{
+        super.motionEnded(motion, with: event)
         guard let areaProvider = searchAreaProvider, let filterProvider = searchFilterProvider, motion == .motionShake else{
             return
         }
@@ -64,60 +74,24 @@ class MHCoordinatingViewController: MHMainViewController{
         cardController?.restaurantName.text = String()
         cardController?.spinner.startAnimating()
         mapController?.hideAllRestaurants()
-        var ids = ""
-        for category in filterProvider.categories{
-            if !ids.isEmpty{
-                ids += ","
-            }
-            ids += category.id
-        }
-        let query = [QuadratTouch.Parameter.ll: "\(areaProvider.searchCenter.latitude),\(areaProvider.searchCenter.longitude)", QuadratTouch.Parameter.categoryId: ids.isEmpty ? "4d4b7105d754a06374d81259" : ids, QuadratTouch.Parameter.radius: String(areaProvider.searchRadius), QuadratTouch.Parameter.intent: "browse", QuadratTouch.Parameter.query: filterProvider.filters.joined(separator: " "), QuadratTouch.Parameter.limit: "50"]
-        let task = QuadratTouch.Session.sharedSession().venues.search(query) { (result: QuadratTouch.Result) in
-            func fail(message: String) -> Void{
-                self.cardController?.restaurantName.text = message
-            }
+        // TODO: Hit my server and download data
+        let options = API.RandomOptions(location: areaProvider.searchCenter, radius: areaProvider.searchRadius, openNow: filterProvider.openNow, price: filterProvider.prices, categories: filterProvider.categories, filters: filterProvider.filters)
+        request(API.random(options: options)).responseSwiftyJSON{(response: DataResponse<JSON>) in
             defer{
                 self.cardController?.spinner.stopAnimating()
             }
-            guard let response = result.response, var venues = JSON(response)["venues"].array else{
-                fail(message: "There was an error. Try again?")
+            guard response.error == nil, let raw = response.value, let restaurant = Restaurant(json: raw) else{
+                if response.response?.statusCode == 404{
+                    self.displayError(message: "No matches 😞")
+                }
+                else{
+                    self.displayError()
+                }
                 return
             }
-            dump(result.URL)
-            func deny(venue: JSON) -> Void{
-                venues.remove(at: venues.index(of: venue)!)
-            }
-            var choice: Restaurant? = nil
-            while choice == nil{
-                guard !venues.isEmpty else{
-                    fail(message: "No restaurants match your search 😕")
-                    return
-                }
-                let venue = venues.randomElement
-                guard let potential = Restaurant(json: venue) else{
-                    venues.remove(at: venues.index(of: venue)!)
-                    continue
-                }
-//                if filterProvider.openNow{
-//                    guard let open = potential.isOpen, open else{
-//                        deny(venue: venue)
-//                        continue
-//                    }
-//                }
-//                if !filterProvider.prices.isEmpty{
-//                    guard let price = potential.price, filterProvider.prices.contains(price - 1) else{
-//                        deny(venue: venue)
-//                        continue
-//                    }
-//                }
-                choice = potential
-            }
-            if let selection = choice{
-                self.mapController?.show(selection)
-                self.cardController?.showInformation(for: selection)
-            }
+            self.mapController?.show(restaurant)
+            self.cardController?.showInformation(for: restaurant)
         }
-        task.start()
     }
 
     //MARK: - Layout Utilities
@@ -175,11 +149,16 @@ class MHCoordinatingViewController: MHMainViewController{
         mapManager.locationButton.frame = CGRect(origin: origin, size: mapManager.locationButton.frame.size)
     }
 
+    func displayError(message: String = "Error. Try again? 😕") -> Void{
+        cardController?.restaurantName.text = message
+    }
+
     //MARK: - Initialization and Deinitialization
 
     deinit{
         searchAreaProvider = nil
         NotificationCenter.default.removeObserver(self)
+        removeObserver(self, forKeyPath: #keyPath(cardContainerView.center))
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){

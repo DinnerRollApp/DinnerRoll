@@ -10,23 +10,23 @@ import Foundation
 import SwiftyJSON
 import MapKit
 
-struct Restaurant{
+class Restaurant: NSObject, MKAnnotation{
     let id: String
     let name: String
-    let twitterUsername: String?
-    let phone: String?
-    let address: String?
-    let crossStreet: String?
-    let city: String?
-    let state: String?
-    let postalCode: String?
-    let country: String?
+    var twitterUsername: String?
+    var phone: String?
+    var address: String?
+    var crossStreet: String?
+    var city: String?
+    var state: String?
+    var postalCode: String?
+    var country: String?
     let location: CLLocationCoordinate2D
-    let categories: [Category]
-    let primaryCategory: Category?
+    var categories = [Category]()
+    var primaryCategory: Category?
     let verified: Bool
-    let isOpen: Bool?
-    let price: Int?
+    var isOpen: Bool?
+    var price: Int?
 
     init?(json: JSON){
         let location = json["location"]
@@ -35,9 +35,8 @@ struct Restaurant{
         }
         self.id = id
         self.name = name
-        self.location = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
         self.verified = verified
-        var types = [Category]()
+        self.location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         var main: Category? = nil
         for category in categories{
             guard let valid = Category(json: category) else{
@@ -46,10 +45,15 @@ struct Restaurant{
             if let primary = category["primary"].bool, primary{
                 main = valid
             }
-            types.append(valid)
+            self.categories.append(valid)
         }
         self.primaryCategory = main
-        self.categories = types
+        super.init()
+        addData(from: json)
+    }
+
+    func addData(from json: JSON) -> Void{
+        let location = json["location"]
         let contactInfo = json["contact"]
         self.twitterUsername = contactInfo["twitter"].string
         self.phone = contactInfo["phone"].string
@@ -62,16 +66,10 @@ struct Restaurant{
         self.isOpen = json["hours"]["isOpen"].bool
         self.price = json["price"]["tier"].int
     }
-}
 
-class RestaurantPin: NSObject, MKAnnotation{
-    let restaurant: Restaurant
     var coordinate: CLLocationCoordinate2D{
         get{
-            return restaurant.location
+            return location
         }
     }
-    init(restaurant: Restaurant){
-        self.restaurant = restaurant
-    }
-}
+ }

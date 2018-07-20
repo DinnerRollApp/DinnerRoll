@@ -19,8 +19,11 @@
 //  IN THE SOFTWARE.
 //
 
+@import UIKit.UIGestureRecognizerSubclass;
 #import "DBMapSelectorGestureRecognizer.h"
 
+NSNotificationName const DBMapSelectorCircleResizeDidBeginNotificationName = @"DBMapSelectorCircleResizeDidBegin";
+NSNotificationName const DBMapSelectorCircleResizeDidEndNotificationName = @"DBMapSelectorCircleResizeDidEnd";
 @implementation DBMapSelectorGestureRecognizer
 
 @synthesize touchesBeganCallback;
@@ -37,32 +40,25 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
     if (touchesBeganCallback) {
         touchesBeganCallback(touches, event);
     }
 }
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-}
-
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
     if(touchesEndedCallback) {
         touchesEndedCallback(touches, event);
     }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesMoved:touches withEvent:event];
     if(touchesMovedCallback) {
         touchesMovedCallback(touches, event);
     }
 }
-
-- (void)reset {
-}
-
-- (void)ignoreTouch:(UITouch *)touch forEvent:(UIEvent *)event {
-}
-
 - (BOOL)canBePreventedByGestureRecognizer:(UIGestureRecognizer *)preventingGestureRecognizer {
     return NO;
 }

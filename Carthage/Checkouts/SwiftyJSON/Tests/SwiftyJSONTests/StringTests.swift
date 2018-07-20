@@ -35,10 +35,10 @@ class StringTests: XCTestCase {
         XCTAssertEqual(json.string!, "12345?67890.@#")
         XCTAssertEqual(json.stringValue, "12345?67890.@#")
     }
-    
+
     func testUrl() {
         let json = JSON("http://github.com")
-        XCTAssertEqual(json.url!, URL(string:"http://github.com")!)
+        XCTAssertEqual(json.url!, URL(string: "http://github.com")!)
     }
 
     func testBool() {
@@ -53,6 +53,16 @@ class StringTests: XCTestCase {
 
     func testBoolWithT() {
         let json = JSON("T")
+        XCTAssertTrue(json.boolValue)
+    }
+
+    func testBoolWithYes() {
+        let json = JSON("Yes")
+        XCTAssertTrue(json.boolValue)
+    }
+
+    func testBoolWith1() {
+        let json = JSON("1")
         XCTAssertTrue(json.boolValue)
     }
 

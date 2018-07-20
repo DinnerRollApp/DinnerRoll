@@ -11,17 +11,16 @@ import MapKit
 import CoreLocation
 
 class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate, DBMapSelectorManagerDelegate, SearchAreaProviding{
-    @IBOutlet weak var map: MKMapView!{
+//    let circleLocationGesutreRecognizer = ForceTouchGestureRecognizer(target: self, action: #selector(placeCircleCenterPin(with:)))
+    @IBOutlet var map: MKMapView!{
         didSet{
             map.delegate = self
-            let recognizer = ForceTouchGestureRecognizer(target: self, action: #selector(placeCircleCenterPin(with:)))
-            if #available(iOS 10, *){
-                recognizer.delegate = self
-            }
-            map.addGestureRecognizer(recognizer)
+            let circleLocationGesutreRecognizer = ForceTouchGestureRecognizer(target: self, action: #selector(placeCircleCenterPin(with:)))
+            circleLocationGesutreRecognizer.delegate = self
+            map.addGestureRecognizer(circleLocationGesutreRecognizer)
         }
     }
-    @IBOutlet weak var locationButton: MHLocationButton!
+    @IBOutlet var locationButton: MHLocationButton!
     private var selectionCircle: DBMapSelectorManager? = nil{
         didSet{
             selectionCircle?.editingType = .full
@@ -70,6 +69,9 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         super.viewDidLoad()
         selectionCircle = DBMapSelectorManager(mapView: map)
         locationManager.delegate = self
+//        circleLocationGesutreRecognizer.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleCircleSelectionGestureRecognizerEnabledState), name: Notification.Name.DBMapSelectorCircleResizeDidBeginNotificationName, object: selectionCircle)
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleCircleSelectionGestureRecognizerEnabledState), name: Notification.Name.DBMapSelectorCircleResizeDidEndNotificationName, object: selectionCircle)
     }
 
     override func viewWillAppear(_ animated: Bool) -> Void{
@@ -79,6 +81,7 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
 
     override func viewDidAppear(_ animated: Bool) -> Void{
         super.viewDidAppear(animated)
+//        print(circleLocationGesutreRecognizer.fallbackRecognizer!.isEnabled)
         if CLLocationManager.authorizationStatus() == .notDetermined{
             locationManager.requestWhenInUseAuthorization()
         }
@@ -92,6 +95,10 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         for recognizer in gestures where recognizer is ForceTouchGestureRecognizer{
             (recognizer as! ForceTouchGestureRecognizer).update(traitCollection: traitCollection)
         }
+    }
+
+    deinit{
+        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: - Interface Helpers
@@ -148,13 +155,22 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
     }
 
     func show(_ restaurant: Restaurant) -> Void{
-        map.addAnnotation(RestaurantPin(restaurant: restaurant))
+        map.addAnnotation(restaurant)
     }
 
     func hideAllRestaurants() -> Void{
-        for pin in map.annotations where pin is RestaurantPin{
+        for pin in map.annotations where pin is Restaurant{
             map.removeAnnotation(pin)
         }
+    }
+
+    @objc func toggleCircleSelectionGestureRecognizerEnabledState(_ caller: Notification? = nil) -> Void{
+        //print(caller ?? "nil")
+//        guard let fallback = circleLocationGesutreRecognizer.fallbackRecognizer, view.traitCollection.forceTouchCapability == .unavailable else{
+//            return
+//        }
+//        fallback.isEnabled = !fallback.isEnabled
+//        print("Circle movement gesture recognizer enabled state: \(fallback.isEnabled)")
     }
 
     //MARK: - MKMapViewDelegate Conformance
@@ -204,6 +220,16 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         }
         return true
     }
+
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool{
+//        print("Delegate called")
+//        guard gestureRecognizer is UILongPressGestureRecognizer else{ // If it's a UILongPressGestureRecognizer, it's safe to assume it's the fallback used to place the selection circle's center pin on devices that don't support 3D Touch
+//            print("Gesture recognizer is not a UILongPressGestureRecognizer")
+//            return true
+//        }
+//        print("Result: \(!selectionCirleSizeIsChanging)")
+//        return !selectionCirleSizeIsChanging
+//    }
 
     // MARK: - CLLocationManagerDelegate Conformance
 

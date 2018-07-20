@@ -12,21 +12,38 @@ import UIKit.UIGestureRecognizerSubclass
 class ForceTouchGestureRecognizer: UIGestureRecognizer{
     /// The minimum force required to trigger the gesture recognizer
     var minimumForce: CGFloat = 4
-    /// The gesture recognizer that will be honored if the device doesn't support 3D Touch. The default is a `UILongPressGestureRecognizer` configured to this recognizer's `target` and `action` on devices that don't suppport 3D Touch or have it disabled, but `nil` on devices that do and have it enabled
-    var fallbackRecognizer: UIGestureRecognizer?
+    /// This gesture recognizer that will be honored if the device doesn't support 3D Touch. The default is a `UILongPressGestureRecognizer` configured to this recognizer's `target` and `action` on devices that don't suppport 3D Touch or have it disabled, but `nil` on devices that do and have it enabled
+    var fallbackRecognizer: UIGestureRecognizer?{
+        didSet{
+            fallbackRecognizer?.delegate = delegate
+            fallbackRecognizer?.isEnabled = isEnabled
+        }
+    }
     /// The current force of the touch being analyzed by the gesture recognizer
     private(set) var force: CGFloat = 0
     /// The maximum possible force of the touch being analyzed by the gesture recognizer
     private(set) var maximumPossibleForce: CGFloat = 0
 
+    override var delegate: UIGestureRecognizerDelegate?{
+        didSet{
+            fallbackRecognizer?.delegate = delegate
+        }
+    }
+
+    override var isEnabled: Bool{
+        didSet{
+            fallbackRecognizer?.isEnabled = isEnabled
+        }
+    }
+
     override init(target: Any?, action: Selector?) {
         super.init(target: target, action: action)
         fallbackRecognizer = UILongPressGestureRecognizer(target: target, action: action)
-        addObserver(self, forKeyPath: "view", options: [.old, .new], context: nil)
+        addObserver(self, forKeyPath: #keyPath(view), options: [.old, .new], context: nil)
     }
 
     deinit{
-        removeObserver(self, forKeyPath: "view")
+        removeObserver(self, forKeyPath: #keyPath(view))
     }
 
     func update(traitCollection: UITraitCollection) -> Void{

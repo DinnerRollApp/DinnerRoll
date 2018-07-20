@@ -1,5 +1,5 @@
-github "SwiftyJSON/SwiftyJSON" "3.1.4"
+github "Alamofire/Alamofire" "4.7.2"
+github "SwiftyJSON/Alamofire-SwiftyJSON" "33f7652ee8ed3c9631d8edfa49ce31045fdc7eda"
+github "SwiftyJSON/SwiftyJSON" "4.1.0"
 github "raysarebest/MultiSelectSegmentedControl" "449dfbf8661a44aacbe79a87a1fc21bd1e9829da"
 github "raysarebest/TagListView" "12a8d9ca149aa38d71c9bc03f62b834cb53df8e1"
-github "raysarebest/das-quadrat" "7d29a47680243c96e1c291e9b0eb74c19f29db70"
-github "realm/realm-cocoa" "v2.10.2"

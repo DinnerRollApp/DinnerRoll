@@ -7,17 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C22923C1F28260B00A5DF9F /* QuadratTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C22923B1F28260500A5DF9F /* QuadratTouch.framework */; };
-		4C22923D1F28260B00A5DF9F /* QuadratTouch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C22923B1F28260500A5DF9F /* QuadratTouch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4C1716312001EB030097D13B /* AlamofireSwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C17162F2001EAFB0097D13B /* AlamofireSwiftyJSON.framework */; };
+		4C1716322001EB030097D13B /* AlamofireSwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C17162F2001EAFB0097D13B /* AlamofireSwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C22923F1F282C6500A5DF9F /* MHCoordinatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C22923E1F282C6500A5DF9F /* MHCoordinatingViewController.swift */; };
-		4C2CD11D1F189FA40078B014 /* ShakeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CD11C1F189FA40078B014 /* ShakeRecognizer.swift */; };
 		4C3E4B351EDF9025006DF23F /* MHPaneBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E4B341EDF9025006DF23F /* MHPaneBehavior.m */; };
 		4C3E4B381EDF9044006DF23F /* MHMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E4B371EDF9044006DF23F /* MHMainViewController.m */; };
 		4C3E4B3B1EDF908D006DF23F /* MHCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E4B3A1EDF908D006DF23F /* MHCardView.m */; };
 		4C4958D61EA3F61F00B0C776 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4958D51EA3F61F00B0C776 /* APIKeys.plist */; };
-		4C4BEA151F160DB800DAD111 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BEA141F160DB800DAD111 /* Categories.swift */; };
 		4C4C4A8C1F2DC3CD001BC3D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CFEF3911F2DBA3B005B00B8 /* Assets.xcassets */; };
 		4C4C4A8D1F2DC3D9001BC3D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CFEF3911F2DBA3B005B00B8 /* Assets.xcassets */; };
+		4C54957B1FFC9D1300D397E3 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C54957A1FFC9D1300D397E3 /* API.swift */; };
 		4C5F2BA71F4593DF00733355 /* TagListView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5F2BA61F4593D800733355 /* TagListView.framework */; };
 		4C5F2BA81F4593DF00733355 /* TagListView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5F2BA61F4593D800733355 /* TagListView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C645DED1F16D9E700EA4E48 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C645DE51F16D9A300EA4E48 /* SwiftyJSON.framework */; };
@@ -27,6 +26,7 @@
 		4C7BA6491F4E589C005335B2 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE37EE41F4A46BE002C93D2 /* SearchTextField.swift */; };
 		4C7FF0BD1F5FB13E00A0BF22 /* MultiSelectSegmentedControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7FF0BC1F5FB04200A0BF22 /* MultiSelectSegmentedControl.framework */; };
 		4C7FF0BE1F5FB13E00A0BF22 /* MultiSelectSegmentedControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7FF0BC1F5FB04200A0BF22 /* MultiSelectSegmentedControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4C884D2A20BF94A5006B2ADC /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C884D2920BF94A5006B2ADC /* Location.swift */; };
 		4C97962A1EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9796271EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m */; };
 		4C97962B1EB1137700D66D93 /* DBMapSelectorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9796291EB1137700D66D93 /* DBMapSelectorManager.m */; };
 		4C97962E1EB1138200D66D93 /* DBMapSelectorAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C97962D1EB1138200D66D93 /* DBMapSelectorAnnotation.m */; };
@@ -35,18 +35,18 @@
 		4C97A82F1F7B572F003867FE /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97A82E1F7B572F003867FE /* Restaurant.swift */; };
 		4C97A8301F7B749B003867FE /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C4A8B1F2DBF8D001BC3D9 /* Array.swift */; };
 		4C9AE7A91EA17BC500514983 /* MHAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */; };
-		4C9AE7AB1EA17BC500514983 /* MHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7AA1EA17BC500514983 /* MHViewController.swift */; };
 		4C9AE7AE1EA17BC500514983 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7AC1EA17BC500514983 /* Main.storyboard */; };
 		4C9AE7B31EA17BC500514983 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9AE7B11EA17BC500514983 /* LaunchScreen.storyboard */; };
 		4C9AE7BE1EA17BC500514983 /* DinnerRollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7BD1EA17BC500514983 /* DinnerRollTests.swift */; };
 		4C9AE7C91EA17BC500514983 /* DinnerRollUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */; };
-		4CA9D4391F87458600CA246E /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA9D4381F87458600CA246E /* Realm.swift */; };
 		4CABB3B51F2838A100F1B3ED /* MHCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CABB3B41F2838A100F1B3ED /* MHCardViewController.swift */; };
 		4CABB3B71F2838C000F1B3ED /* MHMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CABB3B61F2838C000F1B3ED /* MHMapViewController.swift */; };
 		4CABB3B81F28394B00F1B3ED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C963D9D1F228A8500408242 /* CoreLocation.framework */; };
 		4CABB3BA1F28395300F1B3ED /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CABB3B91F28395300F1B3ED /* MapKit.framework */; };
 		4CB028E71F354F170063FA02 /* RestaurantCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB028E61F354F170063FA02 /* RestaurantCategory.swift */; };
 		4CDA11B31F483AA90061B832 /* MHFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA11B21F483AA90061B832 /* MHFilterView.swift */; };
+		4CE235451FF8DE8D00E23631 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE235441FF8DE8D00E23631 /* Alamofire.framework */; };
+		4CE235471FF8DEAA00E23631 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE235441FF8DE8D00E23631 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4CFDEB931F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDEB921F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift */; };
 		4CFEF38E1F2DB810005B00B8 /* MHLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFEF38D1F2DB810005B00B8 /* MHLocationButton.swift */; };
 		4CFEF3951F2DBB3B005B00B8 /* IBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFEF3941F2DBB3B005B00B8 /* IBExtensions.swift */; };
@@ -79,7 +79,8 @@
 				4C5F2BA81F4593DF00733355 /* TagListView.framework in Embed Frameworks */,
 				4C7FF0BE1F5FB13E00A0BF22 /* MultiSelectSegmentedControl.framework in Embed Frameworks */,
 				4C645DEE1F16D9E700EA4E48 /* SwiftyJSON.framework in Embed Frameworks */,
-				4C22923D1F28260B00A5DF9F /* QuadratTouch.framework in Embed Frameworks */,
+				4CE235471FF8DEAA00E23631 /* Alamofire.framework in Embed Frameworks */,
+				4C1716322001EB030097D13B /* AlamofireSwiftyJSON.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,9 +88,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4C22923B1F28260500A5DF9F /* QuadratTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuadratTouch.framework; path = Carthage/Build/iOS/QuadratTouch.framework; sourceTree = "<group>"; };
+		4C17162F2001EAFB0097D13B /* AlamofireSwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireSwiftyJSON.framework; path = Carthage/Build/iOS/AlamofireSwiftyJSON.framework; sourceTree = "<group>"; };
 		4C22923E1F282C6500A5DF9F /* MHCoordinatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHCoordinatingViewController.swift; sourceTree = "<group>"; };
-		4C2CD11C1F189FA40078B014 /* ShakeRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeRecognizer.swift; sourceTree = "<group>"; };
 		4C3E4B331EDF9025006DF23F /* MHPaneBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHPaneBehavior.h; path = "Card Behavior/MHPaneBehavior.h"; sourceTree = "<group>"; };
 		4C3E4B341EDF9025006DF23F /* MHPaneBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHPaneBehavior.m; path = "Card Behavior/MHPaneBehavior.m"; sourceTree = "<group>"; };
 		4C3E4B361EDF9044006DF23F /* MHMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHMainViewController.h; path = "Card Behavior/MHMainViewController.h"; sourceTree = "<group>"; };
@@ -97,14 +97,15 @@
 		4C3E4B391EDF908D006DF23F /* MHCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHCardView.h; path = "Card Behavior/MHCardView.h"; sourceTree = "<group>"; };
 		4C3E4B3A1EDF908D006DF23F /* MHCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHCardView.m; path = "Card Behavior/MHCardView.m"; sourceTree = "<group>"; };
 		4C4958D51EA3F61F00B0C776 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
-		4C4BEA141F160DB800DAD111 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		4C4C4A8B1F2DBF8D001BC3D9 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		4C54957A1FFC9D1300D397E3 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		4C5F2BA61F4593D800733355 /* TagListView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TagListView.framework; path = Carthage/Build/iOS/TagListView.framework; sourceTree = "<group>"; };
 		4C645DE51F16D9A300EA4E48 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		4C766ADB1EA6836100533C28 /* Cartfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		4C78E5501F2AA8CA007BCFFE /* ObjectAssociation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectAssociation.swift; sourceTree = "<group>"; };
 		4C7BA6471F4E3DEB005335B2 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4C7FF0BC1F5FB04200A0BF22 /* MultiSelectSegmentedControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultiSelectSegmentedControl.framework; path = Carthage/Build/iOS/MultiSelectSegmentedControl.framework; sourceTree = "<group>"; };
+		4C884D2920BF94A5006B2ADC /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		4C963D9D1F228A8500408242 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4C9796251EB1137700D66D93 /* DinnerRoll-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DinnerRoll-Bridging-Header.h"; path = "DinnerRoll/Supporting Files/Objective-C Interoperation/DinnerRoll-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		4C9796261EB1137700D66D93 /* DBMapSelectorGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBMapSelectorGestureRecognizer.h; path = DBMapSelector/DBMapSelectorGestureRecognizer.h; sourceTree = "<group>"; };
@@ -120,7 +121,6 @@
 		4C97A82E1F7B572F003867FE /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		4C9AE7A51EA17BC500514983 /* DinnerRoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DinnerRoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHAppDelegate.swift; sourceTree = "<group>"; };
-		4C9AE7AA1EA17BC500514983 /* MHViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHViewController.swift; sourceTree = "<group>"; };
 		4C9AE7AD1EA17BC500514983 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4C9AE7B21EA17BC500514983 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C9AE7B41EA17BC500514983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -130,14 +130,12 @@
 		4C9AE7C41EA17BC500514983 /* DinnerRollUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DinnerRollUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9AE7C81EA17BC500514983 /* DinnerRollUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinnerRollUITests.swift; sourceTree = "<group>"; };
 		4C9AE7CA1EA17BC500514983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4CA9D41A1F857D7100CA246E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
-		4CA9D41B1F857D7900CA246E /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
-		4CA9D4381F87458600CA246E /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		4CABB3B41F2838A100F1B3ED /* MHCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHCardViewController.swift; sourceTree = "<group>"; };
 		4CABB3B61F2838C000F1B3ED /* MHMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHMapViewController.swift; sourceTree = "<group>"; };
 		4CABB3B91F28395300F1B3ED /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4CB028E61F354F170063FA02 /* RestaurantCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCategory.swift; sourceTree = "<group>"; };
 		4CDA11B21F483AA90061B832 /* MHFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHFilterView.swift; sourceTree = "<group>"; };
+		4CE235441FF8DE8D00E23631 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		4CE37EE41F4A46BE002C93D2 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchTextField.swift; path = "Search Text Field/SearchTextField.swift"; sourceTree = "<group>"; };
 		4CFDEB921F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceTouchGestureRecognizer.swift; sourceTree = "<group>"; };
 		4CFEF38D1F2DB810005B00B8 /* MHLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHLocationButton.swift; sourceTree = "<group>"; };
@@ -152,11 +150,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CABB3BA1F28395300F1B3ED /* MapKit.framework in Frameworks */,
+				4C1716312001EB030097D13B /* AlamofireSwiftyJSON.framework in Frameworks */,
+				4CE235451FF8DE8D00E23631 /* Alamofire.framework in Frameworks */,
 				4C7FF0BD1F5FB13E00A0BF22 /* MultiSelectSegmentedControl.framework in Frameworks */,
 				4CABB3B81F28394B00F1B3ED /* CoreLocation.framework in Frameworks */,
 				4C5F2BA71F4593DF00733355 /* TagListView.framework in Frameworks */,
 				4C645DED1F16D9E700EA4E48 /* SwiftyJSON.framework in Frameworks */,
-				4C22923C1F28260B00A5DF9F /* QuadratTouch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +176,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C5495791FFC9D0700D397E3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				4C54957A1FFC9D1300D397E3 /* API.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		4C9796241EB1135100D66D93 /* DBMapSelector */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,12 +256,11 @@
 			isa = PBXGroup;
 			children = (
 				4CE37EE31F4A466D002C93D2 /* SearchTextField */,
-				4CA9D41A1F857D7100CA246E /* Realm.framework */,
-				4CA9D41B1F857D7900CA246E /* RealmSwift.framework */,
+				4C17162F2001EAFB0097D13B /* AlamofireSwiftyJSON.framework */,
+				4CE235441FF8DE8D00E23631 /* Alamofire.framework */,
 				4C7FF0BC1F5FB04200A0BF22 /* MultiSelectSegmentedControl.framework */,
 				4C5F2BA61F4593D800733355 /* TagListView.framework */,
 				4CABB3B91F28395300F1B3ED /* MapKit.framework */,
-				4C22923B1F28260500A5DF9F /* QuadratTouch.framework */,
 				4C963D9D1F228A8500408242 /* CoreLocation.framework */,
 				4C645DE51F16D9A300EA4E48 /* SwiftyJSON.framework */,
 				4CD6AA891EC2A5870017F439 /* Interactive Dynamics */,
@@ -266,6 +272,7 @@
 		4CB028E41F354EF10063FA02 /* Data Layer */ = {
 			isa = PBXGroup;
 			children = (
+				4C5495791FFC9D0700D397E3 /* Networking */,
 				4CB028E51F354F0A0063FA02 /* Models */,
 			);
 			path = "Data Layer";
@@ -351,6 +358,7 @@
 		4CFEF3801F2DA118005B00B8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */,
 				4CFEF3841F2DA21E005B00B8 /* Utility Extensions */,
 				4CFEF3831F2DA198005B00B8 /* Property Lists */,
 				4CFEF3811F2DA128005B00B8 /* Objective-C Interoperation */,
@@ -380,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				4C4C4A8B1F2DBF8D001BC3D9 /* Array.swift */,
+				4C884D2920BF94A5006B2ADC /* Location.swift */,
 			);
 			path = "Utility Extensions";
 			sourceTree = "<group>";
@@ -387,10 +396,6 @@
 		4CFEF3851F2DA2B1005B00B8 /* Old Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				4C4BEA141F160DB800DAD111 /* Categories.swift */,
-				4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */,
-				4C2CD11C1F189FA40078B014 /* ShakeRecognizer.swift */,
-				4C9AE7AA1EA17BC500514983 /* MHViewController.swift */,
 			);
 			path = "Old Implementation";
 			sourceTree = "<group>";
@@ -444,7 +449,6 @@
 			children = (
 				4CFEF3941F2DBB3B005B00B8 /* IBExtensions.swift */,
 				4C7BA6471F4E3DEB005335B2 /* Color.swift */,
-				4CA9D4381F87458600CA246E /* Realm.swift */,
 			);
 			path = "Convenience Extensions";
 			sourceTree = "<group>";
@@ -514,7 +518,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Michael Hulet";
 				TargetAttributes = {
 					4C9AE7A41EA17BC500514983 = {
@@ -600,11 +604,11 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/QuadratTouch.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/MultiSelectSegmentedControl.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TagListView.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AlamofireSwiftyJSON.framework",
 			);
 			name = "Run Script";
 			outputPaths = (
@@ -624,13 +628,13 @@
 				4C22923F1F282C6500A5DF9F /* MHCoordinatingViewController.swift in Sources */,
 				4C97962E1EB1138200D66D93 /* DBMapSelectorAnnotation.m in Sources */,
 				4C9796331EB1138E00D66D93 /* DBMapSelectorOverlay.m in Sources */,
-				4C9AE7AB1EA17BC500514983 /* MHViewController.swift in Sources */,
 				4CABB3B71F2838C000F1B3ED /* MHMapViewController.swift in Sources */,
 				4C3E4B351EDF9025006DF23F /* MHPaneBehavior.m in Sources */,
-				4C4BEA151F160DB800DAD111 /* Categories.swift in Sources */,
+				4C54957B1FFC9D1300D397E3 /* API.swift in Sources */,
 				4C3E4B3B1EDF908D006DF23F /* MHCardView.m in Sources */,
 				4C7BA6491F4E589C005335B2 /* SearchTextField.swift in Sources */,
 				4C3E4B381EDF9044006DF23F /* MHMainViewController.m in Sources */,
+				4C884D2A20BF94A5006B2ADC /* Location.swift in Sources */,
 				4CB028E71F354F170063FA02 /* RestaurantCategory.swift in Sources */,
 				4C97962A1EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m in Sources */,
 				4CFEF3951F2DBB3B005B00B8 /* IBExtensions.swift in Sources */,
@@ -639,12 +643,10 @@
 				4CDA11B31F483AA90061B832 /* MHFilterView.swift in Sources */,
 				4CFDEB931F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift in Sources */,
 				4C9AE7A91EA17BC500514983 /* MHAppDelegate.swift in Sources */,
-				4CA9D4391F87458600CA246E /* Realm.swift in Sources */,
 				4CFEF38E1F2DB810005B00B8 /* MHLocationButton.swift in Sources */,
 				4C97A82F1F7B572F003867FE /* Restaurant.swift in Sources */,
 				4C97A8301F7B749B003867FE /* Array.swift in Sources */,
 				4C9796341EB1138E00D66D93 /* DBMapSelectorOverlayRenderer.m in Sources */,
-				4C2CD11D1F189FA40078B014 /* ShakeRecognizer.swift in Sources */,
 				4C78E5511F2AA8CA007BCFFE /* ObjectAssociation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -714,6 +716,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -721,6 +724,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -753,7 +757,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -772,6 +776,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -779,6 +784,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -803,7 +809,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -814,6 +820,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = K3ZLWH83BT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -827,7 +834,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DinnerRoll/Supporting Files/Objective-C Interoperation/DinnerRoll-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -838,6 +845,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = K3ZLWH83BT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -850,7 +858,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRoll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DinnerRoll/Supporting Files/Objective-C Interoperation/DinnerRoll-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -861,12 +869,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = K3ZLWH83BT;
 				INFOPLIST_FILE = DinnerRollTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRollTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DinnerRoll.app/DinnerRoll";
 			};
@@ -877,12 +886,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = K3ZLWH83BT;
 				INFOPLIST_FILE = DinnerRollTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRollTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DinnerRoll.app/DinnerRoll";
 			};
@@ -892,12 +902,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = K3ZLWH83BT;
 				INFOPLIST_FILE = DinnerRollUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRollUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = DinnerRoll;
 			};
@@ -907,12 +918,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = K3ZLWH83BT;
 				INFOPLIST_FILE = DinnerRollUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRollUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = DinnerRoll;
 			};

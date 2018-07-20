@@ -7,7 +7,6 @@
 //
 
 import SwiftyJSON
-import QuadratTouch
 import Security
 
 func updateCategories() -> Void{
@@ -21,16 +20,5 @@ func updateCategories() -> Void{
     }
     //print(cache.path)
     func refresh() -> Void{
-        let task = QuadratTouch.Session.sharedSession().venues.categories({ (result: QuadratTouch.Result) in
-            guard let data = result.response else{
-                return
-            }
-            let categories = JSON(data)["categories"].array!
-            let restaurants = categories.filter({ (category: JSON) -> Bool in
-                return category["name"].string! == "Food"
-            })
-            print(restaurants)
-        })
-        task.start()
     }
 }
