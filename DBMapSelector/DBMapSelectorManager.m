@@ -122,15 +122,17 @@ static const NSInteger kDefaultMaxDistance  = 10000;
 
     
     selectorGestureRecognizer.touchesBeganCallback = ^(NSSet * touches, UIEvent * event) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:DBMapSelectorCircleResizeDidBeginNotificationName object:self];
         UITouch *touch = [touches anyObject];
         CGPoint touchPoint = [touch locationInView:weakSelf.mapView];
 //        NSLog(@"---- %@", CGRectContainsPoint(weakSelf.selectorRadiusRect, p) ? @"Y" : @"N");
         
         CLLocationCoordinate2D coord = [weakSelf.mapView convertPoint:touchPoint toCoordinateFromView:weakSelf.mapView];
         MKMapPoint mapPoint = MKMapPointForCoordinate(coord);
-        
+
+        NSLog(@"(x: %f, y: %f), (width: %f, height: %f)", weakSelf.radiusTouchRect.origin.x, weakSelf.radiusTouchRect.origin.y, weakSelf.radiusTouchRect.size.width, weakSelf.radiusTouchRect.size.height);
+        NSLog(@"Touch: (%f, %f)", touchPoint.x, touchPoint.y);
         if (CGRectContainsPoint(weakSelf.radiusTouchRect, touchPoint) && weakSelf.selectorOverlay.editingRadius && !weakSelf.hidden){
+            [[NSNotificationCenter defaultCenter] postNotificationName:DBMapSelectorCircleResizeDidBeginNotificationName object:weakSelf];
             if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(mapSelectorManagerWillBeginHandlingUserInteraction:)]) {
                 [weakSelf.delegate mapSelectorManagerWillBeginHandlingUserInteraction:weakSelf];
             }
@@ -157,7 +159,6 @@ static const NSInteger kDefaultMaxDistance  = 10000;
     };
     
     selectorGestureRecognizer.touchesEndedCallback = ^(NSSet * touches, UIEvent * event) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:DBMapSelectorCircleResizeDidEndNotificationName object:self];
         weakSelf.mapView.scrollEnabled = YES;
         weakSelf.mapView.userInteractionEnabled = YES;
 
@@ -169,6 +170,7 @@ static const NSInteger kDefaultMaxDistance  = 10000;
         }
         if(!weakSelf.mapViewGestureEnabled) {
             [self resetZoomRegionTimer];
+            [[NSNotificationCenter defaultCenter] postNotificationName:DBMapSelectorCircleResizeDidEndNotificationName object:self];
             if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(mapSelectorManagerDidHandleUserInteraction:)]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakSelf.delegate mapSelectorManagerDidHandleUserInteraction:weakSelf];

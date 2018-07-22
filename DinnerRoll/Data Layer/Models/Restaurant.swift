@@ -72,4 +72,14 @@ class Restaurant: NSObject, MKAnnotation{
             return location
         }
     }
+    var title: String?{
+        get{
+            return name
+        }
+    }
+    var subtitle: String?{
+        get{
+            return address
+        }
+    }
  }

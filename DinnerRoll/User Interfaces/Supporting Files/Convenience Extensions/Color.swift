@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 extension UIColor{
     var redComponent: CGFloat{
@@ -73,5 +74,31 @@ extension UIColor{
     }
     func lighten(by percent: CGFloat) -> UIColor{
         return UIColor(hue: hueComponent, saturation: saturationComponent - (percent / 100), brightness: brightnessComponent, alpha: alphaComponent)
+    }
+}
+
+protocol PinColorable{
+    var pinColor: UIColor? {get set}
+}
+
+extension MKPinAnnotationView: PinColorable{
+    var pinColor: UIColor?{
+        get{
+            return pinTintColor
+        }
+        set{
+            pinTintColor = newValue
+        }
+    }
+}
+
+@available(iOS 11, *) extension MKMarkerAnnotationView: PinColorable{
+    var pinColor: UIColor?{
+        get{
+            return markerTintColor
+        }
+        set{
+            markerTintColor = newValue
+        }
     }
 }

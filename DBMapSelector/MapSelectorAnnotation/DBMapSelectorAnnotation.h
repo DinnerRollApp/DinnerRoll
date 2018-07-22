@@ -19,8 +19,9 @@
 //  IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
+
+@import Foundation;
+@import MapKit;
 
 @interface DBMapSelectorAnnotation : NSObject <MKAnnotation>
 

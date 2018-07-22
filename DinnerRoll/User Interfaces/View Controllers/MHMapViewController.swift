@@ -104,6 +104,7 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
     // MARK: - Interface Helpers
 
     @objc private func placeCircleCenterPin(with recognizer: ForceTouchGestureRecognizer) -> Void{
+        //print(recognizer.isEnabled)
         followingUser = false
         guard recognizer.state == .began else{
             if #available(iOS 10, *), areaSelectionFeedbackGenerator != nil{
@@ -129,7 +130,7 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
             followingUser = false // If the circle and the map are following the user, make them stop
             return
         }
-        guard map.isUserCentered(accuracy: selectionCircle!.circleRadius < centeringAccuracy ? selectionCircle!.circleRadius : centeringAccuracy) else{ // The user must be centered in the map view
+        guard map.isUserCentered(accuracy: .minimum(selectionCircle!.circleRadius, centeringAccuracy)) else{ // The user must be centered in the map view
             map.setUserCentered(true, animated: true) // If they aren't make it happen
             return
         }
@@ -165,12 +166,17 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
     }
 
     @objc func toggleCircleSelectionGestureRecognizerEnabledState(_ caller: Notification? = nil) -> Void{
-        //print(caller ?? "nil")
-//        guard let fallback = circleLocationGesutreRecognizer.fallbackRecognizer, view.traitCollection.forceTouchCapability == .unavailable else{
-//            return
-//        }
-//        fallback.isEnabled = !fallback.isEnabled
-//        print("Circle movement gesture recognizer enabled state: \(fallback.isEnabled)")
+        print("Toggling gesture recognizer from notification: \(caller!.name.rawValue)")
+        guard let recognizers = map.gestureRecognizers else{
+            return
+        }
+        for gesture in recognizers where gesture is ForceTouchGestureRecognizer{
+            print("Enabled before?: \(gesture.isEnabled)")
+            print("Fallback enabled before?: \((gesture as! ForceTouchGestureRecognizer).fallbackRecognizer!.isEnabled)")
+            gesture.isEnabled = caller?.name == Notification.Name.DBMapSelectorCircleResizeDidEndNotificationName
+            print("Now enabled?: \(gesture.isEnabled)")
+            print("Fallback now enabled?: \((gesture as! ForceTouchGestureRecognizer).fallbackRecognizer!.isEnabled)")
+        }
     }
 
     //MARK: - MKMapViewDelegate Conformance
@@ -184,7 +190,22 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
-        return selectionCircle?.mapView(mapView, viewFor: annotation)
+        guard let restaurant = annotation as? Restaurant else{
+            return selectionCircle?.mapView(mapView, viewFor: annotation)
+        }
+        let id = "Restaurant Pin"
+        if let pin = mapView.dequeueReusableAnnotationView(withIdentifier: id){
+            return pin
+        }
+        var pin: PinColorable
+        if #available(iOS 11, *){
+            pin = MKMarkerAnnotationView(annotation: restaurant, reuseIdentifier: id)
+        }
+        else{
+            pin = MKPinAnnotationView(annotation: restaurant, reuseIdentifier: id)
+        }
+        pin.pinColor = #colorLiteral(red: 0.9647058824, green: 0.4823529412, blue: 0.03137254902, alpha: 1)
+        return pin as? MKAnnotationView
     }
 
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) -> Void{

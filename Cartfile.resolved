@@ -1,4 +1,4 @@
-github "Alamofire/Alamofire" "4.7.2"
+github "Alamofire/Alamofire" "4.7.3"
 github "SwiftyJSON/Alamofire-SwiftyJSON" "33f7652ee8ed3c9631d8edfa49ce31045fdc7eda"
 github "SwiftyJSON/SwiftyJSON" "4.1.0"
 github "raysarebest/MultiSelectSegmentedControl" "449dfbf8661a44aacbe79a87a1fc21bd1e9829da"
