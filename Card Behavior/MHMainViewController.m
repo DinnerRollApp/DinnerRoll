@@ -17,6 +17,8 @@
 @property (nonatomic, strong) MHPaneBehavior *paneBehavior;
 @property (nonatomic) CGPoint startingPoint;
 
+-(void)togglePaneState;
+
 @end
 
 
@@ -36,6 +38,11 @@
 {
     self.paneState = MHPaneStateClosed;
     self.pane.delegate = self;
+
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(togglePaneState)];
+    doubleTap.numberOfTapsRequired = 2;
+    [self.pane addGestureRecognizer:doubleTap];
+
 
     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     __weak typeof(self) me = self;
@@ -89,8 +96,7 @@
 
 #pragma mark Actions
 
-- (void)didTap:(UITapGestureRecognizer *)tapRecognizer
-{
+-(void)togglePaneState{
     [self setPaneState:self.paneState == MHPaneStateOpen ? MHPaneStateClosed : MHPaneStateOpen withInitialVelocity:self.paneBehavior.velocity];
 }
 

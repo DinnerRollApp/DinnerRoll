@@ -9,7 +9,7 @@
 import UIKit
 import MultiSelectSegmentedControl
 
-class MHCardViewController: UIViewController, SearchFilterProviding{
+class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRecognizerDelegate{
     var openNow: Bool{
         get{
             return openNowSwitch.isOn
@@ -53,7 +53,35 @@ class MHCardViewController: UIViewController, SearchFilterProviding{
         return filterView.searchBar.resignFirstResponder()
     }
 
-    func showInformation(`for` restaurant: Restaurant){
+    func showInformation(`for` restaurant: Restaurant) -> Void{
         restaurantName.text = restaurant.name
+    }
+
+    override func viewWillAppear(_ animated: Bool) -> Void{
+        super.viewWillAppear(animated)
+        guard let recognizers = view.superview?.gestureRecognizers else{
+            return
+        }
+        for tap in recognizers where tap is UITapGestureRecognizer{
+            tap.delegate = self
+        }
+    }
+
+    func gestureRecognizer(_ gesture: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool{
+        guard !touch.isIn(view: pricingSegments) else{
+            return false
+        }
+        for tag in filterView.tagView.tagViews{
+            if touch.isIn(view: tag){
+                return false
+            }
+        }
+        return true
+    }
+}
+
+extension UITouch{
+    func isIn(view: UIView) -> Bool{
+        return view.bounds.contains(location(in: view))
     }
 }

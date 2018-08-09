@@ -12,7 +12,7 @@ import UIKit.UIGestureRecognizerSubclass
 class ForceTouchGestureRecognizer: UIGestureRecognizer{
     /// The minimum force required to trigger the gesture recognizer
     var minimumForce: CGFloat = 4
-    /// This gesture recognizer that will be honored if the device doesn't support 3D Touch. The default is a `UILongPressGestureRecognizer` configured to this recognizer's `target` and `action` on devices that don't suppport 3D Touch or have it disabled, but `nil` on devices that do and have it enabled
+    /// This gesture recognizer that will be honored if the device doesn't support 3D Touch. The default is a `UILongPressGestureRecognizer` configured to this recognizer's `target` and `action`
     var fallbackRecognizer: UIGestureRecognizer?{
         didSet{
             fallbackRecognizer?.delegate = delegate

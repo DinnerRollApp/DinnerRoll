@@ -129,8 +129,6 @@ static const NSInteger kDefaultMaxDistance  = 10000;
         CLLocationCoordinate2D coord = [weakSelf.mapView convertPoint:touchPoint toCoordinateFromView:weakSelf.mapView];
         MKMapPoint mapPoint = MKMapPointForCoordinate(coord);
 
-        NSLog(@"(x: %f, y: %f), (width: %f, height: %f)", weakSelf.radiusTouchRect.origin.x, weakSelf.radiusTouchRect.origin.y, weakSelf.radiusTouchRect.size.width, weakSelf.radiusTouchRect.size.height);
-        NSLog(@"Touch: (%f, %f)", touchPoint.x, touchPoint.y);
         if (CGRectContainsPoint(weakSelf.radiusTouchRect, touchPoint) && weakSelf.selectorOverlay.editingRadius && !weakSelf.hidden){
             [[NSNotificationCenter defaultCenter] postNotificationName:DBMapSelectorCircleResizeDidBeginNotificationName object:weakSelf];
             if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(mapSelectorManagerWillBeginHandlingUserInteraction:)]) {

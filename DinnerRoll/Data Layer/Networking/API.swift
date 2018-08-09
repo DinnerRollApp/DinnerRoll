@@ -66,10 +66,13 @@ enum API: URLRequestConvertible{
     enum QueryError: Error{
         case secretFileNotFound
         case keyNotFound(key: String)
+        case badURL
     }
 
     func asURLRequest() throws -> URLRequest{
-        let base = URL(string: "https://api.dinnerroll.hulet.tech")!
+        guard let base = URL(string: "https://api.dinnerroll.hulet.tech") else{
+            throw QueryError.badURL
+        }
         var components = URLComponents()
         components.queryItems = []
         guard let required = secrets else{

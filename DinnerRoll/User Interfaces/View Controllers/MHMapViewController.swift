@@ -103,7 +103,7 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
 
     // MARK: - Interface Helpers
 
-    @objc private func placeCircleCenterPin(with recognizer: ForceTouchGestureRecognizer) -> Void{
+    @objc private func placeCircleCenterPin(with recognizer: UIGestureRecognizer) -> Void{
         //print(recognizer.isEnabled)
         followingUser = false
         guard recognizer.state == .began else{
@@ -170,12 +170,8 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         guard let recognizers = map.gestureRecognizers else{
             return
         }
-        for gesture in recognizers where gesture is ForceTouchGestureRecognizer{
-            print("Enabled before?: \(gesture.isEnabled)")
-            print("Fallback enabled before?: \((gesture as! ForceTouchGestureRecognizer).fallbackRecognizer!.isEnabled)")
+        for gesture in recognizers.compactMap({recognizer in recognizer as? ForceTouchGestureRecognizer}){
             gesture.isEnabled = caller?.name == Notification.Name.DBMapSelectorCircleResizeDidEndNotificationName
-            print("Now enabled?: \(gesture.isEnabled)")
-            print("Fallback now enabled?: \((gesture as! ForceTouchGestureRecognizer).fallbackRecognizer!.isEnabled)")
         }
     }
 
