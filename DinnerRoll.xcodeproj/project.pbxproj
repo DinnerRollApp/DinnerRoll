@@ -640,7 +640,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nINPUT_NAME=\"IN\"\nOUTPUT_NAME=\"OUT\"\n\nparamname(){\n    MACRO=\"SCRIPT_$1PUT_FILE_$2\"\n    EXPANDED=${!MACRO}\n    echo \"$EXPANDED\"\n}\nif [ $SCRIPT_INPUT_FILE_COUNT -ge 2 ]; then\n    TEMPLATES_OFFSET=1\n    for ((i=$TEMPLATES_OFFSET;i<$SCRIPT_INPUT_FILE_COUNT;i++)); do\n        sourcery --sources \"$(paramname $INPUT_NAME $i)\" --output \"$(paramname $OUTPUT_NAME $(expr $i - $TEMPLATES_OFFSET))\" --templates \"$SCRIPT_INPUT_FILE_0\" --verbose --disableCache --prune\n    echo \"$(paramname $OUTPUT_NAME $(expr $i - $TEMPLATES_OFFSET))\"\n    done\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nINPUT_NAME=\"IN\"\nOUTPUT_NAME=\"OUT\"\n\nparamname(){\n    MACRO=\"SCRIPT_$1PUT_FILE_$2\"\n    EXPANDED=${!MACRO}\n    echo \"$EXPANDED\"\n}\nif [ $SCRIPT_INPUT_FILE_COUNT -ge 2 ]; then\n    TEMPLATES_OFFSET=1\n    for ((i=$TEMPLATES_OFFSET;i<$SCRIPT_INPUT_FILE_COUNT;i++)); do\n        sourcery --sources \"$(paramname $INPUT_NAME $i)\" --output \"$(paramname $OUTPUT_NAME $(expr $i - $TEMPLATES_OFFSET))\" --templates \"$SCRIPT_INPUT_FILE_0\" --prune\n    echo \"$(paramname $OUTPUT_NAME $(expr $i - $TEMPLATES_OFFSET))\"\n    done\nfi\n";
 		};
 		4C438C8C1EA8844C00B2D29F /* Copy Carthage Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
