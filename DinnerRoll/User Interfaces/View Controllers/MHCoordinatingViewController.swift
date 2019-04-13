@@ -9,8 +9,6 @@
 import UIKit
 import CoreLocation
 import Alamofire
-//import SwiftyJSON
-//import AlamofireSwiftyJSON
 import QuartzCore
 
 protocol SearchAreaProviding{
@@ -43,16 +41,31 @@ class MHCoordinatingViewController: MHMainViewController{
 
     override func viewDidLoad() -> Void{
         super.viewDidLoad()
-        cardContainerView.frame = CGRect(origin: CGPoint(x: 0, y: view.frame.height - 100), size: view.frame.size)
+        cardOpenFrame = CGRect(origin: CGPoint(x: 0, y: 100), size: view.frame.size)
         updateStatusBarFrame(with: view.frame.size)
         addObserver(self, forKeyPath: #keyPath(cardContainerView.center), options: [.new], context: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateStatusBarFrame(with:transitionCoordinator:)), name: UIApplication.didChangeStatusBarFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(roll), name: .shouldRollAgain, object: nil)
     }
 
+    override func viewWillAppear(_ animated: Bool) -> Void{
+        super.viewWillAppear(animated)
+    }
+
     override func viewDidLayoutSubviews() -> Void{
-        super.viewDidLayoutSubviews()
+        let safeAreaHeight: CGFloat
+        if #available(iOS 11, *){
+            safeAreaHeight = view.safeAreaInsets.bottom
+        }
+        else{
+            safeAreaHeight = 0
+        }
+        cardClosedFrame = CGRect(origin: CGPoint(x: 0, y: view.frame.height - (cardController?.closedVisibileHeight ?? 0) - (safeAreaHeight / 2)), size: view.frame.size)
+        if paneState == .closed{
+            cardContainerView.frame = cardClosedFrame
+        }
         updateLocationButtonFrame()
+        super.viewDidLayoutSubviews()
     }
 
     //MARK: - Motion Detection

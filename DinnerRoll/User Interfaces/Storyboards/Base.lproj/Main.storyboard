@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ArL-ri-BQt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ArL-ri-BQt">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -149,6 +149,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DQA-JN-nz5" userLabel="Safe Area Sizing View">
+                                <rect key="frame" x="0.0" y="120" width="414" height="0.0"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="HWi-G4-pgD"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oa7-6M-WNd" userLabel="Separator View">
                                 <rect key="frame" x="8" y="128" width="398" height="1"/>
                                 <color key="backgroundColor" red="0.0078431372550000003" green="0.0078431372550000003" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -349,19 +356,21 @@
                         </subviews>
                         <color key="backgroundColor" red="0.035294117647058823" green="0.035294117647058823" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="DQA-JN-nz5" firstAttribute="leading" secondItem="RBA-PJ-ZFN" secondAttribute="leading" id="0m4-bZ-1rb"/>
                             <constraint firstItem="Ybp-wn-ell" firstAttribute="centerX" secondItem="RBA-PJ-ZFN" secondAttribute="centerX" id="DtT-bA-GmY"/>
                             <constraint firstItem="Dx3-XL-sIM" firstAttribute="top" secondItem="Oa7-6M-WNd" secondAttribute="bottom" constant="8" id="EOk-VC-RRs"/>
+                            <constraint firstItem="DQA-JN-nz5" firstAttribute="top" secondItem="jbG-cm-0uu" secondAttribute="bottom" id="F01-tN-ATQ"/>
+                            <constraint firstAttribute="trailing" secondItem="DQA-JN-nz5" secondAttribute="trailing" id="F5Z-we-sMD"/>
                             <constraint firstAttribute="trailing" secondItem="jbG-cm-0uu" secondAttribute="trailing" constant="8" id="FCK-Al-QzR"/>
                             <constraint firstItem="Ybp-wn-ell" firstAttribute="centerX" secondItem="jbG-cm-0uu" secondAttribute="centerX" id="InB-1g-XbN"/>
                             <constraint firstItem="Ybp-wn-ell" firstAttribute="centerY" secondItem="jbG-cm-0uu" secondAttribute="centerY" id="Klc-2D-wiY"/>
                             <constraint firstItem="Oa7-6M-WNd" firstAttribute="leading" secondItem="RBA-PJ-ZFN" secondAttribute="leading" constant="8" id="MrR-Vm-qP8"/>
                             <constraint firstItem="aXh-bu-NsE" firstAttribute="centerX" secondItem="RBA-PJ-ZFN" secondAttribute="centerX" id="NsX-WH-ChU"/>
-                            <constraint firstItem="Oa7-6M-WNd" firstAttribute="top" secondItem="jbG-cm-0uu" secondAttribute="bottom" constant="8" id="R6j-EF-xD0"/>
+                            <constraint firstItem="Oa7-6M-WNd" firstAttribute="top" secondItem="DQA-JN-nz5" secondAttribute="bottom" constant="8" id="R6j-EF-xD0"/>
                             <constraint firstItem="H3q-08-6k6" firstAttribute="top" secondItem="Dx3-XL-sIM" secondAttribute="bottom" constant="8" id="Thy-Rd-DyM"/>
                             <constraint firstAttribute="trailing" secondItem="H3q-08-6k6" secondAttribute="trailing" constant="8" id="afD-qX-e7A"/>
                             <constraint firstItem="aXh-bu-NsE" firstAttribute="top" secondItem="RBA-PJ-ZFN" secondAttribute="top" constant="8" id="cO6-Rc-i8V"/>
                             <constraint firstItem="Dx3-XL-sIM" firstAttribute="leading" secondItem="RBA-PJ-ZFN" secondAttribute="leading" constant="8" id="df2-xU-6wa"/>
-                            <constraint firstItem="Oa7-6M-WNd" firstAttribute="top" secondItem="jbG-cm-0uu" secondAttribute="bottom" constant="8" id="fFe-38-g4I"/>
                             <constraint firstItem="H3q-08-6k6" firstAttribute="leading" secondItem="RBA-PJ-ZFN" secondAttribute="leading" constant="8" id="h0c-lP-XZj"/>
                             <constraint firstAttribute="trailing" secondItem="Dx3-XL-sIM" secondAttribute="trailing" constant="8" id="hF2-GC-bAb"/>
                             <constraint firstItem="jbG-cm-0uu" firstAttribute="leading" secondItem="RBA-PJ-ZFN" secondAttribute="leading" constant="8" id="lfT-6B-OuO"/>
@@ -381,6 +390,8 @@
                         <outlet property="optionButtonsView" destination="jbG-cm-0uu" id="nTr-ZV-zcx"/>
                         <outlet property="pricingSegments" destination="M2d-ix-628" id="IkH-XJ-XSg"/>
                         <outlet property="rollButton" destination="tIJ-Pn-hN3" id="JFV-KA-pxF"/>
+                        <outlet property="safeAreaSizingViewHeight" destination="HWi-G4-pgD" id="CW7-a9-fYQ"/>
+                        <outlet property="separatorView" destination="Oa7-6M-WNd" id="sX6-wJ-kac"/>
                         <outlet property="spinner" destination="Ybp-wn-ell" id="fJf-H6-9ai"/>
                     </connections>
                 </viewController>

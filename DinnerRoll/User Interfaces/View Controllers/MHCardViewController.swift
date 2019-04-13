@@ -51,10 +51,17 @@ class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRe
     @IBOutlet weak var optionButtonsView: UIStackView!
     @IBOutlet weak var rollButton: UIButton!
     @IBOutlet weak var directionsButton: UIButton!
+    @IBOutlet weak var separatorView: UIView!
+    @IBOutlet weak var safeAreaSizingViewHeight: NSLayoutConstraint!
     var currentRestaurantSelection: Restaurant? = nil{
         didSet{
             directionsButton.isHidden = currentRestaurantSelection == nil
             rollButton.setTitle("Roll Again", for: .normal)
+        }
+    }
+    var closedVisibileHeight: CGFloat{
+        get{
+            return separatorView.frame.origin.y
         }
     }
 
@@ -64,7 +71,6 @@ class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRe
     }
 
     func showInformation(`for` restaurant: Restaurant) -> Void{
-//        restaurantName.text = restaurant.name
         currentRestaurantSelection = restaurant
     }
 
@@ -76,6 +82,14 @@ class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRe
         for tap in recognizers where tap is UITapGestureRecognizer{
             tap.delegate = self
         }
+    }
+
+    override func viewWillLayoutSubviews() -> Void{
+        if #available(iOS 11, *){
+            safeAreaSizingViewHeight.constant = (parent?.view.safeAreaInsets.bottom ?? 8) - 8
+            print(parent?.view.safeAreaInsets)
+        }
+        super.viewWillLayoutSubviews()
     }
 
     func gestureRecognizer(_ gesture: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool{

@@ -9,13 +9,16 @@
 #import "MHPaneBehavior.h"
 #import "MHCardView.h"
 
+CGPoint CGRectCenter(CGRect rect){
+    return CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
+}
+
 
 @interface MHMainViewController () <MHCardViewDelegate>
 
 @property (nonatomic, readwrite) MHPaneState paneState;
 @property (nonatomic) UIDynamicAnimator *animator;
 @property (nonatomic, strong) MHPaneBehavior *paneBehavior;
-@property (nonatomic) CGPoint startingPoint;
 
 -(void)togglePaneState;
 
@@ -29,15 +32,13 @@
     [self setup];
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.startingPoint = self.pane.center;
-}
-
 - (void)setup
 {
     self.paneState = MHPaneStateClosed;
     self.pane.delegate = self;
+
+    self.cardClosedFrame = self.view.frame;
+    self.cardOpenFrame = self.view.superview.bounds;
 
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(togglePaneState)];
     doubleTap.numberOfTapsRequired = 2;
@@ -64,7 +65,7 @@
 
 - (CGPoint)targetPoint
 {
-    return self.paneState == MHPaneStateClosed ? self.startingPoint : CGPointMake(self.view.center.x, self.view.center.y + 50);
+    return self.paneState == MHPaneStateClosed ? CGRectCenter(self.cardClosedFrame) : CGRectCenter(self.cardOpenFrame);
 }
 
 -(void)setPaneState:(MHPaneState)state withInitialVelocity:(CGPoint)velocity{

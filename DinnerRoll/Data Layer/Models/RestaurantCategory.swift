@@ -16,6 +16,15 @@ struct Category: Codable, Equatable{
     let id: String
     private let primary: Bool
 
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        pluralName = try container.decode(String.self, forKey: .pluralName)
+        shortName = try container.decode(String.self, forKey: .shortName)
+        id = try container.decode(String.self, forKey: .id)
+        primary = try container.decodeIfPresent(Bool.self, forKey: .primary) ?? false
+    }
+
     static func getAllRestaurantCategories(completion: @escaping (Swift.Result<[Category], Error>) -> Void) -> Void{
         request(API.categories).responseData { (response: DataResponse<Data>) in
             guard let result = response.value else {
