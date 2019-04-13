@@ -55,6 +55,8 @@ class ForceTouchGestureRecognizer: UIGestureRecognizer{
                 isEnabled = false
                 fallbackRecognizer?.isEnabled = true
             case .unknown:
+                fallthrough
+            @unknown default:
                 return
         }
     }

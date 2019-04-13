@@ -9,8 +9,8 @@
 import UIKit
 import CoreLocation
 import Alamofire
-import SwiftyJSON
-import AlamofireSwiftyJSON
+//import SwiftyJSON
+//import AlamofireSwiftyJSON
 import QuartzCore
 
 protocol SearchAreaProviding{
@@ -46,15 +46,8 @@ class MHCoordinatingViewController: MHMainViewController{
         cardContainerView.frame = CGRect(origin: CGPoint(x: 0, y: view.frame.height - 100), size: view.frame.size)
         updateStatusBarFrame(with: view.frame.size)
         addObserver(self, forKeyPath: #keyPath(cardContainerView.center), options: [.new], context: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateStatusBarFrame(with:transitionCoordinator:)), name: .UIApplicationDidChangeStatusBarFrame, object: nil)
-        UIView.animate(withDuration: 0.5, animations: {
-            //iconsContainerView.transform = CGAffineTransform(translationX: centeredX, y: pressedLocation.y - iconsContainerView.frame.height)
-        }, completion: { (finished: Bool) in
-            //iconsContainerView.alpha = 0
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                //self.iconsContainerView.alpha = 1
-            })
-        })
+        NotificationCenter.default.addObserver(self, selector: #selector(updateStatusBarFrame(with:transitionCoordinator:)), name: UIApplication.didChangeStatusBarFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(roll), name: .shouldRollAgain, object: nil)
     }
 
     override func viewDidLayoutSubviews() -> Void{
@@ -64,28 +57,35 @@ class MHCoordinatingViewController: MHMainViewController{
 
     //MARK: - Motion Detection
 
-    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) -> Void{
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) -> Void{
         super.motionEnded(motion, with: event)
-        guard let areaProvider = searchAreaProvider, let filterProvider = searchFilterProvider, motion == .motionShake else{
+        if motion == .motionShake{
+            NotificationCenter.default.post(name: .shouldRollAgain, object: nil)
+        }
+    }
+
+    @objc func roll() -> Void{
+        guard let areaProvider = searchAreaProvider, let filterProvider = searchFilterProvider else{
             return
         }
         cardController?.resignFirstResponder()
         setPaneState(.closed, withInitialVelocity: .zero)
-        cardController?.restaurantName.text = String()
+        cardController?.optionButtonsView.isHidden = true
         cardController?.spinner.startAnimating()
         mapController?.hideAllRestaurants()
         // TODO: Hit my server and download data
         let options = API.RandomOptions(location: areaProvider.searchCenter, radius: areaProvider.searchRadius, openNow: filterProvider.openNow, price: filterProvider.prices, categories: filterProvider.categories, filters: filterProvider.filters)
-        request(API.random(options: options)).responseSwiftyJSON{(response: DataResponse<JSON>) in
+        request(API.random(options: options)).responseData{(response: DataResponse<Data>) in
             defer{
+                self.cardController?.optionButtonsView.isHidden = false
                 self.cardController?.spinner.stopAnimating()
             }
-            guard response.error == nil, let raw = response.value, let restaurant = Restaurant(json: raw) else{
+            guard response.error == nil, let raw = response.value, let restaurant = try? JSONDecoder().decode(Restaurant.self, from: raw) else{
                 if response.response?.statusCode == 404{
-                    self.displayError(message: "No matches 😞")
+                    //self.displayError(message: "No matches 😞")
                 }
                 else{
-                    self.displayError()
+                    //self.displayError()
                 }
                 return
             }
@@ -98,7 +98,7 @@ class MHCoordinatingViewController: MHMainViewController{
 
     @objc private func updateStatusBarFrame(with size: CGSize, transitionCoordinator: UIViewControllerTransitionCoordinator? = nil) -> Void{
         func layout() -> Void{
-            cardContainerView.frame = CGRect(origin: CGPoint(x: cardContainerView.frame.origin.x, y: size.height - 100), size: cardContainerView.frame.size)
+            cardContainerView.frame = CGRect(origin: CGPoint(x: cardContainerView.frame.origin.x, y: size.height - 128), size: cardContainerView.frame.size)
             guard UIScreen.main.bounds.size == size else{
                 statusBarBackground.isHidden = true
                 return
@@ -149,10 +149,6 @@ class MHCoordinatingViewController: MHMainViewController{
         mapManager.locationButton.frame = CGRect(origin: origin, size: mapManager.locationButton.frame.size)
     }
 
-    func displayError(message: String = "Error. Try again? 😕") -> Void{
-        cardController?.restaurantName.text = message
-    }
-
     //MARK: - Initialization and Deinitialization
 
     deinit{
@@ -162,19 +158,17 @@ class MHCoordinatingViewController: MHMainViewController{
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if segue.identifier == "card"{
-            guard let controller = segue.destination as? MHCardViewController else{
-                return
-            }
+        if segue.identifier == "card", let controller = segue.destination as? MHCardViewController{
             searchFilterProvider = controller
             cardController = controller
         }
-        else if segue.identifier == "map"{
-            guard let controller = segue.destination as? MHMapViewController else{
-                return
-            }
+        else if segue.identifier == "map", let controller = segue.destination as? MHMapViewController{
             searchAreaProvider = controller
             mapController = controller
         }
     }
+}
+
+extension Notification.Name{
+    static let shouldRollAgain = Notification.Name("MHShouldRollAgainNotification")
 }

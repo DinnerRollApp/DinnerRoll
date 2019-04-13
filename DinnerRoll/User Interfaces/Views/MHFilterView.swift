@@ -8,8 +8,6 @@
 
 import UIKit
 import TagListView
-import SwiftyJSON
-import Alamofire
 
 class MHFilterView: UIView, MHFilterEntryFieldDelegate, TagListViewDelegate{
     @IBOutlet var searchBar: MHFilterEntryField!{
@@ -31,7 +29,7 @@ class MHFilterView: UIView, MHFilterEntryFieldDelegate, TagListViewDelegate{
     override func awakeFromNib() -> Void{
         super.awakeFromNib()
         buildCaches()
-        NotificationCenter.default.addObserver(self, selector: #selector(destroyCaches), name: .UIApplicationDidReceiveMemoryWarning, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(destroyCaches), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
     }
 
     override func layoutSubviews() -> Void{
@@ -58,8 +56,13 @@ class MHFilterView: UIView, MHFilterEntryFieldDelegate, TagListViewDelegate{
         guard allCategories == nil else{
             return
         }
-        Category.getAllRestaurantCategories{(categories: [Category]) in
-            self.allCategories = categories
+        Category.getAllRestaurantCategories{(result: Result<[Category], Error>) in
+            switch result{
+                case .success(let categories):
+                    self.allCategories = categories
+                case .failure(_):
+                    break
+            }
         }
     }
 
@@ -187,7 +190,7 @@ class MHFilterEntryField: SearchTextField{
             attributedPlaceholder = nil
             return
         }
-        attributedPlaceholder = NSAttributedString(string: new, attributes: [NSAttributedStringKey.foregroundColor: tintColor.withAlphaComponent(0.5).lighten(by: 50)])
+        attributedPlaceholder = NSAttributedString(string: new, attributes: [NSAttributedString.Key.foregroundColor: tintColor.withAlphaComponent(0.5).lighten(by: 50)])
     }
 
     // MARK: Text Location Manipulation

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MapKit
+import Contacts
 import MultiSelectSegmentedControl
 
 class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRecognizerDelegate{
@@ -23,8 +25,8 @@ class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRe
     var categories: [Category]{
         get{
             var types = [Category]()
-            for tag in filterView.tagView.tagViews where tag is MHCategoryTag{
-                types.append((tag as! MHCategoryTag).category)
+            for tag in filterView.tagView.tagViews.compactMap({ tag in return tag as? MHCategoryTag }) {
+                types.append(tag.category)
             }
             return types
         }
@@ -42,19 +44,28 @@ class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRe
         }
     }
 
-    @IBOutlet var restaurantName: UILabel!
     @IBOutlet var spinner: UIActivityIndicatorView!
     @IBOutlet var filterView: MHFilterView!
     @IBOutlet var openNowSwitch: UISwitch!
     @IBOutlet var pricingSegments: MultiSelectSegmentedControl!
-    
+    @IBOutlet weak var optionButtonsView: UIStackView!
+    @IBOutlet weak var rollButton: UIButton!
+    @IBOutlet weak var directionsButton: UIButton!
+    var currentRestaurantSelection: Restaurant? = nil{
+        didSet{
+            directionsButton.isHidden = currentRestaurantSelection == nil
+            rollButton.setTitle("Roll Again", for: .normal)
+        }
+    }
+
     @discardableResult override func resignFirstResponder() -> Bool{
         super.resignFirstResponder()
         return filterView.searchBar.resignFirstResponder()
     }
 
     func showInformation(`for` restaurant: Restaurant) -> Void{
-        restaurantName.text = restaurant.name
+//        restaurantName.text = restaurant.name
+        currentRestaurantSelection = restaurant
     }
 
     override func viewWillAppear(_ animated: Bool) -> Void{
@@ -77,6 +88,26 @@ class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRe
             }
         }
         return true
+    }
+
+    @IBAction func rollAgain() -> Void{
+        NotificationCenter.default.post(name: .shouldRollAgain, object: nil)
+    }
+    
+    @IBAction func getDirectionsToCurrentRestaurant() -> Void{
+        guard let restaurant = currentRestaurantSelection else{
+            return
+        }
+        let item = MKMapItem(placemark: MKPlacemark(coordinate: restaurant.coordinate, addressDictionary: [CNPostalAddressStreetKey: restaurant.address as Any, CNPostalAddressCityKey: restaurant.city as Any, CNPostalAddressStateKey: restaurant.state as Any, CNPostalAddressPostalCodeKey: restaurant.postalCode as Any, CNPostalAddressCountryKey: restaurant.country as Any]))
+        item.name = restaurant.name
+        var launchOptions = [String: Any]()
+        if #available(iOS 10, *){
+            launchOptions[MKLaunchOptionsDirectionsModeKey] = MKLaunchOptionsDirectionsModeDefault
+        }
+        else{
+            launchOptions[MKLaunchOptionsDirectionsModeKey] = MKLaunchOptionsDirectionsModeDriving
+        }
+        MKMapItem.openMaps(with: [item], launchOptions:launchOptions)
     }
 }
 

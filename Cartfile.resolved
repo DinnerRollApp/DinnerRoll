@@ -1,5 +1,3 @@
-github "Alamofire/Alamofire" "4.7.3"
-github "SwiftyJSON/Alamofire-SwiftyJSON" "33f7652ee8ed3c9631d8edfa49ce31045fdc7eda"
-github "SwiftyJSON/SwiftyJSON" "4.1.0"
-github "raysarebest/MultiSelectSegmentedControl" "eb0235c81d9612a48343fe6a15b5b800dd04c9dd"
+github "Alamofire/Alamofire" "4.8.2"
 github "raysarebest/TagListView" "12a8d9ca149aa38d71c9bc03f62b834cb53df8e1"
+github "yonat/MultiSelectSegmentedControl" "1.2.1"

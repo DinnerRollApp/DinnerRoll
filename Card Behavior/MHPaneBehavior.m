@@ -13,14 +13,13 @@
 
 @property (nonatomic, strong) UIAttachmentBehavior *attachmentBehavior;
 @property (nonatomic, strong) UIDynamicItemBehavior *itemBehavior;
-@property (nonatomic, strong) id <UIDynamicItem> item;
+@property (nonatomic, strong) id<UIDynamicItem> item;
 @end
 
 
 @implementation MHPaneBehavior
 
-- (instancetype)initWithItem:(id <UIDynamicItem>)item
-{
+-(instancetype)initWithItem:(id <UIDynamicItem>)item{
     self = [super init];
     if (self) {
         self.item = item;
@@ -29,8 +28,7 @@
     return self;
 }
 
-- (void)setup
-{
+-(void)setup{
     UIAttachmentBehavior *attachmentBehavior = [[UIAttachmentBehavior alloc] initWithItem:self.item attachedToAnchor:CGPointZero];
     attachmentBehavior.frequency = 3.5;
     attachmentBehavior.damping = .4;
@@ -45,8 +43,7 @@
     self.itemBehavior = itemBehavior;
 }
 
-- (void)setTargetPoint:(CGPoint)targetPoint
-{
+-(void)setTargetPoint:(CGPoint)targetPoint{
     _targetPoint = targetPoint;
     self.attachmentBehavior.anchorPoint = targetPoint;
 }

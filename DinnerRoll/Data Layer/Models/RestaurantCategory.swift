@@ -8,33 +8,32 @@
 
 import UIKit
 import Alamofire
-import SwiftyJSON
-import AlamofireSwiftyJSON
 
-struct Category{
+struct Category: Codable, Equatable{
     let name: String
     let pluralName: String
     let shortName: String
     let id: String
+    private let primary: Bool
 
-    init?(json: JSON){
-        guard let name = json["name"].string, let plural = json["pluralName"].string, let short = json["shortName"].string, let id = json["id"].string else{
-            return nil
-        }
-        self.name = name
-        self.pluralName = plural
-        self.shortName = short
-        self.id = id
-    }
-
-    static func getAllRestaurantCategories(completion: @escaping ([Category]) -> Void) -> Void{
-        request(API.categories).responseSwiftyJSON{(response: DataResponse<JSON>) in
-            guard let result = response.value, let data = result.array else{
+    static func getAllRestaurantCategories(completion: @escaping (Swift.Result<[Category], Error>) -> Void) -> Void{
+        request(API.categories).responseData { (response: DataResponse<Data>) in
+            guard let result = response.value else {
+                completion(.failure(response.error!)) // Force-unwrapping is safe here because it we'll only get to this point if there's a failure, and if there's a failure, there's an error
                 return
             }
-            completion(data.map({(category: JSON) -> Category in
-                return Category(json: category)!
-            }))
+            do{
+                completion(.success(try JSONDecoder().decode([Category].self, from: result)))
+            }
+            catch{
+                completion(.failure(error))
+            }
         }
+    }
+
+    func isPrimary(for restaurant: Restaurant) -> Bool{
+        return restaurant.categories.contains(where: { (category: Category) -> Bool in
+            return category == self
+        }) && primary
     }
 }

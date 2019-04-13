@@ -1,0 +1,11 @@
+{% for type in types.all|enum|based:"CodingKey" %}
+    {% if type.parent %}
+// sourcery:inline:{{ type.name }}.AutoCodable
+        {% for variable in type.parent.variables|instance|!computed %}
+        {% if not variable.annotations.excludeCoding %}
+        case {{ variable.name }} {% if variable.annotations.codingName %}= "{{variable.annotations.codingName}}"{% endif %}
+        {% endif %}
+        {% endfor %}
+// sourcery:end
+    {% endif %}
+{% endfor %}

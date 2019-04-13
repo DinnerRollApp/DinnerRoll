@@ -181,7 +181,7 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         return selectionCircle!.mapView(mapView, rendererFor: overlay)
     }
 
-    func mapView(_ mapView: MKMapView, annotationView: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) -> Void{
+    func mapView(_ mapView: MKMapView, annotationView: MKAnnotationView, didChange newState: MKAnnotationView.DragState, fromOldState oldState: MKAnnotationView.DragState) -> Void{
         selectionCircle?.mapView(mapView, annotationView: annotationView, didChange: newState, fromOldState: oldState)
     }
 
@@ -193,15 +193,18 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         if let pin = mapView.dequeueReusableAnnotationView(withIdentifier: id){
             return pin
         }
-        var pin: PinColorable
+        var pin: MKAnnotationView & PinColorable
         if #available(iOS 11, *){
-            pin = MKMarkerAnnotationView(annotation: restaurant, reuseIdentifier: id)
+            let marker = MKMarkerAnnotationView(annotation: restaurant, reuseIdentifier: id)
+            marker.animatesWhenAdded = true
+            pin = marker
         }
         else{
             pin = MKPinAnnotationView(annotation: restaurant, reuseIdentifier: id)
         }
         pin.pinColor = #colorLiteral(red: 0.9647058824, green: 0.4823529412, blue: 0.03137254902, alpha: 1)
-        return pin as? MKAnnotationView
+
+        return pin
     }
 
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) -> Void{
