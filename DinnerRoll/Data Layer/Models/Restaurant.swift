@@ -26,6 +26,7 @@ class Restaurant: NSObject, MKAnnotation, Codable{
     let verified: Bool
     let isOpen: Bool?
     let price: Int?
+    let rating: Double?
     // sourcery:excludeCoding
     lazy private(set) var primaryCategory: Category? = {
         return categories.first(where: { (category: Category) -> Bool in
@@ -55,6 +56,7 @@ class Restaurant: NSObject, MKAnnotation, Codable{
         case verified 
         case isOpen 
         case price 
+        case rating 
 // sourcery:end
     }
 
@@ -65,6 +67,7 @@ class Restaurant: NSObject, MKAnnotation, Codable{
         location = try topContainer.decode(CLLocationCoordinate2D.self, forKey: .location)
         categories = try topContainer.decode([Category].self, forKey: .categories)
         verified = try topContainer.decodeIfPresent(Bool.self, forKey: .verified) ?? false
+        rating = try topContainer.decodeIfPresent(Double.self, forKey: .rating)
 
         let locationContainer = try topContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .location)
 
@@ -106,47 +109,8 @@ class Restaurant: NSObject, MKAnnotation, Codable{
     }
 
     func encode(to encoder: Encoder) -> Void{
-        
+        #warning("Implement this")
     }
-
-//    init?(json: JSON){
-//        let location = json["location"]
-//        guard let id = json["id"].string, let name = json["name"].string, let latitude = location["lat"].double, let longitude = location["lng"].double, let categories = json["categories"].array, let verified = json["verified"].bool else{
-//            return nil
-//        }
-//        self.id = id
-//        self.name = name
-//        self.verified = verified
-//        self.location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-//        var main: Category? = nil
-//        for category in categories{
-//            guard let valid = Category(json: category) else{
-//                continue
-//            }
-//            if let primary = category["primary"].bool, primary{
-//                main = valid
-//            }
-//            self.categories.append(valid)
-//        }
-//        self.primaryCategory = main
-//        super.init()
-//        addData(from: json)
-//    }
-
-//    func addData(from json: JSON) -> Void{
-//        let location = json["location"]
-//        let contactInfo = json["contact"]
-//        self.twitterUsername = contactInfo["twitter"].string
-//        self.phone = contactInfo["phone"].string
-//        self.address = location["address"].string
-//        self.crossStreet = location["crossStreet"].string
-//        self.city = location["city"].string
-//        self.state = location["state"].string
-//        self.postalCode = location["postalCode"].string
-//        self.country = location["country"].string
-//        self.isOpen = json["hours"]["isOpen"].bool
-//        self.price = json["price"]["tier"].int
-//    }
 
     var coordinate: CLLocationCoordinate2D{
         get{

@@ -11,7 +11,6 @@ import Alamofire
 
 private let secrets: [String: Any]? = {
     guard let file = Bundle.main.url(forResource: "APIKeys", withExtension: "plist") else{
-        print("API keys not found")
         return nil
     }
     return NSDictionary(contentsOf: file) as? [String: Any]

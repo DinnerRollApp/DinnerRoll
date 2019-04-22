@@ -64,7 +64,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="w2T-P5-45I" firstAttribute="top" secondItem="QNv-1o-SuX" secondAttribute="top" id="1Gq-5R-4pS"/>
-                            <constraint firstItem="pRv-HX-hEP" firstAttribute="top" secondItem="w2T-P5-45I" secondAttribute="bottom" id="Fsg-fL-OPO"/>
+                            <constraint firstAttribute="bottom" secondItem="w2T-P5-45I" secondAttribute="bottom" id="Fsg-fL-OPO"/>
                             <constraint firstItem="w2T-P5-45I" firstAttribute="leading" secondItem="QNv-1o-SuX" secondAttribute="leading" id="Xk6-uE-Fr9"/>
                             <constraint firstAttribute="trailing" secondItem="w2T-P5-45I" secondAttribute="trailing" id="wt0-Id-b8i"/>
                         </constraints>
@@ -335,9 +335,6 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="padding">
-                                                <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>

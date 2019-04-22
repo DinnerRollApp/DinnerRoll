@@ -9,9 +9,9 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Cosmos
 
 class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate, DBMapSelectorManagerDelegate, SearchAreaProviding{
-//    let circleLocationGesutreRecognizer = ForceTouchGestureRecognizer(target: self, action: #selector(placeCircleCenterPin(with:)))
     @IBOutlet var map: MKMapView!{
         didSet{
             map.delegate = self
@@ -69,7 +69,7 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         super.viewDidLoad()
         selectionCircle = DBMapSelectorManager(mapView: map)
         locationManager.delegate = self
-//        circleLocationGesutreRecognizer.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         NotificationCenter.default.addObserver(self, selector: #selector(toggleCircleSelectionGestureRecognizerEnabledState), name: Notification.Name.DBMapSelectorCircleResizeDidBeginNotificationName, object: selectionCircle)
         NotificationCenter.default.addObserver(self, selector: #selector(toggleCircleSelectionGestureRecognizerEnabledState), name: Notification.Name.DBMapSelectorCircleResizeDidEndNotificationName, object: selectionCircle)
     }
@@ -81,7 +81,6 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
 
     override func viewDidAppear(_ animated: Bool) -> Void{
         super.viewDidAppear(animated)
-//        print(circleLocationGesutreRecognizer.fallbackRecognizer!.isEnabled)
         if CLLocationManager.authorizationStatus() == .notDetermined{
             locationManager.requestWhenInUseAuthorization()
         }
@@ -104,7 +103,6 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
     // MARK: - Interface Helpers
 
     @objc private func placeCircleCenterPin(with recognizer: UIGestureRecognizer) -> Void{
-        //print(recognizer.isEnabled)
         followingUser = false
         guard recognizer.state == .began else{
             if #available(iOS 10, *), areaSelectionFeedbackGenerator != nil{
@@ -157,6 +155,9 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
 
     func show(_ restaurant: Restaurant) -> Void{
         map.addAnnotation(restaurant)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(45)) { // We have to wait an arbitrarily small amount of time becuase of weird timing issues with presenting MKMarkerAnnotations
+            self.map.selectAnnotation(restaurant, animated: true)
+        }
     }
 
     func hideAllRestaurants() -> Void{
@@ -166,7 +167,6 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
     }
 
     @objc func toggleCircleSelectionGestureRecognizerEnabledState(_ caller: Notification? = nil) -> Void{
-        print("Toggling gesture recognizer from notification: \(caller!.name.rawValue)")
         guard let recognizers = map.gestureRecognizers else{
             return
         }
@@ -190,21 +190,26 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
             return selectionCircle?.mapView(mapView, viewFor: annotation)
         }
         let id = "Restaurant Pin"
-        if let pin = mapView.dequeueReusableAnnotationView(withIdentifier: id){
-            return pin
-        }
         var pin: MKAnnotationView & PinColorable
-        if #available(iOS 11, *){
-            let marker = MKMarkerAnnotationView(annotation: restaurant, reuseIdentifier: id)
-            marker.animatesWhenAdded = true
-            pin = marker
+        if let existingPin = mapView.dequeueReusableAnnotationView(withIdentifier: id) as? MKAnnotationView & PinColorable{
+            pin = existingPin
+        }
+        else if #available(iOS 11, *){
+            pin = MKMarkerAnnotationView(annotation: restaurant, reuseIdentifier: id)
         }
         else{
             pin = MKPinAnnotationView(annotation: restaurant, reuseIdentifier: id)
         }
         pin.pinColor = #colorLiteral(red: 0.9647058824, green: 0.4823529412, blue: 0.03137254902, alpha: 1)
 
+        pin.canShowCallout = true
+        pin.detailCalloutAccessoryView = MHRestaurantDetailView(restaurant: restaurant)
+
         return pin
+    }
+
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print(view)
     }
 
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) -> Void{
@@ -240,16 +245,6 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         }
         return true
     }
-
-//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool{
-//        print("Delegate called")
-//        guard gestureRecognizer is UILongPressGestureRecognizer else{ // If it's a UILongPressGestureRecognizer, it's safe to assume it's the fallback used to place the selection circle's center pin on devices that don't support 3D Touch
-//            print("Gesture recognizer is not a UILongPressGestureRecognizer")
-//            return true
-//        }
-//        print("Result: \(!selectionCirleSizeIsChanging)")
-//        return !selectionCirleSizeIsChanging
-//    }
 
     // MARK: - CLLocationManagerDelegate Conformance
 

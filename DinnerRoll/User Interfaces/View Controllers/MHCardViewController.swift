@@ -86,8 +86,8 @@ class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRe
 
     override func viewWillLayoutSubviews() -> Void{
         if #available(iOS 11, *){
-            safeAreaSizingViewHeight.constant = (parent?.view.safeAreaInsets.bottom ?? 8) - 8
-            print(parent?.view.safeAreaInsets)
+            let bottomPadding: CGFloat = 8
+            safeAreaSizingViewHeight.constant = (.maximum(parent?.view.safeAreaInsets.bottom ?? bottomPadding, bottomPadding)) - bottomPadding
         }
         super.viewWillLayoutSubviews()
     }

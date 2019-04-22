@@ -47,6 +47,7 @@
 		4CE235471FF8DEAA00E23631 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE235441FF8DE8D00E23631 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4CE5812E2261A9BA00058F5C /* AutoCodable.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 4CE5812D2261A9BA00058F5C /* AutoCodable.stencil */; };
 		4CE5812F2261B5D200058F5C /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97A82E1F7B572F003867FE /* Restaurant.swift */; };
+		4CE581312262CDB000058F5C /* MHRestaurantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE581302262CDB000058F5C /* MHRestaurantDetailView.swift */; };
 		4CFDEB931F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDEB921F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift */; };
 		4CFEF38E1F2DB810005B00B8 /* MHLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFEF38D1F2DB810005B00B8 /* MHLocationButton.swift */; };
 		4CFEF3951F2DBB3B005B00B8 /* IBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFEF3941F2DBB3B005B00B8 /* IBExtensions.swift */; };
@@ -139,6 +140,7 @@
 		4CE235441FF8DE8D00E23631 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		4CE37EE41F4A46BE002C93D2 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchTextField.swift; path = "Search Text Field/SearchTextField.swift"; sourceTree = "<group>"; };
 		4CE5812D2261A9BA00058F5C /* AutoCodable.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AutoCodable.stencil; sourceTree = "<group>"; };
+		4CE581302262CDB000058F5C /* MHRestaurantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHRestaurantDetailView.swift; sourceTree = "<group>"; };
 		4CFDEB921F2BF1BC00525DAD /* ForceTouchGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceTouchGestureRecognizer.swift; sourceTree = "<group>"; };
 		4CFEF38D1F2DB810005B00B8 /* MHLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHLocationButton.swift; sourceTree = "<group>"; };
 		4CFEF3911F2DBA3B005B00B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				4CDA11B21F483AA90061B832 /* MHFilterView.swift */,
+				4CE581302262CDB000058F5C /* MHRestaurantDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/MultiSelectSegmentedControl.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/TagListView.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Cosmos.framework",
 			);
 			name = "Copy Carthage Frameworks";
 			outputPaths = (
@@ -682,6 +686,7 @@
 				4CB028E71F354F170063FA02 /* RestaurantCategory.swift in Sources */,
 				4C97962A1EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m in Sources */,
 				4C07BA1421200DAC00DD2D09 /* MHIconButton.swift in Sources */,
+				4CE581312262CDB000058F5C /* MHRestaurantDetailView.swift in Sources */,
 				4CFEF3951F2DBB3B005B00B8 /* IBExtensions.swift in Sources */,
 				4C7BA6481F4E3DEB005335B2 /* Color.swift in Sources */,
 				4C97962B1EB1137700D66D93 /* DBMapSelectorManager.m in Sources */,
