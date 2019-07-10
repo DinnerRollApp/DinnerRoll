@@ -9,3 +9,5 @@
 protocol AutoEncodable: Encodable{}
 protocol AutoDecodable: Decodable{}
 typealias AutoCodable = AutoEncodable & AutoDecodable
+
+protocol AutoCoding: NSCoding{}

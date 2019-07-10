@@ -70,10 +70,6 @@ class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRe
         return filterView.searchBar.resignFirstResponder()
     }
 
-    func showInformation(`for` restaurant: Restaurant) -> Void{
-        currentRestaurantSelection = restaurant
-    }
-
     override func viewWillAppear(_ animated: Bool) -> Void{
         super.viewWillAppear(animated)
         guard let recognizers = view.superview?.gestureRecognizers else{

@@ -2,10 +2,36 @@
     {% if type.parent %}
 // sourcery:inline:{{ type.name }}.AutoCodable
         {% for variable in type.parent.variables|instance|!computed %}
-        {% if not variable.annotations.excludeCoding %}
-        case {{ variable.name }} {% if variable.annotations.codingName %}= "{{variable.annotations.codingName}}"{% endif %}
+        {% if not variable.annotations.excludeCoding%}
+        case {{ variable.name }} {% if variable.annotations.codingName %}= "{{ variable.annotations.codingName }}"{% endif %}
         {% endif %}
         {% endfor %}
 // sourcery:end
     {% endif %}
+{% endfor %}
+
+{% for type in types.based.AutoCodable %}
+// sourcery:inline:{{ type.name }}.AutoEncodable
+func encode(to encoder: Encoder) throws -> Void{
+    var container = encoder.container(keyedBy: CodingKeys.self)
+{% for variable in type.variables|instance|!computed %}
+{% if not (variable.annotations.excludeCoding or variable.annotations.excludeEncoding) %}
+    try container.encode{% if variable.isOptional %}IfPresent{% endif %}({{ variable.name }}, forKey: .{{ variable.name }})
+{% endif %}
+{% endfor %}
+}
+// sourcery:end
+{% endfor %}
+
+{% for type in types.based.AutoCodable %}
+// sourcery:inline:{{ type.name }}.AutoDecodable
+required init(from decoder: Decoder) throws{
+let container = try decoder.container(keyedBy: CodingKeys.self)
+{% for variable in type.variables|instance|!computed %}
+{% if not (variable.annotations.excludeCoding or variable.annotations.excludeDecoding) %}
+{{ variable.name }} = try container.decode{% if variable.isOptional %}IfPresent{% endif %}({{ variable.type }}.self, forKey: .{{ variable.name }})
+{% endif %}
+{% endfor %}
+}
+// sourcery:end
 {% endfor %}

@@ -1,4 +1,4 @@
 github "Alamofire/Alamofire" "4.8.2"
-github "evgenyneu/Cosmos" "18.0.1"
+github "evgenyneu/Cosmos" "19.0.3"
 github "raysarebest/TagListView" "12a8d9ca149aa38d71c9bc03f62b834cb53df8e1"
 github "yonat/MultiSelectSegmentedControl" "1.2.1"

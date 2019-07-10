@@ -85,3 +85,7 @@ __pycache__/*
 # Cache Server's Source Tree
 cache-server
 cache-server/*
+
+# Generated Build Artifacts
+*.generated.*
+/**/*.generated.*

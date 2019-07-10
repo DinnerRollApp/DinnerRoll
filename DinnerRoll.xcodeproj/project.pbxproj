@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4C07BA1421200DAC00DD2D09 /* MHIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C07BA1321200DAC00DD2D09 /* MHIconButton.swift */; };
+		4C0C49F0227FB81300B336A2 /* AutoCoding.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 4C0C49EF227FB81300B336A2 /* AutoCoding.stencil */; };
+		4C0C49F8227FCB5A00B336A2 /* Sourcery.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C49F7227FCB5A00B336A2 /* Sourcery.generated.swift */; };
 		4C0EE5D722509BC50029B1BD /* Sourcery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0EE5D622509BC50029B1BD /* Sourcery.swift */; };
 		4C16332F21ABBF3200821060 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C16332E21ABBF3200821060 /* Contacts.framework */; };
 		4C22923F1F282C6500A5DF9F /* MHCoordinatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C22923E1F282C6500A5DF9F /* MHCoordinatingViewController.swift */; };
@@ -53,6 +55,19 @@
 		4CFEF3951F2DBB3B005B00B8 /* IBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFEF3941F2DBB3B005B00B8 /* IBExtensions.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		4C0C49F1227FBD5300B336A2 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.xcode.tools.swift.compiler;
+			filePatterns = "*.generated.swift";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		4C9AE7BA1EA17BC500514983 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -88,6 +103,8 @@
 
 /* Begin PBXFileReference section */
 		4C07BA1321200DAC00DD2D09 /* MHIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHIconButton.swift; sourceTree = "<group>"; };
+		4C0C49EF227FB81300B336A2 /* AutoCoding.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AutoCoding.stencil; sourceTree = "<group>"; };
+		4C0C49F7227FCB5A00B336A2 /* Sourcery.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sourcery.generated.swift; sourceTree = "<group>"; };
 		4C0EE5D622509BC50029B1BD /* Sourcery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sourcery.swift; sourceTree = "<group>"; };
 		4C16332E21ABBF3200821060 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		4C17162F2001EAFB0097D13B /* AlamofireSwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireSwiftyJSON.framework; path = Carthage/Build/iOS/AlamofireSwiftyJSON.framework; sourceTree = "<group>"; };
@@ -179,10 +196,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C0C49F2227FC75F00B336A2 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				4C0C49F7227FCB5A00B336A2 /* Sourcery.generated.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		4C0EE5DB22517F440029B1BD /* Templates */ = {
 			isa = PBXGroup;
 			children = (
 				4CE5812D2261A9BA00058F5C /* AutoCodable.stencil */,
+				4C0C49EF227FB81300B336A2 /* AutoCoding.stencil */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -190,6 +216,7 @@
 		4C0EE5DF2257144B0029B1BD /* Code Generation */ = {
 			isa = PBXGroup;
 			children = (
+				4C0C49F2227FC75F00B336A2 /* Generated */,
 				4C0EE5D622509BC50029B1BD /* Sourcery.swift */,
 				4C0EE5DB22517F440029B1BD /* Templates */,
 			);
@@ -492,6 +519,7 @@
 				4C645DEA1F16D9DE00EA4E48 /* Embed Frameworks */,
 			);
 			buildRules = (
+				4C0C49F1227FBD5300B336A2 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -601,6 +629,7 @@
 				4C9AE7B31EA17BC500514983 /* LaunchScreen.storyboard in Resources */,
 				4C4958D61EA3F61F00B0C776 /* APIKeys.plist in Resources */,
 				4CE5812E2261A9BA00058F5C /* AutoCodable.stencil in Resources */,
+				4C0C49F0227FB81300B336A2 /* AutoCoding.stencil in Resources */,
 				4C4C4A8C1F2DC3CD001BC3D9 /* Assets.xcassets in Resources */,
 				4C9AE7AE1EA17BC500514983 /* Main.storyboard in Resources */,
 			);
@@ -632,18 +661,20 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/DinnerRoll/Supporting Files/Code Generation/Templates/AutoCodable.stencil",
+				"$(SRCROOT)/DinnerRoll/Supporting Files/Code Generation",
 				"$(SRCROOT)/DinnerRoll/Data Layer/Models/Restaurant.swift",
+				"$(SRCROOT)/DinnerRoll/User Interfaces/Views/MHFilterView.swift",
+				"$(SRCROOT)/DinnerRoll/User Interfaces/Views/MHMessageView.swift",
 			);
 			name = "Preprocess Sourcery";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/",
+				"$(SRCROOT)/DinnerRoll/Supporting Files/Code Generation/Generated/Sourcery.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nINPUT_NAME=\"IN\"\nOUTPUT_NAME=\"OUT\"\n\nparamname(){\n    MACRO=\"SCRIPT_$1PUT_FILE_$2\"\n    EXPANDED=${!MACRO}\n    echo \"$EXPANDED\"\n}\n# OUTPUT_LOCATION was formerly \"$(paramname $OUTPUT_NAME $(expr $i - $TEMPLATES_OFFSET))\"\nOUTPUT_LOCATION=\"$SCRIPT_OUTPUT_FILE_0\"\nif [ $SCRIPT_INPUT_FILE_COUNT -ge 2 ]; then\n    TEMPLATES_OFFSET=1\n    for ((i=$TEMPLATES_OFFSET;i<$SCRIPT_INPUT_FILE_COUNT;i++)); do\n        sourcery --sources \"$(paramname $INPUT_NAME $i)\" --output \"$OUTPUT_LOCATION\" --templates \"$SCRIPT_INPUT_FILE_0\" --prune\n    done\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nINPUT_NAME=\"IN\"\nOUTPUT_NAME=\"OUT\"\n\nparamname(){\n    MACRO=\"SCRIPT_$1PUT_FILE_$2\"\n    EXPANDED=${!MACRO}\n    echo \"$EXPANDED\"\n}\n# OUTPUT_LOCATION was formerly \"$(paramname $OUTPUT_NAME $(expr $i - $TEMPLATES_OFFSET))\"\n#OUTPUT_LOCATION=\"$SCRIPT_OUTPUT_FILE_0\"\nTEMPLATES_OFFSET=1\necho \"$OUTPUT_LOCATION\"\nif [ $SCRIPT_INPUT_FILE_COUNT -ge 2 ]; then\n    for ((i=$TEMPLATES_OFFSET;i<$SCRIPT_INPUT_FILE_COUNT;i++)); do\n#OUTPUT_LOCATION=\"$(paramname $OUTPUT_NAME $(expr $i - $TEMPLATES_OFFSET))\"\n        sourcery --sources \"$(paramname $INPUT_NAME $i)\" --output \"$(paramname $OUTPUT_NAME 0)\" --templates \"$SCRIPT_INPUT_FILE_0\" --prune --disableCache\n    done\nfi\n";
 		};
 		4C438C8C1EA8844C00B2D29F /* Copy Carthage Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -679,6 +710,7 @@
 				4C3E4B351EDF9025006DF23F /* MHPaneBehavior.m in Sources */,
 				4C54957B1FFC9D1300D397E3 /* API.swift in Sources */,
 				4C3E4B3B1EDF908D006DF23F /* MHCardView.m in Sources */,
+				4C0C49F8227FCB5A00B336A2 /* Sourcery.generated.swift in Sources */,
 				4C7BA6491F4E589C005335B2 /* SearchTextField.swift in Sources */,
 				4C3E4B381EDF9044006DF23F /* MHMainViewController.m in Sources */,
 				4C884D2A20BF94A5006B2ADC /* Location.swift in Sources */,

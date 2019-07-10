@@ -1,0 +1,48 @@
+// swiftlint:disable vertical_whitespace trailing_newline
+
+import Foundation
+
+{% for type in types.based.AutoCoding|class %}
+extension NSCoder {
+
+    @nonobjc func autoDecode(forKey: String) -> String? {
+        return self.maybeDecode(forKey: forKey) as String?
+    }
+
+    @nonobjc func autoDecode(forKey: String) -> Bool {
+        return self.decodeBool(forKey: forKey)
+    }
+
+    @nonobjc func autoDecode(forKey: String) -> Int {
+        return self.decodeInteger(forKey: forKey)
+    }
+
+    func autoDecode<E>(forKey: String) -> E? {
+        return maybeDecode(forKey: forKey) as E?
+    }
+
+    fileprivate func maybeDecode<E>(forKey: String) -> E? {
+        guard let object = self.decodeObject(forKey: forKey) else {
+            return nil
+        }
+
+        return object as? E
+    }
+
+}
+
+// sourcery:inline:{{ type.name }}.AutoCoding
+/// :nodoc:
+required {{ type.accessLevel }} init?(coder aDecoder: NSCoder) {
+{% for variable in type.storedVariables|!annotated:"skipCoding" %}{% if variable.typeName.name == "Bool" or variable.typeName.name == "Int" %}self.{{variable.name}} = aDecoder.autoDecode(forKey: "{{variable.name}}"){% elif variable.typeName.name == "Int32" or variable.typeName.name == "Int64" %}self.{{variable.name}} = aDecoder.decode{{variable.typeName.name}}(forKey: "{{variable.name}}"){% else %}{% if not variable.typeName.isOptional %}    guard let {{variable.name}}: {{ variable.typeName.unwrappedTypeName }} = aDecoder.autoDecode(forKey: "{{variable.name}}") else { NSException.raise(NSExceptionName.parseErrorException, format: "Key '%@' not found.", arguments: getVaList(["{{ variable.name }}"])); fatalError() }; self.{{variable.name}} = {{variable.name}}{% else %}self.{{variable.name}} = aDecoder.{% if variable.typeName.unwrappedTypeName == "Any" %}decodeObject{% else %}decode{% endif %}(forKey: "{{variable.name}}"){% endif %}{% endif %}
+{% endfor %}    super.init(coder: aDecoder)
+}
+
+/// :nodoc:
+override {{ type.accessLevel }} func encode(with aCoder: NSCoder) {
+    super.encode(with: aCoder)
+    {% for variable in type.storedVariables|!annotated:"skipCoding" %}aCoder.encode(self.{{variable.name}}, forKey: "{{variable.name}}")
+    {% endfor %}
+}
+// sourcery:end
+{% endfor %}

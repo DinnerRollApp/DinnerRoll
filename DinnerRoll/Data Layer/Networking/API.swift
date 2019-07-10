@@ -99,3 +99,31 @@ enum API: URLRequestConvertible{
         }
     }
 }
+
+extension DataRequest {
+    enum RestaurantRequestError: Error{
+        case notFound
+        case unknown
+    }
+
+    @discardableResult func restaurantData(_ handler: @escaping (Swift.Result<Restaurant, Error>) -> Void) -> Self{
+        return validate().responseData(completionHandler: { (data: DataResponse<Data>) in
+            if let error = data.error {
+                handler(.failure(data.response?.statusCode == 404 ? RestaurantRequestError.notFound : error))
+                return
+            }
+
+            guard let value = data.value else{
+                handler(.failure(RestaurantRequestError.unknown))
+                return
+            }
+
+            do{
+                handler(.success(try JSONDecoder().decode(Restaurant.self, from: value)))
+            }
+            catch let error{
+                handler(.failure(error))
+            }
+        })
+    }
+}

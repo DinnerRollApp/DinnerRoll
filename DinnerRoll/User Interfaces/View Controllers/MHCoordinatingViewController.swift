@@ -88,22 +88,20 @@ class MHCoordinatingViewController: MHMainViewController{
         mapController?.hideAllRestaurants()
         // TODO: Hit my server and download data
         let options = API.RandomOptions(location: areaProvider.searchCenter, radius: areaProvider.searchRadius, openNow: filterProvider.openNow, price: filterProvider.prices, categories: filterProvider.categories, filters: filterProvider.filters)
-        request(API.random(options: options)).responseData{(response: DataResponse<Data>) in
+        request(API.random(options: options)).restaurantData{(result: Swift.Result<Restaurant, Error>) in
             defer{
                 self.cardController?.optionButtonsView.isHidden = false
                 self.cardController?.spinner.stopAnimating()
             }
-            guard response.error == nil, let raw = response.value, let restaurant = try? JSONDecoder().decode(Restaurant.self, from: raw) else{
-                if response.response?.statusCode == 404{
-                    //self.displayError(message: "No matches 😞")
-                }
-                else{
-                    //self.displayError()
-                }
-                return
+
+            switch result{
+                case .success(let restaurant):
+                    self.mapController?.show(restaurant)
+                    self.cardController?.currentRestaurantSelection = restaurant
+                case .failure(let error):
+                    print("Got an error :(")
+                    dump(error)
             }
-            self.mapController?.show(restaurant)
-            self.cardController?.showInformation(for: restaurant)
         }
     }
 
@@ -184,4 +182,5 @@ class MHCoordinatingViewController: MHMainViewController{
 
 extension Notification.Name{
     static let shouldRollAgain = Notification.Name("MHShouldRollAgainNotification")
+    static let didUpdateRestaurant = Notification.Name("MHRestaurantDidUpdateNotification")
 }

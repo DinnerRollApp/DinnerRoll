@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class Restaurant: NSObject, MKAnnotation, Codable{
+class Restaurant: NSObject, MKAnnotation, AutoCodable{
     let id: String
     let name: String
     // sourcery:codingName = "twitter"
@@ -27,7 +27,7 @@ class Restaurant: NSObject, MKAnnotation, Codable{
     let isOpen: Bool?
     let price: Int?
     let rating: Double?
-    // sourcery:excludeCoding
+    // sourcery:excludeDecoding
     lazy private(set) var primaryCategory: Category? = {
         return categories.first(where: { (category: Category) -> Bool in
             return category.isPrimary(for: self)
@@ -57,6 +57,7 @@ class Restaurant: NSObject, MKAnnotation, Codable{
         case isOpen 
         case price 
         case rating 
+        case primaryCategory 
 // sourcery:end
     }
 
@@ -108,8 +109,36 @@ class Restaurant: NSObject, MKAnnotation, Codable{
         super.init()
     }
 
-    func encode(to encoder: Encoder) -> Void{
-        #warning("Implement this")
+    func encode(to encoder: Encoder) throws -> Void{
+        var topContainer = encoder.container(keyedBy: CodingKeys.self)
+        try topContainer.encode(id, forKey: .id)
+        try topContainer.encode(name, forKey: .name)
+        try topContainer.encode(location, forKey: .location)
+        try topContainer.encode(verified, forKey: .verified)
+        try topContainer.encode(categories, forKey: .categories)
+        try topContainer.encodeIfPresent(primaryCategory, forKey: .primaryCategory)
+        try topContainer.encodeIfPresent(rating, forKey: .rating)
+
+        var locationContainer = topContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .location)
+
+        try locationContainer.encodeIfPresent(address, forKey: .address)
+        try locationContainer.encodeIfPresent(crossStreet, forKey: .crossStreet)
+        try locationContainer.encodeIfPresent(city, forKey: .city)
+        try locationContainer.encodeIfPresent(state, forKey: .state)
+        try locationContainer.encodeIfPresent(postalCode, forKey: .postalCode)
+        try locationContainer.encodeIfPresent(country, forKey: .country)
+
+        var contactContainer = topContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .contact)
+
+        try contactContainer.encodeIfPresent(twitterUsername, forKey: .twitterUsername)
+        try contactContainer.encodeIfPresent(phone, forKey: .phone)
+
+
+        var hoursContainer = topContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .hours)
+        try hoursContainer.encodeIfPresent(isOpen, forKey: .isOpen)
+
+        var priceContainer = topContainer.nestedContainer(keyedBy: CodingKeys.self, forKey: .price)
+        try priceContainer.encodeIfPresent(price, forKey: .tier)
     }
 
     var coordinate: CLLocationCoordinate2D{

@@ -125,7 +125,7 @@ class MHFilterView: UIView, MHFilterEntryFieldDelegate, TagListViewDelegate{
 
 // MARK: - Data Helper Subclasses
 
-class MHCategoryTag: TagView{
+class MHCategoryTag: TagView, AutoCoding{
     let category: Category
 
     override class var layerClass: AnyClass{
@@ -147,10 +147,24 @@ class MHCategoryTag: TagView{
         gradient.zPosition = -1
     }
 
-    required init?(coder aDecoder: NSCoder){
-        category = aDecoder.decodeObject(forKey: "category") as! Category
+    // sourcery:inline:MHCategoryTag.AutoCoding
+    /// :nodoc:
+    required internal init?(coder aDecoder: NSCoder) {
+        guard let category: Category = aDecoder.autoDecode(forKey: "category") else { NSException.raise(NSExceptionName.parseErrorException, format: "Key '%@' not found.", arguments: getVaList(["category"])); fatalError() }; self.category = category
         super.init(coder: aDecoder)
     }
+
+    /// :nodoc:
+    override internal func encode(with aCoder: NSCoder) {
+        super.encode(with: aCoder)
+        aCoder.encode(self.category, forKey: "category")
+    }
+    // sourcery:end
+
+//    required init?(coder aDecoder: NSCoder){
+//        category = aDecoder.decodeObject(forKey: "category") as! Category
+//        super.init(coder: aDecoder)
+//    }
 }
 
 // MARK: - Appearance Subclasses
