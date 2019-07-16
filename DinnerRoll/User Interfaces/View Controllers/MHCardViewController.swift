@@ -88,6 +88,25 @@ class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRe
         super.viewWillLayoutSubviews()
     }
 
+    override func viewDidLoad() -> Void{
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(configureForRestaurantTransition), name: .didBeginRestaurantUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(displayRestaurantUpdate(from:)), name: .didUpdateRestaurant, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(displayRestaurantUpdate(from:)), name: .didFailRestaurantUpdate, object: nil)
+    }
+
+    @objc func configureForRestaurantTransition() -> Void{
+        resignFirstResponder()
+        optionButtonsView.isHidden = true
+        spinner.startAnimating()
+    }
+
+    @objc func displayRestaurantUpdate(from notification: Notification) -> Void{
+        spinner.stopAnimating()
+        currentRestaurantSelection = notification.object as? Restaurant
+        optionButtonsView.isHidden = false
+    }
+
     func gestureRecognizer(_ gesture: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool{
         guard !touch.isIn(view: pricingSegments) else{
             return false

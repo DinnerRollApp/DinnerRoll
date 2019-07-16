@@ -664,7 +664,6 @@
 				"$(SRCROOT)/DinnerRoll/Supporting Files/Code Generation",
 				"$(SRCROOT)/DinnerRoll/Data Layer/Models/Restaurant.swift",
 				"$(SRCROOT)/DinnerRoll/User Interfaces/Views/MHFilterView.swift",
-				"$(SRCROOT)/DinnerRoll/User Interfaces/Views/MHMessageView.swift",
 			);
 			name = "Preprocess Sourcery";
 			outputFileListPaths = (

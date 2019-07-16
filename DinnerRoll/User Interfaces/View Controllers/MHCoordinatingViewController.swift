@@ -37,13 +37,19 @@ class MHCoordinatingViewController: MHMainViewController{
     weak var mapController: MHMapViewController?
     weak var cardController: MHCardViewController?
 
+    //MARK: - Observations
+    var cardFrameChangeObservation: NSKeyValueObservation?
+
     //MARK: - View Controller Lifecycle
 
     override func viewDidLoad() -> Void{
         super.viewDidLoad()
         cardOpenFrame = CGRect(origin: CGPoint(x: 0, y: 100), size: view.frame.size)
         updateStatusBarFrame(with: view.frame.size)
-        addObserver(self, forKeyPath: #keyPath(cardContainerView.center), options: [.new], context: nil)
+        cardFrameChangeObservation = observe(\.cardContainerView.center) { (controller: MHCoordinatingViewController, newValue: NSKeyValueObservedChange<CGPoint>) in
+            self.updateLocationButtonFrame()
+            self.cardController?.resignFirstResponder()
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(updateStatusBarFrame(with:transitionCoordinator:)), name: UIApplication.didChangeStatusBarFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(roll), name: .shouldRollAgain, object: nil)
     }
@@ -81,26 +87,16 @@ class MHCoordinatingViewController: MHMainViewController{
         guard let areaProvider = searchAreaProvider, let filterProvider = searchFilterProvider else{
             return
         }
-        cardController?.resignFirstResponder()
+        NotificationCenter.default.post(name: .didBeginRestaurantUpdate, object: self)
         setPaneState(.closed, withInitialVelocity: .zero)
-        cardController?.optionButtonsView.isHidden = true
-        cardController?.spinner.startAnimating()
-        mapController?.hideAllRestaurants()
-        // TODO: Hit my server and download data
+        
         let options = API.RandomOptions(location: areaProvider.searchCenter, radius: areaProvider.searchRadius, openNow: filterProvider.openNow, price: filterProvider.prices, categories: filterProvider.categories, filters: filterProvider.filters)
         request(API.random(options: options)).restaurantData{(result: Swift.Result<Restaurant, Error>) in
-            defer{
-                self.cardController?.optionButtonsView.isHidden = false
-                self.cardController?.spinner.stopAnimating()
-            }
-
             switch result{
                 case .success(let restaurant):
-                    self.mapController?.show(restaurant)
-                    self.cardController?.currentRestaurantSelection = restaurant
+                    NotificationCenter.default.post(name: .didUpdateRestaurant, object: restaurant)
                 case .failure(let error):
-                    print("Got an error :(")
-                    dump(error)
+                    NotificationCenter.default.post(name: .didFailRestaurantUpdate, object: error)
             }
         }
     }
@@ -126,11 +122,6 @@ class MHCoordinatingViewController: MHMainViewController{
         else{
             layout()
         }
-    }
-
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        updateLocationButtonFrame()
-        cardController?.resignFirstResponder()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) -> Void{
@@ -164,8 +155,9 @@ class MHCoordinatingViewController: MHMainViewController{
 
     deinit{
         searchAreaProvider = nil
+        searchFilterProvider = nil
+        cardFrameChangeObservation = nil
         NotificationCenter.default.removeObserver(self)
-        removeObserver(self, forKeyPath: #keyPath(cardContainerView.center))
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -183,4 +175,6 @@ class MHCoordinatingViewController: MHMainViewController{
 extension Notification.Name{
     static let shouldRollAgain = Notification.Name("MHShouldRollAgainNotification")
     static let didUpdateRestaurant = Notification.Name("MHRestaurantDidUpdateNotification")
+    static let didFailRestaurantUpdate = Notification.Name("MHDidFailRestaurantUpdateNotification")
+    static let didBeginRestaurantUpdate = Notification.Name("MHDidBeginRestaurantUpdateNotification")
 }

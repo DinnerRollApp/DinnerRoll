@@ -70,8 +70,12 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         selectionCircle = DBMapSelectorManager(mapView: map)
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        NotificationCenter.default.addObserver(self, selector: #selector(toggleCircleSelectionGestureRecognizerEnabledState), name: Notification.Name.DBMapSelectorCircleResizeDidBeginNotificationName, object: selectionCircle)
-        NotificationCenter.default.addObserver(self, selector: #selector(toggleCircleSelectionGestureRecognizerEnabledState), name: Notification.Name.DBMapSelectorCircleResizeDidEndNotificationName, object: selectionCircle)
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleCircleSelectionGestureRecognizerEnabledState), name: .DBMapSelectorCircleResizeDidBeginNotificationName, object: selectionCircle)
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleCircleSelectionGestureRecognizerEnabledState), name: .DBMapSelectorCircleResizeDidEndNotificationName, object: selectionCircle)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(configureForRestaurantTransition), name: .didBeginRestaurantUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(displayRestaurantUpdate(from:)), name: .didUpdateRestaurant, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(displayRestaurantUpdate(from:)), name: .didFailRestaurantUpdate, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) -> Void{
@@ -102,6 +106,16 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
 
     // MARK: - Interface Helpers
 
+    @objc func configureForRestaurantTransition() -> Void{
+        hideAllRestaurants()
+    }
+
+    @objc func displayRestaurantUpdate(from notification: Notification) -> Void{
+        guard let restaurant = notification.object as? Restaurant else{
+            return
+        }
+        show(restaurant)
+    }
     @objc private func placeCircleCenterPin(with recognizer: UIGestureRecognizer) -> Void{
         followingUser = false
         guard recognizer.state == .began else{

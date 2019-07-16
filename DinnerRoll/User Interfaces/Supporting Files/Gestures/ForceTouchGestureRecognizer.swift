@@ -23,6 +23,8 @@ class ForceTouchGestureRecognizer: UIGestureRecognizer{
     private(set) var force: CGFloat = 0
     /// The maximum possible force of the touch being analyzed by the gesture recognizer
     private(set) var maximumPossibleForce: CGFloat = 0
+    /// The observer to update the child gesture recognizers when this gesture recognizer's `view` changes
+    private var viewChangeObservation: NSKeyValueObservation?
 
     override var delegate: UIGestureRecognizerDelegate?{
         didSet{
@@ -39,11 +41,25 @@ class ForceTouchGestureRecognizer: UIGestureRecognizer{
     override init(target: Any?, action: Selector?) {
         super.init(target: target, action: action)
         fallbackRecognizer = UILongPressGestureRecognizer(target: target, action: action)
-        addObserver(self, forKeyPath: #keyPath(view), options: [.old, .new], context: nil)
+        viewChangeObservation = observe(\.view, options: [.new, .old], changeHandler: { (recognizer: ForceTouchGestureRecognizer, change: NSKeyValueObservedChange<UIView?>) in
+
+            guard let new = change.newValue ?? nil else{
+                if let fallback = self.fallbackRecognizer, let old = change.oldValue ?? nil{
+                    old.removeGestureRecognizer(fallback)
+                }
+                return
+            }
+
+            self.update(traitCollection: new.traitCollection)
+            guard let fallback = self.fallbackRecognizer else{
+                return
+            }
+            new.addGestureRecognizer(fallback)
+        })
     }
 
     deinit{
-        removeObserver(self, forKeyPath: #keyPath(view))
+        viewChangeObservation = nil
     }
 
     func update(traitCollection: UITraitCollection) -> Void{
@@ -108,24 +124,5 @@ class ForceTouchGestureRecognizer: UIGestureRecognizer{
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) -> Void{
         super.touchesCancelled(touches, with: event)
         state = .cancelled
-    }
-
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) -> Void{
-        guard let diff = change else{
-            return
-        }
-
-        guard let new = diff[.newKey] as? UIView else{
-            if let fallback = fallbackRecognizer{
-                (diff[.oldKey]! as! UIView).removeGestureRecognizer(fallback)
-            }
-            return
-        }
-
-        update(traitCollection: new.traitCollection)
-        guard let fallback = fallbackRecognizer else{
-            return
-        }
-        new.addGestureRecognizer(fallback)
     }
 }
