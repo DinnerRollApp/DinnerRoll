@@ -19,6 +19,7 @@ private let secrets: [String: Any]? = {
 enum API: URLRequestConvertible{
     case categories
     case random(options: RandomOptions)
+    case supportedLocales
 
     struct RandomOptions{
         let location: CLLocationCoordinate2D
@@ -96,6 +97,34 @@ enum API: URLRequestConvertible{
                 components.queryItems = components.queryItems! + options.query // I wish I could use += instead of being forced to unwrap the optional
                 components.path = "random"
                 return URLRequest(url: components.url(relativeTo: base)!)
+            case .supportedLocales:
+                components.path = "locales"
+                return URLRequest(url: components.url(relativeTo: base)!)
+        }
+    }
+
+    static func localizedRequest(_ endpoint: URLRequestConvertible, completion: @escaping (DataRequest) -> Void) -> Void{
+        func callEndpoint() -> Void{
+            completion(request(endpoint))
+        }
+        request(API.supportedLocales).validate().responseData { (response: DataResponse<Data>) in
+            guard let raw = response.value, response.error == nil else{
+                return callEndpoint() // If there was an error downloading the localization data, we can just perform the normal call un-localized
+            }
+            do{
+                guard let preferred = Bundle.preferredLocalizations(from: try JSONDecoder().decode([String].self, from: raw).map({ (code: String) -> String in
+                    Locale.canonicalIdentifier(from: code)
+                })).first else{
+                    return callEndpoint() // If the server doesn't support the user's localization, we can do the normal request un-localized
+                }
+                var endpointRequest = try endpoint.asURLRequest()
+                endpointRequest.addValue(preferred, forHTTPHeaderField: "Accept-Language")
+                completion(request(endpointRequest))
+            }
+            catch{
+                // If there was an error parsing the localization data, we can still just call the normal endpoint un-localized
+                callEndpoint()
+            }
         }
     }
 }

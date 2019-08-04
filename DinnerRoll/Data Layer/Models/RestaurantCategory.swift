@@ -26,16 +26,18 @@ struct Category: Codable, Equatable{
     }
 
     static func getAllRestaurantCategories(completion: @escaping (Swift.Result<[Category], Error>) -> Void) -> Void{
-        request(API.categories).responseData { (response: DataResponse<Data>) in
-            guard let result = response.value else {
-                completion(.failure(response.error!)) // Force-unwrapping is safe here because it we'll only get to this point if there's a failure, and if there's a failure, there's an error
-                return
-            }
-            do{
-                completion(.success(try JSONDecoder().decode([Category].self, from: result)))
-            }
-            catch{
-                completion(.failure(error))
+        API.localizedRequest(API.categories) { (request: DataRequest) in
+            request.responseData { (response: DataResponse<Data>) in
+                guard let result = response.value else {
+                    completion(.failure(response.error!)) // Force-unwrapping is safe here because it we'll only get to this point if there's a failure, and if there's a failure, there's an error
+                    return
+                }
+                do{
+                    completion(.success(try JSONDecoder().decode([Category].self, from: result)))
+                }
+                catch{
+                    completion(.failure(error))
+                }
             }
         }
     }

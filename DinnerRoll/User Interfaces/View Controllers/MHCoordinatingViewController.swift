@@ -91,12 +91,14 @@ class MHCoordinatingViewController: MHMainViewController{
         setPaneState(.closed, withInitialVelocity: .zero)
         
         let options = API.RandomOptions(location: areaProvider.searchCenter, radius: areaProvider.searchRadius, openNow: filterProvider.openNow, price: filterProvider.prices, categories: filterProvider.categories, filters: filterProvider.filters)
-        request(API.random(options: options)).restaurantData{(result: Swift.Result<Restaurant, Error>) in
-            switch result{
+        API.localizedRequest(API.random(options: options)){(request:DataRequest) in
+            request.restaurantData{(result: Swift.Result<Restaurant, Error>) in
+                switch result{
                 case .success(let restaurant):
                     NotificationCenter.default.post(name: .didUpdateRestaurant, object: restaurant)
                 case .failure(let error):
                     NotificationCenter.default.post(name: .didFailRestaurantUpdate, object: error)
+                }
             }
         }
     }
