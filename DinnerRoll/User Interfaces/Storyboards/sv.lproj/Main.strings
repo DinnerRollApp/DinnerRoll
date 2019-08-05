@@ -1,0 +1,27 @@
+/* Class = "UISegmentedControl"; M2d-ix-628.segmentTitles[0] = "$"; ObjectID = "M2d-ix-628"; */
+"M2d-ix-628.segmentTitles[0]" = "€";
+
+/* Class = "UISegmentedControl"; M2d-ix-628.segmentTitles[1] = "$$"; ObjectID = "M2d-ix-628"; */
+"M2d-ix-628.segmentTitles[1]" = "€€";
+
+/* Class = "UISegmentedControl"; M2d-ix-628.segmentTitles[2] = "$$$"; ObjectID = "M2d-ix-628"; */
+"M2d-ix-628.segmentTitles[2]" = "€€€";
+
+/* Class = "UISegmentedControl"; M2d-ix-628.segmentTitles[3] = "$$$$"; ObjectID = "M2d-ix-628"; */
+"M2d-ix-628.segmentTitles[3]" = "€€€€";
+
+/* Class = "UILabel"; text = "Price Range"; ObjectID = "NuZ-Xf-ceH"; */
+"NuZ-Xf-ceH.text" = "Prisintervall";
+
+/* Class = "UITextField"; placeholder = "Filter Restaurants…"; ObjectID = "o8Z-vX-T9Q"; */
+"o8Z-vX-T9Q.placeholder" = "Filtrera Restauranger…";
+
+/* Class = "UIButton"; normalTitle = "Roll"; ObjectID = "tIJ-Pn-hN3"; */
+"tIJ-Pn-hN3.normalTitle" = "Slumpa";
+
+/* Class = "UILabel"; text = "Open Now?"; ObjectID = "TsG-hh-bVC"; */
+"TsG-hh-bVC.text" = "Öppen Nu?";
+
+/* Class = "UIButton"; normalTitle = "Directions"; ObjectID = "zJr-yP-lKD"; */
+"zJr-yP-lKD.normalTitle" = "Vägbeskrivning";
+

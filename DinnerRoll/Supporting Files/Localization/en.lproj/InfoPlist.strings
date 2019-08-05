@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  DinnerRoll
+
+  Created by Michael Hulet on 8/4/19.
+  Copyright © 2019 Michael Hulet. All rights reserved.
+*/
+"CFBundleDisplayName" = "DinnerRoll";
+"NSLocationWhenInUseUsageDescription" = "DinnerRoll uses your location when the app is open so it can provide you reccomendations nearby where you currently are";

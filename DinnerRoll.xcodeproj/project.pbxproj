@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,8 @@
 		4C3E4B351EDF9025006DF23F /* MHPaneBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E4B341EDF9025006DF23F /* MHPaneBehavior.m */; };
 		4C3E4B381EDF9044006DF23F /* MHMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E4B371EDF9044006DF23F /* MHMainViewController.m */; };
 		4C3E4B3B1EDF908D006DF23F /* MHCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E4B3A1EDF908D006DF23F /* MHCardView.m */; };
+		4C49498C22F7A633009EB428 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C49498E22F7A633009EB428 /* Localizable.strings */; };
+		4C49499222F7A8F0009EB428 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C49499422F7A8F0009EB428 /* InfoPlist.strings */; };
 		4C4958D61EA3F61F00B0C776 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C4958D51EA3F61F00B0C776 /* APIKeys.plist */; };
 		4C4C4A8C1F2DC3CD001BC3D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CFEF3911F2DBA3B005B00B8 /* Assets.xcassets */; };
 		4C4C4A8D1F2DC3D9001BC3D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CFEF3911F2DBA3B005B00B8 /* Assets.xcassets */; };
@@ -115,6 +117,11 @@
 		4C3E4B371EDF9044006DF23F /* MHMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHMainViewController.m; path = "Card Behavior/MHMainViewController.m"; sourceTree = "<group>"; };
 		4C3E4B391EDF908D006DF23F /* MHCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHCardView.h; path = "Card Behavior/MHCardView.h"; sourceTree = "<group>"; };
 		4C3E4B3A1EDF908D006DF23F /* MHCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHCardView.m; path = "Card Behavior/MHCardView.m"; sourceTree = "<group>"; };
+		4C49498D22F7A633009EB428 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C49498F22F7A636009EB428 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4C49499322F7A8F0009EB428 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4C49499522F7A8F6009EB428 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4C49499722F7AA0A009EB428 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C4958D51EA3F61F00B0C776 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		4C4C4A8B1F2DBF8D001BC3D9 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		4C54957A1FFC9D1300D397E3 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -142,7 +149,6 @@
 		4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHAppDelegate.swift; sourceTree = "<group>"; };
 		4C9AE7AD1EA17BC500514983 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4C9AE7B21EA17BC500514983 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		4C9AE7B41EA17BC500514983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C9AE7B91EA17BC500514983 /* DinnerRollTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DinnerRollTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C9AE7BD1EA17BC500514983 /* DinnerRollTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinnerRollTests.swift; sourceTree = "<group>"; };
 		4C9AE7BF1EA17BC500514983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,6 +159,10 @@
 		4CABB3B61F2838C000F1B3ED /* MHMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHMapViewController.swift; sourceTree = "<group>"; };
 		4CABB3B91F28395300F1B3ED /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4CB028E61F354F170063FA02 /* RestaurantCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCategory.swift; sourceTree = "<group>"; };
+		4CB4D39822F78FFE00672845 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		4CB4D39922F7900500672845 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		4CB4D39A22F793AC00672845 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
+		4CB4D39B22F793AC00672845 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		4CDA11B21F483AA90061B832 /* MHFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHFilterView.swift; sourceTree = "<group>"; };
 		4CE235441FF8DE8D00E23631 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		4CE37EE41F4A46BE002C93D2 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchTextField.swift; path = "Search Text Field/SearchTextField.swift"; sourceTree = "<group>"; };
@@ -221,6 +231,15 @@
 				4C0EE5DB22517F440029B1BD /* Templates */,
 			);
 			path = "Code Generation";
+			sourceTree = "<group>";
+		};
+		4C49498922F7A406009EB428 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				4C49498E22F7A633009EB428 /* Localizable.strings */,
+				4C49499422F7A8F0009EB428 /* InfoPlist.strings */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		4C5495791FFC9D0700D397E3 /* Networking */ = {
@@ -407,6 +426,7 @@
 		4CFEF3801F2DA118005B00B8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4C49498922F7A406009EB428 /* Localization */,
 				4C0EE5DF2257144B0029B1BD /* Code Generation */,
 				4C9AE7A81EA17BC500514983 /* MHAppDelegate.swift */,
 				4CFEF3841F2DA21E005B00B8 /* Utility Extensions */,
@@ -429,7 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				4C4958D51EA3F61F00B0C776 /* APIKeys.plist */,
-				4C9AE7B41EA17BC500514983 /* Info.plist */,
+				4C49499722F7AA0A009EB428 /* Info.plist */,
 			);
 			path = "Property Lists";
 			sourceTree = "<group>";
@@ -602,12 +622,13 @@
 				};
 			};
 			buildConfigurationList = 4C9AE7A01EA17BC500514983 /* Build configuration list for PBXProject "DinnerRoll" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				sv,
 			);
 			mainGroup = 4C9AE79C1EA17BC500514983;
 			productRefGroup = 4C9AE7A61EA17BC500514983 /* Products */;
@@ -627,8 +648,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C9AE7B31EA17BC500514983 /* LaunchScreen.storyboard in Resources */,
+				4C49499222F7A8F0009EB428 /* InfoPlist.strings in Resources */,
 				4C4958D61EA3F61F00B0C776 /* APIKeys.plist in Resources */,
 				4CE5812E2261A9BA00058F5C /* AutoCodable.stencil in Resources */,
+				4C49498C22F7A633009EB428 /* Localizable.strings in Resources */,
 				4C0C49F0227FB81300B336A2 /* AutoCoding.stencil in Resources */,
 				4C4C4A8C1F2DC3CD001BC3D9 /* Assets.xcassets in Resources */,
 				4C9AE7AE1EA17BC500514983 /* Main.storyboard in Resources */,
@@ -763,10 +786,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4C49498E22F7A633009EB428 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C49498D22F7A633009EB428 /* en */,
+				4C49498F22F7A636009EB428 /* sv */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		4C49499422F7A8F0009EB428 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C49499322F7A8F0009EB428 /* en */,
+				4C49499522F7A8F6009EB428 /* sv */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		4C9AE7AC1EA17BC500514983 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4C9AE7AD1EA17BC500514983 /* Base */,
+				4CB4D39822F78FFE00672845 /* en */,
+				4CB4D39A22F793AC00672845 /* sv */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -775,6 +818,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				4C9AE7B21EA17BC500514983 /* Base */,
+				4CB4D39922F7900500672845 /* en */,
+				4CB4D39B22F793AC00672845 /* sv */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -786,6 +831,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -846,6 +892,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -888,7 +935,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -909,7 +957,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/DinnerRoll/Supporting Files/Property Lists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRoll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DinnerRoll/Supporting Files/Objective-C Interoperation/DinnerRoll-Bridging-Header.h";
@@ -934,7 +985,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/DinnerRoll/Supporting Files/Property Lists/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRoll;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DinnerRoll/Supporting Files/Objective-C Interoperation/DinnerRoll-Bridging-Header.h";
@@ -952,7 +1006,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = K3ZLWH83BT;
 				INFOPLIST_FILE = DinnerRollTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRollTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -969,7 +1027,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = K3ZLWH83BT;
 				INFOPLIST_FILE = DinnerRollTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRollTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -985,7 +1047,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = K3ZLWH83BT;
 				INFOPLIST_FILE = DinnerRollUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRollUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -1001,7 +1067,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = K3ZLWH83BT;
 				INFOPLIST_FILE = DinnerRollUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tech.hulet.DinnerRollUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;

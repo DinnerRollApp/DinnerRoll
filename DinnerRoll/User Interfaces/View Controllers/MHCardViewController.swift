@@ -56,7 +56,7 @@ class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRe
     var currentRestaurantSelection: Restaurant? = nil{
         didSet{
             directionsButton.isHidden = currentRestaurantSelection == nil
-            rollButton.setTitle("Roll Again", for: .normal)
+            rollButton.setTitle(NSLocalizedString("Roll Again", comment: "Prompts the user to ask the app to choose another restaurant after it has already done so once"), for: .normal)
         }
     }
     var closedVisibileHeight: CGFloat{

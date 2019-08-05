@@ -222,10 +222,6 @@ class MHMapViewController: UIViewController, MKMapViewDelegate, UIGestureRecogni
         return pin
     }
 
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print(view)
-    }
-
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) -> Void{
         selectionCircle?.mapView(mapView, regionDidChangeAnimated: animated)
         guard !CLLocationManager.authorized().boolean else{
