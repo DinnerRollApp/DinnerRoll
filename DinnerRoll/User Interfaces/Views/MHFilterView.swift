@@ -117,10 +117,6 @@ class MHFilterView: UIView, MHFilterEntryFieldDelegate, TagListViewDelegate{
     func tagRemoveButtonPressed(_ title: String, tagView tag: TagView, sender: TagListView) -> Void{
         sender.removeTagView(tag)
     }
-
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) -> Void{
-        dump(touches.first?.location(in: self))
-    }
 }
 
 // MARK: - Data Helper Subclasses
@@ -160,11 +156,6 @@ class MHCategoryTag: TagView, AutoCoding{
         aCoder.encode(self.category, forKey: "category")
     }
     // sourcery:end
-
-//    required init?(coder aDecoder: NSCoder){
-//        category = aDecoder.decodeObject(forKey: "category") as! Category
-//        super.init(coder: aDecoder)
-//    }
 }
 
 // MARK: - Appearance Subclasses

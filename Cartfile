@@ -2,3 +2,4 @@ github "yonat/MultiSelectSegmentedControl"
 github "raysarebest/TagListView" "raysarebest-develop" # Change this back to ElaWorkshop once they accept my PRs
 github "Alamofire/Alamofire"
 github "evgenyneu/Cosmos"
+github "FormatterKit/FormatterKit"

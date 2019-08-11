@@ -19,7 +19,9 @@ class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRe
     }
     var prices: IndexSet{
         get{
-            return pricingSegments.selectedSegmentIndexes
+            return IndexSet(pricingSegments.selectedSegmentIndexes.map({ (index: Int) -> Int in
+                return index + 1
+            }))
         }
     }
     var categories: [Category]{
@@ -77,6 +79,9 @@ class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRe
         }
         for tap in recognizers where tap is UITapGestureRecognizer{
             tap.delegate = self
+        }
+        for index in 1...pricingSegments.numberOfSegments{
+            pricingSegments.setTitle(Locale.preferredAgnosticCurrencySymbol * index, forSegmentAt: index - 1)
         }
     }
 

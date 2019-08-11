@@ -10,6 +10,14 @@ import UIKit
 import MapKit
 
 extension UIColor{
+
+    convenience init(red: Int, green: Int, blue: Int, alpha: Int){
+        func normalized(_ num: Int) -> CGFloat{
+            return CGFloat(num) / 255
+        }
+        self.init(red: normalized(red), green: normalized(green), blue: normalized(blue), alpha: CGFloat(alpha) / 100)
+    }
+
     var redComponent: CGFloat{
         get{
             var r: CGFloat = 0

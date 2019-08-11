@@ -8,6 +8,7 @@
 
 import UIKit
 import Cosmos
+import FormatterKit
 
 class MHRestaurantDetailView: UIStackView {
 
@@ -20,6 +21,14 @@ class MHRestaurantDetailView: UIStackView {
             subtitleLabel.textColor = .gray
             subviews.append(subtitleLabel)
         }
+        if restaurant.categories.count > 0 {
+            let categoriesLabel = UILabel(frame: .zero)
+            categoriesLabel.font = .preferredFont(forTextStyle: .caption1)
+            categoriesLabel.text = TTTArrayFormatter().string(from: restaurant.categories.map({ (category: Category) -> String in
+                return category.shortName
+            }))
+            subviews.append(categoriesLabel)
+        }
         if let rating = restaurant.rating{
             var starSettings = CosmosSettings()
             starSettings.fillMode = .precise
@@ -30,6 +39,13 @@ class MHRestaurantDetailView: UIStackView {
             let stars = CosmosView(settings: starSettings)
             stars.rating = rating / 2
             subviews.append(stars)
+        }
+        if let price = restaurant.price{
+            let priceLabel = UILabel(frame: .zero)
+            priceLabel.font = .preferredFont(forTextStyle: .subheadline)
+            priceLabel.text = Locale.preferredAgnosticCurrencySymbol * price
+            priceLabel.textColor = UIColor(red: 133, green: 187, blue: 101, alpha: 100)
+            subviews.append(priceLabel)
         }
         self.init(arrangedSubviews: subviews)
         axis = .vertical
