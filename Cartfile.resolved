@@ -1,5 +1,4 @@
-github "Alamofire/Alamofire" "4.8.2"
+github "Alamofire/Alamofire" "4.9.0"
 github "FormatterKit/FormatterKit" "1.9.0"
 github "evgenyneu/Cosmos" "19.0.3"
 github "raysarebest/TagListView" "9b64cbaec560f32655693c9a323ecf35631886c2"
-github "yonat/MultiSelectSegmentedControl" "1.2.1"

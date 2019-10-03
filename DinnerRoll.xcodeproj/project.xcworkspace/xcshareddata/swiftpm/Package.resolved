@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "MultiSelectSegmentedControl",
+        "repositoryURL": "git@github.com:yonat/MultiSelectSegmentedControl.git",
+        "state": {
+          "branch": null,
+          "revision": "084ff330663cbd5d684b7ace83a47fd808258c96",
+          "version": "2.1.1"
+        }
+      },
+      {
+        "package": "SweeterSwift",
+        "repositoryURL": "https://github.com/yonat/SweeterSwift",
+        "state": {
+          "branch": null,
+          "revision": "dd010575343671c3ae086b1884801f858853cac3",
+          "version": "1.0.5"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

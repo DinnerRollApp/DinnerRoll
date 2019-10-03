@@ -26,17 +26,27 @@ class MHFilterView: UIView, MHFilterEntryFieldDelegate, TagListViewDelegate{
         }
     }
 
+    private var tagViewUpdateObserver: NSObjectProtocol? = nil
+
     override func awakeFromNib() -> Void{
         super.awakeFromNib()
         buildCaches()
         NotificationCenter.default.addObserver(self, selector: #selector(destroyCaches), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
+        tagViewUpdateObserver = NotificationCenter.default.addObserver(forName: .TagViewFrameWasUpdatedNotification, object: nil, queue: nil) { (notification: Notification) in
+            self.invalidateIntrinsicContentSize()
+        }
     }
 
-    override func layoutSubviews() -> Void{
-        if frame.height == 0{
-            frame = CGRect(origin: frame.origin, size: CGSize(width: frame.width, height: searchBar.frame.height + 8 + tagView.frame.height))
+    deinit{
+        if let observer = tagViewUpdateObserver {
+            NotificationCenter.default.removeObserver(observer)
         }
-        super.layoutSubviews()
+    }
+
+    override var intrinsicContentSize: CGSize {
+        get{
+            return CGSize(width: .maximum(searchBar.frame.width, tagView.frame.width), height: searchBar.frame.height + 8 + tagView.intrinsicContentSize.height)
+        }
     }
 
     // MARK: Categories/Autocomplete Handling
@@ -107,7 +117,9 @@ class MHFilterView: UIView, MHFilterEntryFieldDelegate, TagListViewDelegate{
         (tag as UIView).cornerRadius = searchBar.cornerRadius
 
         field.text = ""
+        tagView.invalidateIntrinsicContentSize()
         invalidateIntrinsicContentSize()
+        setNeedsLayout()
     }
 
     func tagPressed(_ title: String, tagView tag: TagView, sender: TagListView) -> Void{

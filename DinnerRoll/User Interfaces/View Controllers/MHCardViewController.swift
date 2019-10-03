@@ -80,8 +80,13 @@ class MHCardViewController: UIViewController, SearchFilterProviding, UIGestureRe
         for tap in recognizers where tap is UITapGestureRecognizer{
             tap.delegate = self
         }
-        for index in 1...pricingSegments.numberOfSegments{
-            pricingSegments.setTitle(Locale.preferredAgnosticCurrencySymbol * index, forSegmentAt: index - 1)
+        for index in 1...(pricingSegments.numberOfSegments > 0 ? pricingSegments.numberOfSegments : 4){
+            if index < pricingSegments.numberOfSegments {
+                pricingSegments.setTitle(Locale.preferredAgnosticCurrencySymbol * index, forSegmentAt: index - 1)
+            }
+            else{
+                pricingSegments.items.append(Locale.preferredAgnosticCurrencySymbol * index)
+            }
         }
     }
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,7 +11,6 @@
 		4C0C49F0227FB81300B336A2 /* AutoCoding.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 4C0C49EF227FB81300B336A2 /* AutoCoding.stencil */; };
 		4C0C49F8227FCB5A00B336A2 /* Sourcery.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C49F7227FCB5A00B336A2 /* Sourcery.generated.swift */; };
 		4C0EE5D722509BC50029B1BD /* Sourcery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0EE5D622509BC50029B1BD /* Sourcery.swift */; };
-		4C16332F21ABBF3200821060 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C16332E21ABBF3200821060 /* Contacts.framework */; };
 		4C22923F1F282C6500A5DF9F /* MHCoordinatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C22923E1F282C6500A5DF9F /* MHCoordinatingViewController.swift */; };
 		4C3E4B351EDF9025006DF23F /* MHPaneBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E4B341EDF9025006DF23F /* MHPaneBehavior.m */; };
 		4C3E4B381EDF9044006DF23F /* MHMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E4B371EDF9044006DF23F /* MHMainViewController.m */; };
@@ -29,8 +28,6 @@
 		4C78E5511F2AA8CA007BCFFE /* ObjectAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C78E5501F2AA8CA007BCFFE /* ObjectAssociation.swift */; };
 		4C7BA6481F4E3DEB005335B2 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7BA6471F4E3DEB005335B2 /* Color.swift */; };
 		4C7BA6491F4E589C005335B2 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE37EE41F4A46BE002C93D2 /* SearchTextField.swift */; };
-		4C7FF0BD1F5FB13E00A0BF22 /* MultiSelectSegmentedControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7FF0BC1F5FB04200A0BF22 /* MultiSelectSegmentedControl.framework */; };
-		4C7FF0BE1F5FB13E00A0BF22 /* MultiSelectSegmentedControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7FF0BC1F5FB04200A0BF22 /* MultiSelectSegmentedControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C884D2A20BF94A5006B2ADC /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C884D2920BF94A5006B2ADC /* Location.swift */; };
 		4C97962A1EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9796271EB1137700D66D93 /* DBMapSelectorGestureRecognizer.m */; };
 		4C97962B1EB1137700D66D93 /* DBMapSelectorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9796291EB1137700D66D93 /* DBMapSelectorManager.m */; };
@@ -51,6 +48,7 @@
 		4CABB3BA1F28395300F1B3ED /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CABB3B91F28395300F1B3ED /* MapKit.framework */; };
 		4CB028E71F354F170063FA02 /* RestaurantCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB028E61F354F170063FA02 /* RestaurantCategory.swift */; };
 		4CDA11B31F483AA90061B832 /* MHFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA11B21F483AA90061B832 /* MHFilterView.swift */; };
+		4CDBB6D42337FDF600809EF0 /* MultiSelectSegmentedControl in Frameworks */ = {isa = PBXBuildFile; productRef = 4CDBB6D32337FDF600809EF0 /* MultiSelectSegmentedControl */; };
 		4CE235451FF8DE8D00E23631 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE235441FF8DE8D00E23631 /* Alamofire.framework */; };
 		4CE235471FF8DEAA00E23631 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE235441FF8DE8D00E23631 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4CE5812E2261A9BA00058F5C /* AutoCodable.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 4CE5812D2261A9BA00058F5C /* AutoCodable.stencil */; };
@@ -67,6 +65,8 @@
 			compilerSpec = com.apple.xcode.tools.swift.compiler;
 			filePatterns = "*.generated.swift";
 			fileType = pattern.proxy;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 			);
@@ -99,7 +99,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4C5F2BA81F4593DF00733355 /* TagListView.framework in Embed Frameworks */,
-				4C7FF0BE1F5FB13E00A0BF22 /* MultiSelectSegmentedControl.framework in Embed Frameworks */,
 				4C49499C22F922CB009EB428 /* FormatterKit.framework in Embed Frameworks */,
 				4CE235471FF8DEAA00E23631 /* Alamofire.framework in Embed Frameworks */,
 			);
@@ -188,10 +187,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C16332F21ABBF3200821060 /* Contacts.framework in Frameworks */,
 				4CABB3BA1F28395300F1B3ED /* MapKit.framework in Frameworks */,
 				4CE235451FF8DE8D00E23631 /* Alamofire.framework in Frameworks */,
-				4C7FF0BD1F5FB13E00A0BF22 /* MultiSelectSegmentedControl.framework in Frameworks */,
+				4CDBB6D42337FDF600809EF0 /* MultiSelectSegmentedControl in Frameworks */,
 				4CABB3B81F28394B00F1B3ED /* CoreLocation.framework in Frameworks */,
 				4C49499B22F922CB009EB428 /* FormatterKit.framework in Frameworks */,
 				4C5F2BA71F4593DF00733355 /* TagListView.framework in Frameworks */,
@@ -556,6 +554,9 @@
 			dependencies = (
 			);
 			name = DinnerRoll;
+			packageProductDependencies = (
+				4CDBB6D32337FDF600809EF0 /* MultiSelectSegmentedControl */,
+			);
 			productName = DinnerRoll;
 			productReference = 4C9AE7A51EA17BC500514983 /* DinnerRoll.app */;
 			productType = "com.apple.product-type.application";
@@ -643,6 +644,9 @@
 				sv,
 			);
 			mainGroup = 4C9AE79C1EA17BC500514983;
+			packageReferences = (
+				4CDBB6D22337FDF600809EF0 /* XCRemoteSwiftPackageReference "MultiSelectSegmentedControl" */,
+			);
 			productRefGroup = 4C9AE7A61EA17BC500514983 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1135,6 +1139,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4CDBB6D22337FDF600809EF0 /* XCRemoteSwiftPackageReference "MultiSelectSegmentedControl" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:yonat/MultiSelectSegmentedControl.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4CDBB6D32337FDF600809EF0 /* MultiSelectSegmentedControl */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4CDBB6D22337FDF600809EF0 /* XCRemoteSwiftPackageReference "MultiSelectSegmentedControl" */;
+			productName = MultiSelectSegmentedControl;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4C9AE79D1EA17BC500514983 /* Project object */;
 }

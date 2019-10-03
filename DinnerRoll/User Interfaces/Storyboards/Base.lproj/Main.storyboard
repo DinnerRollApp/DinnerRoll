@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ArL-ri-BQt">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ArL-ri-BQt">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -58,7 +56,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
-                                <blurEffect style="light"/>
+                                <blurEffect style="regular"/>
                             </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -224,32 +222,27 @@
                                                         <color key="textColor" red="0.98039215690000003" green="0.89411764709999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="M2d-ix-628" customClass="MultiSelectSegmentedControl">
-                                                        <rect key="frame" x="0.0" y="38.333333333333343" width="199" height="29"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xNw-9b-C6K" customClass="MultiSelectSegmentedControl" customModule="MultiSelectSegmentedControl">
+                                                        <rect key="frame" x="0.0" y="38.333333333333343" width="199" height="28"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" red="0.96470588235294119" green="0.4823529411764706" blue="0.031372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="28" id="Fj4-aG-Hrt"/>
+                                                            <constraint firstAttribute="height" constant="28" id="8v2-dp-Z69"/>
                                                         </constraints>
-                                                        <segments>
-                                                            <segment title="$"/>
-                                                            <segment title="$$"/>
-                                                            <segment title="$$$"/>
-                                                            <segment title="$$$$"/>
-                                                        </segments>
-                                                        <color key="tintColor" red="0.96470588239999999" green="0.4823529412" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </segmentedControl>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="xNw-9b-C6K" firstAttribute="leading" secondItem="dOg-gR-BJA" secondAttribute="leading" id="Chk-Ye-lrp"/>
+                                                    <constraint firstAttribute="trailing" secondItem="xNw-9b-C6K" secondAttribute="trailing" id="Znm-xu-FEy"/>
                                                     <constraint firstItem="NuZ-Xf-ceH" firstAttribute="top" secondItem="dOg-gR-BJA" secondAttribute="top" constant="8" id="bW8-sI-Vhx"/>
-                                                    <constraint firstAttribute="trailing" secondItem="M2d-ix-628" secondAttribute="trailing" id="fIV-hX-vtB"/>
-                                                    <constraint firstItem="M2d-ix-628" firstAttribute="leading" secondItem="dOg-gR-BJA" secondAttribute="leading" id="nLJ-t4-UI8"/>
                                                     <constraint firstItem="NuZ-Xf-ceH" firstAttribute="centerX" secondItem="dOg-gR-BJA" secondAttribute="centerX" id="wJR-aW-F3d"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="M2d-ix-628" firstAttribute="centerY" secondItem="HEA-fe-wnj" secondAttribute="centerY" id="uVz-ls-eX8"/>
+                                            <constraint firstItem="xNw-9b-C6K" firstAttribute="centerY" secondItem="HEA-fe-wnj" secondAttribute="centerY" id="geI-UF-nk6"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -385,7 +378,7 @@
                         <outlet property="filterView" destination="H3q-08-6k6" id="I1o-O9-Am9"/>
                         <outlet property="openNowSwitch" destination="HEA-fe-wnj" id="gTa-sY-a6w"/>
                         <outlet property="optionButtonsView" destination="jbG-cm-0uu" id="nTr-ZV-zcx"/>
-                        <outlet property="pricingSegments" destination="M2d-ix-628" id="IkH-XJ-XSg"/>
+                        <outlet property="pricingSegments" destination="xNw-9b-C6K" id="oFR-as-Oby"/>
                         <outlet property="rollButton" destination="tIJ-Pn-hN3" id="JFV-KA-pxF"/>
                         <outlet property="safeAreaSizingViewHeight" destination="HWi-G4-pgD" id="CW7-a9-fYQ"/>
                         <outlet property="separatorView" destination="Oa7-6M-WNd" id="sX6-wJ-kac"/>
